@@ -78,7 +78,16 @@
       "description": "Only compile",
       "steps": [
         {
-          "exec": "tsc --build"
+          "exec": "tsc --project tsconfig.build.commonjs.json"
+        },
+        {
+          "exec": "ts-node ./scripts/create-package-json.ts --outDir=\"/Users/ally/Projects/side-projects/markdown-as-code/lib\" --type=commonjs"
+        },
+        {
+          "exec": "tsc --project tsconfig.build.module.json"
+        },
+        {
+          "exec": "ts-node ./scripts/create-package-json.ts --outDir=\"/Users/ally/Projects/side-projects/markdown-as-code/lib\" --type=module"
         }
       ]
     },

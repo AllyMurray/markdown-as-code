@@ -11,6 +11,8 @@
 /.gitignore linguist-generated
 /.mergify.yml linguist-generated
 /.npmignore linguist-generated
+/.prettierignore linguist-generated
+/.prettierrc.json linguist-generated
 /.projen/** linguist-generated
 /.projen/deps.json linguist-generated
 /.projen/files.json linguist-generated
@@ -18,5 +20,8 @@
 /LICENSE linguist-generated
 /package-lock.json linguist-generated
 /package.json linguist-generated
+/scripts/create-package-json.ts linguist-generated
+/tsconfig.build.commonjs.json linguist-generated
+/tsconfig.build.module.json linguist-generated
 /tsconfig.dev.json linguist-generated
 /tsconfig.json linguist-generated

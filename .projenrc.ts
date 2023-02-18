@@ -1,13 +1,13 @@
-import { javascript, typescript } from 'projen';
-const project = new typescript.TypeScriptProject({
-  defaultReleaseBranch: 'main',
-  name: 'markdown-as-code',
-  packageManager: javascript.NodePackageManager.NPM,
-  projenrcTs: true,
+import { TypeScriptNpmPackage } from '@ally-murray/projen-modules';
 
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+const project = new TypeScriptNpmPackage({
+  name: 'markdown-as-code',
+  description: 'Define and maintain README.md through code.',
+  authorName: 'Ally Murray',
+  authorEmail: 'allymurray88@gmail.com',
+  defaultReleaseBranch: 'main',
+  deps: ['change-case'],
+  devDeps: ['@ally-murray/projen-modules'],
 });
+
 project.synth();
