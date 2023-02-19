@@ -1,6 +1,6 @@
 export type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
-const isInHeadingLevelRange = (level: HeadingLevel) => level >= 1 || level <= 6;
+const isInHeadingLevelRange = (level: HeadingLevel) => level >= 1 && level <= 6;
 
 export const heading = (level: HeadingLevel, text: string) => {
   if (isInHeadingLevelRange(level)) {
