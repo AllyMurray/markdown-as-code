@@ -1,0 +1,51 @@
+interface CodeBlock {
+  language?:
+    | 'apache'
+    | 'armasm'
+    | 'bash'
+    | 'c'
+    | 'coffeescript'
+    | 'cpp'
+    | 'csharp'
+    | 'css'
+    | 'd'
+    | 'diff'
+    | 'go'
+    | 'handlebars'
+    | 'haskell'
+    | 'http'
+    | 'ini'
+    | 'java'
+    | 'javascript'
+    | 'json'
+    | 'julia'
+    | 'kotlin'
+    | 'less'
+    | 'lua'
+    | 'makefile'
+    | 'markdown'
+    | 'nginx'
+    | 'objectivec'
+    | 'perl'
+    | 'php'
+    | 'plaintext'
+    | 'properties'
+    | 'python'
+    | 'r'
+    | 'ruby'
+    | 'rust'
+    | 'scala'
+    | 'scss'
+    | 'shell'
+    | 'sql'
+    | 'swift'
+    | 'typescript'
+    | 'x86asm'
+    | 'xml'
+    | 'yaml';
+  code: string;
+}
+
+export const codeBlock = ({ language, code }: CodeBlock) => {
+  return [`\`\`\`${language ?? ''}`, code, '```'].join('\n');
+};
