@@ -51,5 +51,6 @@ junit.xml
 /dist/
 !/.eslintrc.json
 !/scripts/create-package-json.ts
-!/tsconfig.build.module.json
-!/tsconfig.build.commonjs.json
+!/tsconfig.build.esm.json
+!/tsconfig.build.cjs.json
+!/tsconfig.build.types.json

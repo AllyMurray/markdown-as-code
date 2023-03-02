@@ -21,5 +21,6 @@ dist
 /.projenrc.js
 tsconfig.tsbuildinfo
 /.eslintrc.json
-/tsconfig.build.module.json
-/tsconfig.build.commonjs.json
+/tsconfig.build.esm.json
+/tsconfig.build.cjs.json
+/tsconfig.build.types.json

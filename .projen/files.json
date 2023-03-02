@@ -17,8 +17,9 @@
     ".projen/tasks.json",
     "LICENSE",
     "scripts/create-package-json.ts",
-    "tsconfig.build.commonjs.json",
-    "tsconfig.build.module.json",
+    "tsconfig.build.cjs.json",
+    "tsconfig.build.esm.json",
+    "tsconfig.build.types.json",
     "tsconfig.dev.json",
     "tsconfig.json"
   ],

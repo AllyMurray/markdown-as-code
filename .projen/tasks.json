@@ -78,16 +78,19 @@
       "description": "Only compile",
       "steps": [
         {
-          "exec": "tsc --project tsconfig.build.commonjs.json"
+          "exec": "tsc --project tsconfig.build.types.json"
         },
         {
-          "exec": "ts-node ./scripts/create-package-json.ts --outDir=\"/Users/ally/Projects/side-projects/markdown-as-code/lib\" --type=commonjs"
+          "exec": "tsc --project tsconfig.build.cjs.json"
         },
         {
-          "exec": "tsc --project tsconfig.build.module.json"
+          "exec": "ts-node ./scripts/create-package-json.ts --outDir=\"/Users/ally/Projects/side-projects/markdown-as-code/lib/cjs\" --type=commonjs"
         },
         {
-          "exec": "ts-node ./scripts/create-package-json.ts --outDir=\"/Users/ally/Projects/side-projects/markdown-as-code/lib\" --type=module"
+          "exec": "tsc --project tsconfig.build.esm.json"
+        },
+        {
+          "exec": "ts-node ./scripts/create-package-json.ts --outDir=\"/Users/ally/Projects/side-projects/markdown-as-code/lib/esm\" --type=module"
         }
       ]
     },

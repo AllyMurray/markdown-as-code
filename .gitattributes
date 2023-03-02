@@ -21,7 +21,8 @@
 /package-lock.json linguist-generated
 /package.json linguist-generated
 /scripts/create-package-json.ts linguist-generated
-/tsconfig.build.commonjs.json linguist-generated
-/tsconfig.build.module.json linguist-generated
+/tsconfig.build.cjs.json linguist-generated
+/tsconfig.build.esm.json linguist-generated
+/tsconfig.build.types.json linguist-generated
 /tsconfig.dev.json linguist-generated
 /tsconfig.json linguist-generated
