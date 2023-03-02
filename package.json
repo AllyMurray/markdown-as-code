@@ -1,6 +1,6 @@
 {
   "name": "markdown-as-code",
-  "description": "Define and maintain README.md through code.",
+  "description": "Define and maintain markdown files through code.",
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
@@ -27,7 +27,7 @@
     "organization": false
   },
   "devDependencies": {
-    "@ally-murray/projen-modules": "^0.0.2",
+    "@ally-murray/projen-modules": "^0.0.3",
     "@types/jest": "^29.4.0",
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
