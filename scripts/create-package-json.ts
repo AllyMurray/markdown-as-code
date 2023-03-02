@@ -7,19 +7,19 @@ import path from 'path';
 import { program } from 'commander';
 
 program
-  .option('--outDir <string>', 'The directory the file will be written to')
+  .option('--moduleType <string>', 'The module type, cjs or esm')
   .option(
-    '--type <string>',
+    '--packageJsonType <string>',
     'The package.json type, either commonjs or module'
   );
 program.parse();
 
 const options = program.opts();
 
-const type = options.type;
+const type = options.packageJsonType;
 
 fs.writeFileSync(
-  path.join(options.outDir, 'package.json'),
+  path.resolve('lib', options.moduleType, 'package.json'),
   JSON.stringify(
     {
       type,

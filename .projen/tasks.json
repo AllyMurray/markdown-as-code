@@ -81,16 +81,16 @@
           "exec": "tsc --project tsconfig.build.types.json"
         },
         {
-          "exec": "tsc --project tsconfig.build.cjs.json"
-        },
-        {
-          "exec": "ts-node ./scripts/create-package-json.ts --outDir=\"/Users/ally/Projects/side-projects/markdown-as-code/lib/cjs\" --type=commonjs"
-        },
-        {
           "exec": "tsc --project tsconfig.build.esm.json"
         },
         {
-          "exec": "ts-node ./scripts/create-package-json.ts --outDir=\"/Users/ally/Projects/side-projects/markdown-as-code/lib/esm\" --type=module"
+          "exec": "ts-node ./scripts/create-package-json.ts --moduleType=\"esm\" --packageJsonType=module"
+        },
+        {
+          "exec": "tsc --project tsconfig.build.cjs.json"
+        },
+        {
+          "exec": "ts-node ./scripts/create-package-json.ts --moduleType=\"cjs\" --packageJsonType=commonjs"
         }
       ]
     },
@@ -146,7 +146,12 @@
     },
     "pre-compile": {
       "name": "pre-compile",
-      "description": "Prepare the project for compilation"
+      "description": "Prepare the project for compilation",
+      "steps": [
+        {
+          "exec": "NODE_OPTIONS=\"--loader ts-node/esm\""
+        }
+      ]
     },
     "release": {
       "name": "release",
