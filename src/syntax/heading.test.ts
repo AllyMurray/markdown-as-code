@@ -1,9 +1,9 @@
-import { heading, HeadingLevel } from './heading';
+import { heading, HeadingLevel } from './heading.js';
 
 describe('heading', () => {
   const headingLevels: Array<HeadingLevel> = [1, 2, 3, 4, 5, 6];
   it.each(headingLevels)(
-    'should return the correct result for heading %i',
+    'should return the correct syntax for heading %i',
     (level) => {
       expect(heading(level, `Test ${level}`)).toBe(
         `${'#'.repeat(level)} Test ${level}`

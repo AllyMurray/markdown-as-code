@@ -1,4 +1,4 @@
-import { codeBlock } from './code-block';
+import { codeBlock } from './code-block.js';
 
 describe('codeBlock', () => {
   it('should return a code block with no language', () => {

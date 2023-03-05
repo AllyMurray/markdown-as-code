@@ -1,4 +1,4 @@
-import { Emphasis, style } from './style';
+import { Emphasis, style } from './style.js';
 
 describe('style', () => {
   const testcases: Array<{ emphasis: Emphasis; expected: string }> = [
