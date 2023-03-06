@@ -1,4 +1,3 @@
-
 export * from './syntax/code-block.js';
 export * from './syntax/heading.js';
 export * from './syntax/image.js';

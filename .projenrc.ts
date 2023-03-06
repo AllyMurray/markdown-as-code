@@ -7,7 +7,22 @@ const project = new TypeScriptNpmPackage({
   authorEmail: 'allymurray88@gmail.com',
   defaultReleaseBranch: 'main',
   deps: ['change-case'],
-  devDeps: ['@ally-murray/projen-modules'],
+  devDeps: ['@ally-murray/projen-modules', 'ts-jest-resolver'],
+  jestOptions: {
+    jestConfig: {
+      resolver: 'ts-jest-resolver',
+    },
+  },
 });
+
+if (project.jest) {
+  project.jest.config.globals = {
+    ...project.jest.config.globals,
+    'ts-jest': {
+      ...project.jest.config.globals['ts-jest'],
+      useESM: true,
+    },
+  };
+}
 
 project.synth();
