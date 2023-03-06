@@ -1,11 +1,11 @@
 type Task = { description: string; complete?: boolean };
 
 export const orderedList = (items: Array<string>) => {
-  return items.map((item, index) => `${index + 1}. ${item}`).join('\n');
+  return items.map((item, index) => `${index + 1}. ${item}`).join('\n\n');
 };
 
 export const unorderedList = (items: Array<string>) => {
-  return items.map((item) => `* ${item}`).join('\n');
+  return items.map((item) => `* ${item}`).join('\n\n');
 };
 
 export const taskList = (tasks: Array<Task>) => {
@@ -17,5 +17,5 @@ export const taskList = (tasks: Array<Task>) => {
         : task.description;
       return `- [${completeMarker}] ${description}`;
     })
-    .join('\n');
+    .join('\n\n');
 };
