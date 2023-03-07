@@ -1,7 +1,7 @@
 import { DocumentSection } from './section.js';
 import { heading, orderedList, unorderedList } from '../index.js';
 
-type ListType = 'Ordered' | 'Unordered';
+type ListType = 'None' | 'Ordered' | 'Unordered';
 
 export abstract class ListSection<ListItem> extends DocumentSection {
   private items: Array<ListItem> = [];
@@ -26,6 +26,9 @@ export abstract class ListSection<ListItem> extends DocumentSection {
         break;
       case 'Unordered':
         listItems = unorderedList(items);
+        break;
+      case 'None':
+        listItems = items.join('\n\n');
         break;
     }
 
