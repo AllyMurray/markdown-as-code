@@ -4,7 +4,7 @@ import { heading, orderedList, unorderedList } from '../index.js';
 type ListType = 'None' | 'Ordered' | 'Unordered';
 
 export abstract class ListSection<ListItem> extends DocumentSection {
-  private items: Array<ListItem> = [];
+  protected items: Array<ListItem> = [];
 
   constructor(title: string, private type: ListType) {
     super(title);
