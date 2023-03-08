@@ -13,7 +13,7 @@ describe('Roadmap', () => {
     );
   });
 
-  it('should return correct syntax when multiple items is added', () => {
+  it('should return correct syntax when multiple items are added', () => {
     const section = new Roadmap()
       .add({ text: 'Item 1' })
       .add({ text: 'Item 2' });

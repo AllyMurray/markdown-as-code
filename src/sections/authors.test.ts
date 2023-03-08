@@ -15,7 +15,7 @@ describe('Authors', () => {
     );
   });
 
-  it('should return correct syntax when multiple items is added', () => {
+  it('should return correct syntax when multiple items are added', () => {
     const section = new Authors()
       .add({ githubUsername: 'JaneDoe' })
       .add({ githubUsername: 'JohnSmith' });

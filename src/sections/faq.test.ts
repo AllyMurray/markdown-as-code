@@ -16,7 +16,7 @@ describe('FAQ', () => {
     );
   });
 
-  it('should return correct syntax when multiple items is added', () => {
+  it('should return correct syntax when multiple items are added', () => {
     const section = new FAQ()
       .add({
         question: 'Question 1',
