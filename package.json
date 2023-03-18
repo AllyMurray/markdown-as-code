@@ -58,12 +58,6 @@
   "version": "0.0.0",
   "jest": {
     "resolver": "ts-jest-resolver",
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.dev.json",
-        "useESM": true
-      }
-    },
     "testMatch": [
       "<rootDir>/src/**/__tests__/**/*.ts?(x)",
       "<rootDir>/(test|src)/**/*(*.)@(spec|test).ts?(x)"
@@ -96,7 +90,13 @@
         }
       ]
     ],
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "globals": {
+      "ts-jest": {
+        "tsconfig": "tsconfig.dev.json",
+        "useESM": true
+      }
+    }
   },
   "types": "lib/types/index.d.ts",
   "module": "lib/esm/index.js",
