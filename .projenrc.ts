@@ -1,4 +1,5 @@
 import { TypeScriptNpmPackage } from '@ally-murray/projen-modules';
+import { createReadme } from './scripts/create-readme.js';
 
 const project = new TypeScriptNpmPackage({
   name: 'markdown-as-code',
@@ -26,3 +27,5 @@ if (project.jest) {
 }
 
 project.synth();
+
+createReadme({ ourDir: project.outdir });
