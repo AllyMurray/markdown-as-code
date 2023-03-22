@@ -43,9 +43,7 @@ export class MarkdownDocument {
     sectionOrTitle: DocumentSection | string,
     content?: string
   ): this {
-    console.log(sectionOrTitle, content);
     if (sectionOrTitle instanceof DocumentSection) {
-      console.log('Is instance of DocumentSection');
       this._sections.push(sectionOrTitle);
       return this;
     }
