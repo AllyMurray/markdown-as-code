@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Readme should 1`] = `
+"# Readme as Code
+
+## Table of Contents
+
+- [Acknowledgements](#acknowledgements)
+- [API Reference](#api-reference)
+- [Authors](#authors)
+- [Contributing](#contributing)
+- [Environment Variables](#environment-variables)
+- [Examples](#examples)
+- [FAQ](#faq)
+- [Installation](#installation)
+- [Roadmap](#roadmap)
+- [Support](#support)
+
+## Acknowledgements
+
+* [GitHub](https://github.com)
+
+## API Reference
+
+#### Get all items
+
+\`\`\`http
+GET /api/items
+\`\`\`
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+|api_key | string | **Required**. Your API key|
+
+## Authors
+
+* [@AllyMurray](https://www.github.com/AllyMurray)
+
+## Contributing
+
+Contributions are always welcome!
+
+See \`contributing.md\` for ways to get started.
+
+Please adhere to this project's \`code of conduct\`.
+
+Some additional markdown content
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+\`\`\`bash
+API_KEY=YOUR-API-KEY-HERE
+\`\`\`
+
+## Examples
+
+#### Initialize the library
+
+When creating the Readme instance the project name and description must be supplied
+
+\`\`\`typescript
+const readme = new Readme({
+  name: 'Example Project',
+  description: 'Define and maintain your README.md through code.',
+});
+\`\`\`
+
+#### Add installation instructions
+
+\`\`\`typescript
+const readme = new Readme({
+  name: 'Example Project',
+  description: 'Define and maintain your README.md through code.',
+});
+
+readme.installation((step) => {
+  step.add({
+    description: 'Install using npm',
+    command: 'npm i readme-as-code',
+  });
+})
+\`\`\`
+
+## FAQ
+
+#### Question 1
+
+Answer 1
+
+## Installation
+
+* Install using npm
+
+\`\`\`bash
+npm i readme-as-code
+\`\`\`
+
+## Roadmap
+
+* Item 1
+
+## Support
+
+Test content"
+`;
