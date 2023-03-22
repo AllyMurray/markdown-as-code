@@ -11,23 +11,23 @@ This project allows managing Markdown files through JavaScript/TypeScript
 
 ## Roadmap
 
-- Documentation 😅
+* Documentation 😅
 
 ## Installation
 
-- Install using npm
+Install using npm
 
 ```bash
 npm install markdown-as-code
 ```
 
-- Install using yarn
+Install using yarn
 
 ```bash
 yarn add markdown-as-code
 ```
 
-- Run tests
+Run tests
 
 ```bash
 npm t
@@ -37,8 +37,8 @@ npm run test
 
 ## Authors
 
-- [@AllyMurray](https://www.github.com/AllyMurray)
+* [@AllyMurray](https://www.github.com/AllyMurray)
 
 ## Acknowledgements
 
-- [Readme.so](https://readme.so)
+* [Readme.so](https://readme.so)
