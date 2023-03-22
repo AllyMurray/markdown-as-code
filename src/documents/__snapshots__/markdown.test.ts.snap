@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Markdown Document should synthesize a basic document 1`] = `
+"# Test
+
+## Table of Contents
+"
+`;
+
+exports[`Markdown Document should synthesize a document after adding a custom section 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Custom Section](#custom-section)
+
+## Custom Section
+
+Some markdown content"
+`;
+
+exports[`Markdown Document should synthesize a document after adding a section 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Roadmap](#roadmap)
+
+## Roadmap
+
+* Item 1"
+`;
