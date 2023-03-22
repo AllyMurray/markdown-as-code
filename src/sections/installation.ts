@@ -7,7 +7,7 @@ interface InstallationStep {
 
 export class Installation extends ListSection<InstallationStep> {
   constructor(title?: string) {
-    super(title ?? 'Installation', 'Unordered');
+    super(title ?? 'Installation', 'None');
   }
 
   protected itemMapper(step: InstallationStep): string {

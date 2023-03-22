@@ -15,7 +15,7 @@ describe('Installation', () => {
       [
         '## Installation',
         '',
-        '* Install using npm',
+        'Install using npm',
         '',
         '```bash',
         'npm i markdown-as-code',
@@ -38,7 +38,7 @@ describe('Installation', () => {
       [
         '## Installation',
         '',
-        '* Install using npm',
+        'Install using npm',
         '',
         '```bash',
         '# Install latest',
@@ -64,13 +64,13 @@ describe('Installation', () => {
       [
         '## Installation',
         '',
-        '* Install using npm',
+        'Install using npm',
         '',
         '```bash',
         'npm i markdown-as-code',
         '```',
         '',
-        '* Install using yarn',
+        'Install using yarn',
         '',
         '```bash',
         'yarn add markdown-as-code',
