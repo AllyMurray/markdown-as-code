@@ -1,5 +1,5 @@
 import { ListSection } from './list-section.js';
-import { link } from '../index.js';
+import { link } from '../syntax/link.js';
 import { mentionPerson } from '../syntax/mention.js';
 
 interface Author {

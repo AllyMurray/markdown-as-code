@@ -1,5 +1,5 @@
 import { ListSection } from './list-section.js';
-import { heading } from '../index.js';
+import { heading } from '../syntax/heading.js';
 
 interface CodeBlock {
   language:
