@@ -1,6 +1,10 @@
 {
   "name": "markdown-as-code",
   "description": "Define and maintain markdown files through code.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AllyMurray/markdown-as-code.git"
+  },
   "scripts": {
     "build": "npx projen build",
     "bump": "npx projen bump",
@@ -56,6 +60,7 @@
   "pnpm": {},
   "main": "lib/cjs/index.js",
   "license": "MIT",
+  "homepage": "https://github.com/AllyMurray/markdown-as-code#readme",
   "version": "0.0.0",
   "jest": {
     "resolver": "ts-jest-resolver",
