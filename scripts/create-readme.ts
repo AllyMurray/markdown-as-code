@@ -1,16 +1,54 @@
 import { readFileSync } from 'node:fs';
+import { readFile, readdir, stat } from 'node:fs/promises';
+import path from 'node:path';
+import { capitalCase } from 'change-case';
 import { createReadmeDocument } from '../src/documents/readme.js';
 
 type ReadmeOptions = {
   ourDir: string;
 };
 
-export function createReadme(options: ReadmeOptions) {
+async function getExamples() {
+  const examplesDirectoryPath = path.resolve('examples');
+  const examplesSubDirectoryPaths = await readdir(examplesDirectoryPath);
+
+  const codeExamples: Array<{ title: string; content: string }> = [];
+  for (const examplesSubDirectoryPath of examplesSubDirectoryPaths.filter(
+    (p) => p !== 'node_modules'
+  )) {
+    const absoluteExamplesSubDirectoryPath = path.join(
+      examplesDirectoryPath,
+      examplesSubDirectoryPath
+    );
+
+    if (!(await stat(absoluteExamplesSubDirectoryPath)).isDirectory()) {
+      continue;
+    }
+
+    const exampleFilePaths = await readdir(absoluteExamplesSubDirectoryPath);
+    const examples = await Promise.all(
+      exampleFilePaths.map(async (file: string) => {
+        const content = await readFile(
+          path.join(absoluteExamplesSubDirectoryPath, file),
+          'utf8'
+        );
+
+        return { title: capitalCase(path.parse(file).name), content };
+      })
+    );
+
+    codeExamples.push(...examples);
+  }
+
+  return codeExamples;
+}
+
+export async function createReadme(options: ReadmeOptions) {
   const packageJson = JSON.parse(
     readFileSync('./package.json', { encoding: 'utf-8' })
   );
 
-  createReadmeDocument({
+  const readme = createReadmeDocument({
     title: packageJson.name,
     fileName: 'README.md',
     description:
@@ -40,6 +78,18 @@ export function createReadme(options: ReadmeOptions) {
     })
     .acknowledgements((acknowledgement) => {
       acknowledgement.add({ text: 'Readme.so', url: 'https://readme.so' });
-    })
-    .synth();
+    });
+
+  const codeExamples = await getExamples();
+
+  readme.examples((example) => {
+    for (const codeExample of codeExamples) {
+      example.add({
+        title: codeExample.title,
+        codeblock: { code: codeExample.content, language: 'typescript' },
+      });
+    }
+  });
+
+  readme.synth();
 }

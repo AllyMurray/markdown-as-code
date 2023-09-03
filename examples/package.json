@@ -1,0 +1,15 @@
+{
+  "name": "markdown-as-code-examples",
+  "version": "0.0.0",
+  "description": "Code examples for markdown-as-code",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AllyMurray/markdown-as-code/examples"
+  },
+  "author": "Ally Murray",
+  "license": "MIT",
+  "dependencies": {
+    "markdown-as-code": "^0.0.4"
+  }
+}
