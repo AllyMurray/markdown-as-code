@@ -46,6 +46,172 @@ npm run test
 
 ## Examples
 
+### Document Sections
+
+#### Acknowledgements
+
+```typescript
+import { Acknowledgements } from 'markdown-as-code';
+
+const content = new Acknowledgements()
+  .add({
+    text: 'Acknowledgement',
+    url: 'https://github.com',
+  })
+  .synthesize();
+```
+
+#### Api Reference
+
+```typescript
+import { ApiReference } from 'markdown-as-code';
+
+const content = new ApiReference()
+  .add({
+    title: 'Get all items',
+    httpMethod: 'GET',
+    path: '/api/items',
+    parameter: {
+      name: 'api_key',
+      type: 'string',
+      description: '**Required**. Your API key',
+    },
+  })
+  .synthesize();
+```
+
+#### Appendix
+
+```typescript
+import { Appendix } from 'markdown-as-code';
+
+const content = new Appendix().appendContent('Test content').synthesize();
+```
+
+#### Authors
+
+```typescript
+import { Authors } from 'markdown-as-code';
+
+const content = new Authors()
+  .add({ githubUsername: 'JaneDoe' })
+  .add({ githubUsername: 'JohnSmith' })
+  .synthesize();
+```
+
+#### Content
+
+```typescript
+import { ContentSection } from 'markdown-as-code';
+
+const content = new ContentSection('Test Section').synthesize();
+```
+
+#### Contributing
+
+```typescript
+import { Contributing } from 'markdown-as-code';
+
+const content = new Contributing().synthesize();
+```
+
+#### Environment Variables
+
+```typescript
+import { EnvironmentVariables } from 'markdown-as-code';
+
+const content = new EnvironmentVariables()
+  .add({
+    name: 'API_KEY',
+    defaultValue: 'YOUR-API-KEY-HERE',
+  })
+  .synthesize();
+```
+
+#### Examples
+
+```typescript
+import { Examples } from 'markdown-as-code';
+
+const content = new Examples()
+  .add({
+    title: 'Create an example section',
+    description:
+      'The title is defaulted to Examples but can be overridden in the constructor',
+    codeblock: {
+      language: 'typescript',
+      code: 'const section = new Examples();',
+    },
+  })
+  .synthesize();
+```
+
+#### Faq
+
+```typescript
+import { FAQ } from 'markdown-as-code';
+
+const content = new FAQ()
+  .add({
+    question: 'Question 1',
+    answer: 'Answer 1',
+  })
+  .synthesize();
+```
+
+#### Installation
+
+```typescript
+import { Installation } from 'markdown-as-code';
+
+const content = new Installation()
+  .add({
+    command: 'npm i markdown-as-code',
+    description: 'Install using npm',
+  })
+  .synthesize();
+```
+
+#### Roadmap
+
+```typescript
+import { Roadmap } from 'markdown-as-code';
+
+const content = new Roadmap().add({ text: 'Item 1' }).synthesize();
+```
+
+#### Run Locally
+
+```typescript
+import { RunLocally } from 'markdown-as-code';
+
+const content = new RunLocally()
+  .add({
+    command: 'npm t',
+    description: 'Run the tests',
+  })
+  .synthesize();
+```
+
+#### Support
+
+```typescript
+import { Support } from 'markdown-as-code';
+
+const support = new Support().appendContent('Test content').synthesize();
+```
+
+#### Table Of Contents
+
+```typescript
+import { TableOfContentsSection, ContentSection } from 'markdown-as-code';
+
+const content = new TableOfContentsSection({
+  sections: [new ContentSection('Test Section')],
+}).synthesize();
+```
+
+
 ### Syntax Functions
 
 #### Code Block
