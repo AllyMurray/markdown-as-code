@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   markdown-as-code:
-    specifier: ^0.0.4
-    version: 0.0.4
+    specifier: ^0.0.8
+    version: 0.0.8
 
 packages:
 
@@ -71,8 +71,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /markdown-as-code@0.0.4:
-    resolution: {integrity: sha512-DP2E62kSzyYq51p8N/51k1RPqwR7q2zRH0q8X4at/0rG7nJNUWEfsbdJTjSlcoLJUyGScYZFlO5lywi21QgrCw==}
+  /markdown-as-code@0.0.8:
+    resolution: {integrity: sha512-NqXKq8wna8yVQsBHyFIkNYeQ4PBZ9RXM5Cj9XqyPJqy/QZtCMQLWi/pFp2+jz0NWxnzOnY70f5NB5+Br818K5w==}
     dependencies:
       change-case: 4.1.2
     dev: false

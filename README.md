@@ -58,7 +58,7 @@ pnpm t
 
 ### Document Sections
 
-#### Acknowledgements
+#### Acknowledgements Class
 
 ```typescript
 import { Acknowledgements } from 'markdown-as-code';
@@ -71,7 +71,20 @@ const content = new Acknowledgements()
   .synthesize();
 ```
 
-#### Api Reference
+#### Acknowledgements Function
+
+```typescript
+import { acknowledgementsSection } from 'markdown-as-code';
+
+const content = acknowledgementsSection()
+  .add({
+    text: 'Acknowledgement',
+    url: 'https://github.com',
+  })
+  .synthesize();
+```
+
+#### Api Reference Class
 
 ```typescript
 import { ApiReference } from 'markdown-as-code';
@@ -90,7 +103,26 @@ const content = new ApiReference()
   .synthesize();
 ```
 
-#### Appendix
+#### Api Reference Function
+
+```typescript
+import { apiReferenceSection } from 'markdown-as-code';
+
+const content = apiReferenceSection()
+  .add({
+    title: 'Get all items',
+    httpMethod: 'GET',
+    path: '/api/items',
+    parameter: {
+      name: 'api_key',
+      type: 'string',
+      description: '**Required**. Your API key',
+    },
+  })
+  .synthesize();
+```
+
+#### Appendix Class
 
 ```typescript
 import { Appendix } from 'markdown-as-code';
@@ -98,7 +130,15 @@ import { Appendix } from 'markdown-as-code';
 const content = new Appendix().appendContent('Test content').synthesize();
 ```
 
-#### Authors
+#### Appendix Function
+
+```typescript
+import { appendixSection } from 'markdown-as-code';
+
+const content = appendixSection().appendContent('Test content').synthesize();
+```
+
+#### Authors Class
 
 ```typescript
 import { Authors } from 'markdown-as-code';
@@ -109,7 +149,18 @@ const content = new Authors()
   .synthesize();
 ```
 
-#### Content
+#### Authors Function
+
+```typescript
+import { authorsSection } from 'markdown-as-code';
+
+const content = authorsSection()
+  .add({ githubUsername: 'JaneDoe' })
+  .add({ githubUsername: 'JohnSmith' })
+  .synthesize();
+```
+
+#### Content Class
 
 ```typescript
 import { ContentSection } from 'markdown-as-code';
@@ -117,7 +168,15 @@ import { ContentSection } from 'markdown-as-code';
 const content = new ContentSection('Test Section').synthesize();
 ```
 
-#### Contributing
+#### Content Function
+
+```typescript
+import { contentSection } from 'markdown-as-code';
+
+const content = contentSection('Test Section').synthesize();
+```
+
+#### Contributing Class
 
 ```typescript
 import { Contributing } from 'markdown-as-code';
@@ -125,7 +184,15 @@ import { Contributing } from 'markdown-as-code';
 const content = new Contributing().synthesize();
 ```
 
-#### Environment Variables
+#### Contributing Function
+
+```typescript
+import { contributingSection } from 'markdown-as-code';
+
+const content = contributingSection().synthesize();
+```
+
+#### Environment Variables Class
 
 ```typescript
 import { EnvironmentVariables } from 'markdown-as-code';
@@ -138,7 +205,20 @@ const content = new EnvironmentVariables()
   .synthesize();
 ```
 
-#### Examples
+#### Environment Variables Function
+
+```typescript
+import { environmentVariablesSection } from 'markdown-as-code';
+
+const content = environmentVariablesSection()
+  .add({
+    name: 'API_KEY',
+    defaultValue: 'YOUR-API-KEY-HERE',
+  })
+  .synthesize();
+```
+
+#### Examples Class
 
 ```typescript
 import { Examples } from 'markdown-as-code';
@@ -156,7 +236,25 @@ const content = new Examples()
   .synthesize();
 ```
 
-#### Faq
+#### Examples Function
+
+```typescript
+import { examplesSection } from 'markdown-as-code';
+
+const content = examplesSection()
+  .add({
+    title: 'Create an example section',
+    description:
+      'The title is defaulted to Examples but can be overridden in the constructor',
+    codeblock: {
+      language: 'typescript',
+      code: 'const section = new Examples();',
+    },
+  })
+  .synthesize();
+```
+
+#### Faq Class
 
 ```typescript
 import { FAQ } from 'markdown-as-code';
@@ -169,7 +267,20 @@ const content = new FAQ()
   .synthesize();
 ```
 
-#### Installation
+#### Faq Function
+
+```typescript
+import { faqSection } from 'markdown-as-code';
+
+const content = faqSection()
+  .add({
+    question: 'Question 1',
+    answer: 'Answer 1',
+  })
+  .synthesize();
+```
+
+#### Installation Class
 
 ```typescript
 import { Installation } from 'markdown-as-code';
@@ -182,7 +293,20 @@ const content = new Installation()
   .synthesize();
 ```
 
-#### Roadmap
+#### Installation Function
+
+```typescript
+import { installationSection } from 'markdown-as-code';
+
+const content = installationSection()
+  .add({
+    command: 'npm i markdown-as-code',
+    description: 'Install using npm',
+  })
+  .synthesize();
+```
+
+#### Roadmap Class
 
 ```typescript
 import { Roadmap } from 'markdown-as-code';
@@ -190,7 +314,15 @@ import { Roadmap } from 'markdown-as-code';
 const content = new Roadmap().add({ text: 'Item 1' }).synthesize();
 ```
 
-#### Run Locally
+#### Roadmap Function
+
+```typescript
+import { roadmapSection } from 'markdown-as-code';
+
+const content = roadmapSection().add({ text: 'Item 1' }).synthesize();
+```
+
+#### Run Locally Class
 
 ```typescript
 import { RunLocally } from 'markdown-as-code';
@@ -203,7 +335,20 @@ const content = new RunLocally()
   .synthesize();
 ```
 
-#### Support
+#### Run Locally Function
+
+```typescript
+import { runLocallySection } from 'markdown-as-code';
+
+const content = runLocallySection()
+  .add({
+    command: 'npm t',
+    description: 'Run the tests',
+  })
+  .synthesize();
+```
+
+#### Support Class
 
 ```typescript
 import { Support } from 'markdown-as-code';
@@ -211,7 +356,15 @@ import { Support } from 'markdown-as-code';
 const support = new Support().appendContent('Test content').synthesize();
 ```
 
-#### Table Of Contents
+#### Support Function
+
+```typescript
+import { supportSection } from 'markdown-as-code';
+
+const support = supportSection().appendContent('Test content').synthesize();
+```
+
+#### Table Of Contents Class
 
 ```typescript
 import { TableOfContentsSection, ContentSection } from 'markdown-as-code';
@@ -221,6 +374,15 @@ const content = new TableOfContentsSection({
 }).synthesize();
 ```
 
+#### Table Of Contents Function
+
+```typescript
+import { TableOfContentsSection, ContentSection } from 'markdown-as-code';
+
+const content = new TableOfContentsSection({
+  sections: [new ContentSection('Test Section')],
+}).synthesize();
+```
 
 ### Documents
 
@@ -249,7 +411,6 @@ const content = createReadmeDocument({
   .addSection(new ContentSection('Custom Section', 'Some markdown content'))
   .synthContent();
 ```
-
 
 ### Syntax Functions
 

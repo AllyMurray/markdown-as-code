@@ -10,6 +10,6 @@
   "author": "Ally Murray",
   "license": "MIT",
   "dependencies": {
-    "markdown-as-code": "^0.0.4"
+    "markdown-as-code": "^0.0.8"
   }
 }
