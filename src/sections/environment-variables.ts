@@ -25,3 +25,7 @@ export class EnvironmentVariables extends ListSection<EnvironmentVariable> {
     ];
   }
 }
+
+export function environmentVariablesSection(title?: string) {
+  return new EnvironmentVariables(title);
+}

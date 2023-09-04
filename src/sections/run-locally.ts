@@ -14,3 +14,7 @@ export class RunLocally extends ListSection<RunLocalStep> {
     return [step.description, '', '```bash', step.command, '```'].join('\n');
   }
 }
+
+export function runLocallySection(title?: string) {
+  return new RunLocally(title);
+}

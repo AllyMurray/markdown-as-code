@@ -14,3 +14,7 @@ export class FAQ extends ListSection<FrequentlyAskedQuestion> {
     return [`#### ${item.question}`, '', item.answer].join('\n');
   }
 }
+
+export function faqSection(title?: string) {
+  return new FAQ(title);
+}

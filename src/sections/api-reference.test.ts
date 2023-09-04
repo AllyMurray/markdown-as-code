@@ -1,18 +1,18 @@
-import { ApiEndpoint, ApiReference } from './api-reference.js';
+import { type ApiEndpoint, apiReferenceSection } from './api-reference.js';
 
 describe('API Reference', () => {
   it('should return the correct markdown syntax using the default title', () => {
-    expect(new ApiReference().synthesize()).toBe('## API Reference');
+    expect(apiReferenceSection().synthesize()).toBe('## API Reference');
   });
 
   it('should return the correct markdown syntax using a custom title', () => {
     expect(
-      new ApiReference('Markdown as Code API Reference').synthesize()
+      apiReferenceSection('Markdown as Code API Reference').synthesize()
     ).toBe('## Markdown as Code API Reference');
   });
 
   it('should return the correct markdown after adding an API Endpoint', () => {
-    const apiReference = new ApiReference();
+    const apiReference = apiReferenceSection();
 
     apiReference.add({
       title: 'Get all items',
@@ -43,7 +43,7 @@ describe('API Reference', () => {
   });
 
   it('should return the correct markdown after adding an API Function', () => {
-    const apiReference = new ApiReference();
+    const apiReference = apiReferenceSection();
 
     apiReference.add({
       name: 'add',
@@ -63,7 +63,7 @@ describe('API Reference', () => {
   });
 
   it('should throw when an unknown reference type is added', () => {
-    expect(() => new ApiReference().add({} as ApiEndpoint)).toThrowError(
+    expect(() => apiReferenceSection().add({} as ApiEndpoint)).toThrowError(
       'Unknown Reference Type'
     );
   });

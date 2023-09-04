@@ -18,3 +18,7 @@ export class Authors extends ListSection<Author> {
     );
   }
 }
+
+export function authorsSection(title?: string) {
+  return new Authors(title);
+}

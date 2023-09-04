@@ -1,5 +1,5 @@
 import { DocumentSection } from './section.js';
-import { TableOfContentsSection } from './table-of-contents.js';
+import { tableOfContentsSection } from './table-of-contents.js';
 
 class TestDocumentSection extends DocumentSection {
   protected synthesizeContent(): string[] {
@@ -10,14 +10,14 @@ class TestDocumentSection extends DocumentSection {
 describe('table of contents', () => {
   it('should create a section with the title Table of Contents', () => {
     expect(
-      new TableOfContentsSection({
+      tableOfContentsSection({
         sections: [new TestDocumentSection('Test Section')],
       }).title
     ).toBe('Table of Contents');
   });
 
   it('should return the correct syntax for the title and table of contents', () => {
-    const tableOfContents = new TableOfContentsSection({
+    const tableOfContents = tableOfContentsSection({
       sections: [new TestDocumentSection('Test Section')],
     });
 

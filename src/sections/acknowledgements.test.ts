@@ -1,13 +1,13 @@
-import { Acknowledgements } from './acknowledgements.js';
+import { acknowledgementsSection } from './acknowledgements.js';
 
 describe('Acknowledgements', () => {
   it('should return title only when no items are added', () => {
-    const section = new Acknowledgements();
+    const section = acknowledgementsSection();
     expect(section.synthesize()).toBe('## Acknowledgements\n\n');
   });
 
   it('should return correct syntax when one item is added', () => {
-    const section = new Acknowledgements().add({
+    const section = acknowledgementsSection().add({
       text: 'Acknowledgement',
       url: 'https://github.com',
     });
@@ -19,7 +19,7 @@ describe('Acknowledgements', () => {
   });
 
   it('should return correct syntax when multiple items are added', () => {
-    const section = new Acknowledgements()
+    const section = acknowledgementsSection()
       .add({
         text: 'Acknowledgement 1',
         url: 'https://github.com',

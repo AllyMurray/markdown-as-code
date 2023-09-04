@@ -5,3 +5,7 @@ export class Support extends ContentSection {
     super('Support');
   }
 }
+
+export function supportSection() {
+  return new Support();
+}

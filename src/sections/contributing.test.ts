@@ -1,8 +1,8 @@
-import { Contributing } from './contributing.js';
+import { contributingSection } from './contributing.js';
 
 describe('contributing', () => {
   it('should return the correct markdown syntax using the default title', () => {
-    expect(new Contributing().synthesize()).toBe(
+    expect(contributingSection().synthesize()).toBe(
       [
         '## Contributing',
         'Contributions are always welcome!',
@@ -13,7 +13,7 @@ describe('contributing', () => {
   });
 
   it('should return the correct markdown syntax using a custom default title', () => {
-    expect(new Contributing('Custom Contributing').synthesize()).toBe(
+    expect(contributingSection('Custom Contributing').synthesize()).toBe(
       [
         '## Custom Contributing',
         'Contributions are always welcome!',

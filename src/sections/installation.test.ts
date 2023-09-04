@@ -1,13 +1,13 @@
-import { Installation } from './installation.js';
+import { installationSection } from './installation.js';
 
 describe('Installation', () => {
   it('should return title only when no items are added', () => {
-    const section = new Installation();
+    const section = installationSection();
     expect(section.synthesize()).toBe('## Installation\n\n');
   });
 
   it('should return correct syntax when one item is added', () => {
-    const section = new Installation().add({
+    const section = installationSection().add({
       command: 'npm i markdown-as-code',
       description: 'Install using npm',
     });
@@ -25,7 +25,7 @@ describe('Installation', () => {
   });
 
   it('should return correct syntax when an item is added with multiple commands', () => {
-    const section = new Installation().add({
+    const section = installationSection().add({
       command: [
         '# Install latest',
         'npm i markdown-as-code',
@@ -51,7 +51,7 @@ describe('Installation', () => {
   });
 
   it('should return correct syntax when multiple items are added', () => {
-    const section = new Installation()
+    const section = installationSection()
       .add({
         command: 'npm i markdown-as-code',
         description: 'Install using npm',

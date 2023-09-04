@@ -13,3 +13,7 @@ export class Contributing extends ContentSection {
     super(title ?? 'Contributing', content);
   }
 }
+
+export function contributingSection(title?: string) {
+  return new Contributing(title);
+}

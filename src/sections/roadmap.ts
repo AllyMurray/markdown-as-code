@@ -13,3 +13,7 @@ export class Roadmap extends ListSection<RoadmapItem> {
     return item.text;
   }
 }
+
+export function roadmapSection(title?: string) {
+  return new Roadmap(title);
+}

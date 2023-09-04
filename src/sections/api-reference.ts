@@ -100,3 +100,7 @@ export class ApiReference extends DocumentSection {
     return content;
   }
 }
+
+export function apiReferenceSection(title?: string) {
+  return new ApiReference(title);
+}

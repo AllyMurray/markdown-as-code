@@ -1,13 +1,13 @@
-import { RunLocally } from './run-locally.js';
+import { runLocallySection } from './run-locally.js';
 
 describe('Run Locally', () => {
   it('should return title only when no items are added', () => {
-    const section = new RunLocally();
+    const section = runLocallySection();
     expect(section.synthesize()).toBe('## Run Locally\n\n');
   });
 
   it('should return correct syntax when one item is added', () => {
-    const section = new RunLocally().add({
+    const section = runLocallySection().add({
       command: 'npm t',
       description: 'Run the tests',
     });
@@ -25,7 +25,7 @@ describe('Run Locally', () => {
   });
 
   it('should return correct syntax when multiple items are added', () => {
-    const section = new RunLocally()
+    const section = runLocallySection()
       .add({
         command: 'npm t',
         description: 'Run the tests',

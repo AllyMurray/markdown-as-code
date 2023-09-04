@@ -101,3 +101,7 @@ export class Examples extends DocumentSection {
     return content;
   }
 }
+
+export function examplesSection() {
+  return new Examples();
+}

@@ -1,8 +1,8 @@
-import { Appendix } from './appendix.js';
+import { appendixSection } from './appendix.js';
 
 describe('appendix', () => {
   it('should return the correct syntax for the title and content', () => {
-    expect(new Appendix().appendContent('Test content').synthesize()).toBe(
+    expect(appendixSection().appendContent('Test content').synthesize()).toBe(
       ['## Appendix', '', 'Test content'].join('\n')
     );
   });

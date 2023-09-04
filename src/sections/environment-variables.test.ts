@@ -1,8 +1,8 @@
-import { EnvironmentVariables } from './environment-variables.js';
+import { environmentVariablesSection } from './environment-variables.js';
 
 describe('EnvironmentVariables', () => {
   it('should return title only when no items are added', () => {
-    const section = new EnvironmentVariables();
+    const section = environmentVariablesSection();
     expect(section.synthesize()).toBe(
       [
         '## Environment Variables',
@@ -13,7 +13,7 @@ describe('EnvironmentVariables', () => {
   });
 
   it('should return correct syntax when one item is added', () => {
-    const section = new EnvironmentVariables().add({
+    const section = environmentVariablesSection().add({
       name: 'API_KEY',
       defaultValue: 'YOUR-API-KEY-HERE',
     });
@@ -31,7 +31,7 @@ describe('EnvironmentVariables', () => {
   });
 
   it('should return correct syntax when multiple items are added', () => {
-    const section = new EnvironmentVariables()
+    const section = environmentVariablesSection()
       .add({
         name: 'LOG_LEVEL',
         defaultValue: 'INFO',
@@ -55,7 +55,7 @@ describe('EnvironmentVariables', () => {
   });
 
   it('should return the correct syntax when no default value is supplied', () => {
-    const section = new EnvironmentVariables().add({
+    const section = environmentVariablesSection().add({
       name: 'API_KEY',
     });
     expect(section.synthesize()).toBe(

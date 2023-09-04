@@ -5,7 +5,7 @@ export interface TableOfContents {
   sections: Array<DocumentSection>;
 }
 
-export class TableOfContentsSection extends DocumentSection {
+class TableOfContentsSection extends DocumentSection {
   constructor(private options: TableOfContents) {
     super('Table of Contents');
   }
@@ -23,4 +23,8 @@ export class TableOfContentsSection extends DocumentSection {
       ),
     ];
   }
+}
+
+export function tableOfContentsSection(options: TableOfContents) {
+  return new TableOfContentsSection(options);
 }

@@ -15,3 +15,7 @@ export class Acknowledgements extends ListSection<Link> {
     return link(text, url);
   }
 }
+
+export function acknowledgementsSection(title?: string) {
+  return new Acknowledgements(title);
+}

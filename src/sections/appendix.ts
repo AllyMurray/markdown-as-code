@@ -5,3 +5,7 @@ export class Appendix extends ContentSection {
     super('Appendix');
   }
 }
+
+export function appendixSection() {
+  return new Appendix();
+}

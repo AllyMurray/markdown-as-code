@@ -2,7 +2,7 @@ import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { ContentSection } from '../sections/content-section.js';
 import { DocumentSection } from '../sections/section.js';
-import { TableOfContentsSection } from '../sections/table-of-contents.js';
+import { tableOfContentsSection } from '../sections/table-of-contents.js';
 import { heading } from '../syntax/heading.js';
 
 export interface MarkdownOptions {
@@ -57,7 +57,7 @@ export class MarkdownDocument {
   public synthContent() {
     let tableOfContents;
     if (this._tableOfContents) {
-      tableOfContents = new TableOfContentsSection({
+      tableOfContents = tableOfContentsSection({
         sections: this._sections,
       }).synthesize();
     }

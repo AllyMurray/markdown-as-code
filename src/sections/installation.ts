@@ -18,3 +18,7 @@ export class Installation extends ListSection<InstallationStep> {
     return [step.description, '', '```bash', command, '```'].join('\n');
   }
 }
+
+export function installationSection(title?: string) {
+  return new Installation(title);
+}

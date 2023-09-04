@@ -17,5 +17,6 @@ export class ContentSection extends DocumentSection {
   }
 }
 
-export const createContentSection = (title: string, content: string = '') =>
-  new ContentSection(title, content);
+export function contentSection(title: string, content: string = '') {
+  return new ContentSection(title, content);
+}
