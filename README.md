@@ -4,22 +4,24 @@ This project allows managing Markdown files through JavaScript/TypeScript
 
 ## Table of Contents
 
-- [Roadmap](#roadmap)
 - [Installation](#installation)
+- [Run Locally](#run-locally)
 - [Authors](#authors)
 - [Acknowledgements](#acknowledgements)
 - [Examples](#examples)
-
-## Roadmap
-
-- Documentation 😅
 
 ## Installation
 
 Install using npm
 
 ```bash
-npm install markdown-as-code
+npm i markdown-as-code
+```
+
+Install using pnpm
+
+```bash
+pnpm i markdown-as-code
 ```
 
 Install using yarn
@@ -34,6 +36,14 @@ Run tests
 npm t
 # or
 npm run test
+```
+
+## Run Locally
+
+- Run the tests
+
+```bash
+pnpm t
 ```
 
 ## Authors

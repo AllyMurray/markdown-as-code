@@ -58,14 +58,15 @@ export async function createReadme(options: ReadmeOptions) {
       'This project allows managing Markdown files through JavaScript/TypeScript',
     outDir: options.ourDir,
   })
-    .roadmap((section) => {
-      section.add({ text: 'Documentation 😅' });
-    })
     .installation((step) => {
       step
         .add({
           description: 'Install using npm',
-          command: 'npm install markdown-as-code',
+          command: 'npm i markdown-as-code',
+        })
+        .add({
+          description: 'Install using pnpm',
+          command: 'pnpm i markdown-as-code',
         })
         .add({
           description: 'Install using yarn',
@@ -75,6 +76,12 @@ export async function createReadme(options: ReadmeOptions) {
           description: 'Run tests',
           command: ['npm t', '# or', 'npm run test'],
         });
+    })
+    .runLocally((step) => {
+      step.add({
+        description: 'Run the tests',
+        command: 'pnpm t',
+      });
     })
     .authors((author) => {
       author.add({ githubUsername: 'AllyMurray' });

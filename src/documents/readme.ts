@@ -1,4 +1,5 @@
 import { MarkdownDocument, MarkdownOptions } from './markdown.js';
+import { RunLocally } from '../index.js';
 import { Acknowledgements } from '../sections/acknowledgements.js';
 import { ApiReference } from '../sections/api-reference.js';
 import { Appendix } from '../sections/appendix.js';
@@ -28,6 +29,7 @@ export class Readme extends MarkdownDocument {
   private _faq?: FAQ;
   private _installation?: Installation;
   private _roadmap?: Roadmap;
+  private _runLocally?: RunLocally;
   private _support?: Support;
 
   constructor(options: ReadmeOptions) {
@@ -96,6 +98,10 @@ export class Readme extends MarkdownDocument {
 
   public roadmap(builder: Builder<Roadmap>) {
     return this.executeBuilder(this._roadmap, Roadmap, builder);
+  }
+
+  public runLocally(builder: Builder<RunLocally>) {
+    return this.executeBuilder(this._runLocally, RunLocally, builder);
   }
 
   public support(builder: Builder<Support>) {
