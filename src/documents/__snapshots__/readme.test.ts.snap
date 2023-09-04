@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Readme should 1`] = `
+exports[`Readme should match snapshot 1`] = `
 "# Readme as Code
 
 ## Table of Contents
@@ -13,8 +13,10 @@ exports[`Readme should 1`] = `
 - [Examples](#examples)
 - [FAQ](#faq)
 - [Installation](#installation)
+- [Run Locally](#run-locally)
 - [Roadmap](#roadmap)
 - [Support](#support)
+- [Appendix](#appendix)
 
 ## Acknowledgements
 
@@ -98,11 +100,33 @@ Install using npm
 npm i readme-as-code
 \`\`\`
 
+## Run Locally
+
+- Run the tests
+
+\`\`\`bash
+npm t
+\`\`\`
+
 ## Roadmap
 
 - Item 1
 
 ## Support
 
-Test content"
+Test content
+
+## Appendix
+
+Some content"
+`;
+
+exports[`Readme should write a document to disk 1`] = `
+[
+  "/Users/ally/Projects/repos/markdown-as-code/test.md",
+  "# Test
+
+## Table of Contents
+",
+]
 `;

@@ -1,5 +1,9 @@
+import fs from 'fs';
 import { createMarkdownDocument } from './markdown.js';
 import { Roadmap } from '../sections/roadmap.js';
+
+jest.mock('fs');
+const mockedFs = jest.mocked(fs);
 
 describe('Markdown Document', () => {
   it('should synthesize a basic document', () => {
@@ -27,6 +31,19 @@ describe('Markdown Document', () => {
     }).addSection('Custom Section', 'Some markdown content');
 
     expect(markdownDoc.synthContent()).toMatchSnapshot();
+  });
+
+  it('should write a document to disk', () => {
+    const markdownDoc = createMarkdownDocument({
+      title: 'Test',
+      fileName: 'test.md',
+    });
+
+    markdownDoc.synth();
+
+    expect(mockedFs.writeFileSync.mock.calls[0]).toMatchSnapshot();
+
+    expect(fs.writeFileSync).toHaveBeenCalled();
   });
 
   it('should throw an error if content is undefined', () => {

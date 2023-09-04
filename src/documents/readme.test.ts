@@ -1,7 +1,19 @@
+import fs from 'fs';
 import { createReadmeDocument } from './readme.js';
 
+jest.mock('fs');
+const mockedFs = jest.mocked(fs);
+
 describe('Readme', () => {
-  it('should', () => {
+  it('should default to README.md', () => {
+    const readme = createReadmeDocument({
+      fileName: 'Readme.md',
+    });
+
+    expect(readme.synthContent()).toContain('# README.md');
+  });
+
+  it('should match snapshot', () => {
     const readme = createReadmeDocument({
       title: 'Readme as Code',
       fileName: 'Readme.md',
@@ -81,13 +93,35 @@ describe('Readme', () => {
           command: 'npm i readme-as-code',
         });
       })
+      .runLocally((step) => {
+        step.add({
+          description: 'Run the tests',
+          command: 'npm t',
+        });
+      })
       .roadmap((section) => {
         section.add({ text: 'Item 1' });
       })
       .support((section) => {
         section.appendContent('Test content');
+      })
+      .appendix((section) => {
+        section.appendContent('Some content');
       });
 
     expect(readme.synthContent()).toMatchSnapshot();
+  });
+
+  it('should write a document to disk', () => {
+    const markdownDoc = createReadmeDocument({
+      title: 'Test',
+      fileName: 'test.md',
+    });
+
+    markdownDoc.synth();
+
+    expect(mockedFs.writeFileSync.mock.calls[0]).toMatchSnapshot();
+
+    expect(fs.writeFileSync).toHaveBeenCalled();
   });
 });

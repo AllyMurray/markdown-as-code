@@ -97,4 +97,44 @@ describe('Examples', () => {
       ].join('\n')
     );
   });
+
+  it('should return correct syntax when examples are grouped', () => {
+    const section = examplesSection()
+      .add({
+        title: 'Ungrouped Example',
+        codeblock: {
+          language: 'typescript',
+          code: 'const section = examplesSection();',
+        },
+      })
+      .add({
+        title: 'Grouped Example',
+        group: 'Group 1',
+        codeblock: {
+          language: 'typescript',
+          code: 'const section = examplesSection();',
+        },
+      });
+    expect(section.synthesize()).toBe(
+      [
+        '## Examples',
+        '',
+        '#### Ungrouped Example',
+        '',
+        '```typescript',
+        'const section = examplesSection();',
+        '```',
+        '',
+        '',
+        '### Group 1',
+        '',
+        '#### Grouped Example',
+        '',
+        '```typescript',
+        'const section = examplesSection();',
+        '```',
+        '',
+      ].join('\n')
+    );
+  });
 });
