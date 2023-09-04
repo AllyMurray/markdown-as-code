@@ -5,7 +5,7 @@ export interface TableOfContents {
   sections: Array<DocumentSection>;
 }
 
-class TableOfContentsSection extends DocumentSection {
+export class TableOfContentsSection extends DocumentSection {
   constructor(private options: TableOfContents) {
     super('Table of Contents');
   }
