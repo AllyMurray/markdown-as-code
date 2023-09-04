@@ -377,12 +377,13 @@ const content = new TableOfContentsSection({
 #### Table Of Contents Function
 
 ```typescript
-import { TableOfContentsSection, ContentSection } from 'markdown-as-code';
+import { tableOfContentsSection, contentSection } from 'markdown-as-code';
 
-const content = new TableOfContentsSection({
-  sections: [new ContentSection('Test Section')],
+const content = tableOfContentsSection({
+  sections: [contentSection('Test Section')],
 }).synthesize();
 ```
+
 
 ### Documents
 
@@ -411,6 +412,7 @@ const content = createReadmeDocument({
   .addSection(new ContentSection('Custom Section', 'Some markdown content'))
   .synthContent();
 ```
+
 
 ### Syntax Functions
 
