@@ -122,11 +122,8 @@ Some content"
 `;
 
 exports[`Readme should write a document to disk 1`] = `
-[
-  "/Users/ally/Projects/repos/markdown-as-code/test.md",
-  "# Test
+"# Test
 
 ## Table of Contents
-",
-]
+"
 `;

@@ -32,11 +32,8 @@ exports[`Markdown Document should synthesize a document after adding a section 1
 `;
 
 exports[`Markdown Document should write a document to disk 1`] = `
-[
-  "/Users/ally/Projects/repos/markdown-as-code/test.md",
-  "# Test
+"# Test
 
 ## Table of Contents
-",
-]
+"
 `;

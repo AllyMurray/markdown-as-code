@@ -41,9 +41,10 @@ describe('Markdown Document', () => {
 
     markdownDoc.synth();
 
-    expect(mockedFs.writeFileSync.mock.calls[0]).toMatchSnapshot();
-
-    expect(fs.writeFileSync).toHaveBeenCalled();
+    expect(mockedFs.writeFileSync.mock.calls[0][0]).toContain(
+      'markdown-as-code/test.md'
+    );
+    expect(mockedFs.writeFileSync.mock.calls[0][1]).toMatchSnapshot();
   });
 
   it('should throw an error if content is undefined', () => {
