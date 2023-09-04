@@ -7,9 +7,9 @@ describe('list', () => {
     );
   });
 
-  it('should return an unordered list of items prefixed with *', () => {
+  it('should return an unordered list of items prefixed with -', () => {
     expect(unorderedList(['First Item', 'Second Item'])).toBe(
-      ['* First Item', '* Second Item'].join('\n\n')
+      ['- First Item', '- Second Item'].join('\n\n')
     );
   });
 

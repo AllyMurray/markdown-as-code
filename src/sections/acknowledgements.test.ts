@@ -12,7 +12,7 @@ describe('Acknowledgements', () => {
       url: 'https://github.com',
     });
     expect(section.synthesize()).toBe(
-      ['## Acknowledgements', '* [Acknowledgement](https://github.com)'].join(
+      ['## Acknowledgements', '- [Acknowledgement](https://github.com)'].join(
         '\n\n'
       )
     );
@@ -31,8 +31,8 @@ describe('Acknowledgements', () => {
     expect(section.synthesize()).toBe(
       [
         '## Acknowledgements',
-        '* [Acknowledgement 1](https://github.com)',
-        '* [Acknowledgement 2](https://github.com)',
+        '- [Acknowledgement 1](https://github.com)',
+        '- [Acknowledgement 2](https://github.com)',
       ].join('\n\n')
     );
   });

@@ -9,7 +9,7 @@ describe('Authors', () => {
   it('should return correct syntax when one item is added', () => {
     const section = new Authors().add({ githubUsername: 'JaneDoe' });
     expect(section.synthesize()).toBe(
-      ['## Authors', '', '* [@JaneDoe](https://www.github.com/JaneDoe)'].join(
+      ['## Authors', '', '- [@JaneDoe](https://www.github.com/JaneDoe)'].join(
         '\n'
       )
     );
@@ -23,9 +23,9 @@ describe('Authors', () => {
       [
         '## Authors',
         '',
-        '* [@JaneDoe](https://www.github.com/JaneDoe)',
+        '- [@JaneDoe](https://www.github.com/JaneDoe)',
         '',
-        '* [@JohnSmith](https://www.github.com/JohnSmith)',
+        '- [@JohnSmith](https://www.github.com/JohnSmith)',
       ].join('\n')
     );
   });

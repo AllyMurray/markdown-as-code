@@ -28,5 +28,5 @@ exports[`Markdown Document should synthesize a document after adding a section 1
 
 ## Roadmap
 
-* Item 1"
+- Item 1"
 `;

@@ -18,7 +18,7 @@ exports[`Readme should 1`] = `
 
 ## Acknowledgements
 
-* [GitHub](https://github.com)
+- [GitHub](https://github.com)
 
 ## API Reference
 
@@ -34,7 +34,7 @@ GET /api/items
 
 ## Authors
 
-* [@AllyMurray](https://www.github.com/AllyMurray)
+- [@AllyMurray](https://www.github.com/AllyMurray)
 
 ## Contributing
 
@@ -83,6 +83,7 @@ readme.installation((step) => {
 })
 \`\`\`
 
+
 ## FAQ
 
 #### Question 1
@@ -99,7 +100,7 @@ npm i readme-as-code
 
 ## Roadmap
 
-* Item 1
+- Item 1
 
 ## Support
 

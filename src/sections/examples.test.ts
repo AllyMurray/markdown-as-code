@@ -3,7 +3,7 @@ import { Examples } from './examples.js';
 describe('Examples', () => {
   it('should return title only when no items are added', () => {
     const section = new Examples();
-    expect(section.synthesize()).toBe('## Examples\n\n');
+    expect(section.synthesize()).toBe('## Examples');
   });
 
   it('should return correct syntax when one item is added', () => {
@@ -27,6 +27,7 @@ describe('Examples', () => {
         '```typescript',
         'const section = new Examples();',
         '```',
+        '',
       ].join('\n')
     );
   });
@@ -70,6 +71,7 @@ describe('Examples', () => {
         '```typescript',
         'const section = new Examples();',
         '```',
+        '',
       ].join('\n')
     );
   });
@@ -91,6 +93,7 @@ describe('Examples', () => {
         '```typescript',
         'const section = new Examples();',
         '```',
+        '',
       ].join('\n')
     );
   });

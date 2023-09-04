@@ -5,7 +5,7 @@ export const orderedList = (items: Array<string>) => {
 };
 
 export const unorderedList = (items: Array<string>) => {
-  return items.map((item) => `* ${item}`).join('\n\n');
+  return items.map((item) => `- ${item}`).join('\n\n');
 };
 
 export const taskList = (tasks: Array<Task>) => {

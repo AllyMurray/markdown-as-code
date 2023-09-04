@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { capitalCase } from 'change-case';
+import { capitalCase, headerCase } from 'change-case';
 import { createReadmeDocument } from '../src/documents/readme.js';
 
 type ReadmeOptions = {
@@ -12,7 +12,10 @@ async function getExamples() {
   const examplesDirectoryPath = path.resolve('examples');
   const examplesSubDirectoryPaths = await readdir(examplesDirectoryPath);
 
-  const codeExamples: Array<{ title: string; content: string }> = [];
+  const codeExamples: Array<{
+    group: string;
+    examples: Array<{ title: string; content: string }>;
+  }> = [];
   for (const examplesSubDirectoryPath of examplesSubDirectoryPaths.filter(
     (p) => p !== 'node_modules'
   )) {
@@ -37,7 +40,7 @@ async function getExamples() {
       })
     );
 
-    codeExamples.push(...examples);
+    codeExamples.push({ group: examplesSubDirectoryPath, examples });
   }
 
   return codeExamples;
@@ -80,14 +83,17 @@ export async function createReadme(options: ReadmeOptions) {
       acknowledgement.add({ text: 'Readme.so', url: 'https://readme.so' });
     });
 
-  const codeExamples = await getExamples();
+  const groupedCodeExamples = await getExamples();
 
   readme.examples((example) => {
-    for (const codeExample of codeExamples) {
-      example.add({
-        title: codeExample.title,
-        codeblock: { code: codeExample.content, language: 'typescript' },
-      });
+    for (const groupedCodeExample of groupedCodeExamples) {
+      for (const codeExample of groupedCodeExample.examples) {
+        example.add({
+          title: codeExample.title,
+          codeblock: { code: codeExample.content, language: 'typescript' },
+          group: headerCase(groupedCodeExample.group).replace(/-/g, ' '),
+        });
+      }
     }
   });
 

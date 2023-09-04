@@ -12,7 +12,7 @@ This project allows managing Markdown files through JavaScript/TypeScript
 
 ## Roadmap
 
-* Documentation 😅
+- Documentation 😅
 
 ## Installation
 
@@ -38,13 +38,15 @@ npm run test
 
 ## Authors
 
-* [@AllyMurray](https://www.github.com/AllyMurray)
+- [@AllyMurray](https://www.github.com/AllyMurray)
 
 ## Acknowledgements
 
-* [Readme.so](https://readme.so)
+- [Readme.so](https://readme.so)
 
 ## Examples
+
+### Syntax Functions
 
 #### Code Block
 
@@ -52,7 +54,6 @@ npm run test
 import { codeBlock } from 'markdown-as-code';
 
 codeBlock({ language: 'typescript', code: 'const testNumber = 1' });
-
 ```
 
 #### Heading
@@ -66,7 +67,6 @@ heading(3, 'Heading Level 3');
 heading(4, 'Heading Level 4');
 heading(5, 'Heading Level 5');
 heading(6, 'Heading Level 6');
-
 ```
 
 #### Image
@@ -75,7 +75,6 @@ heading(6, 'Heading Level 6');
 import { image } from 'markdown-as-code';
 
 image('https://via.placeholder.com/150', 'Placeholder Image');
-
 ```
 
 #### Link
@@ -84,7 +83,6 @@ image('https://via.placeholder.com/150', 'Placeholder Image');
 import { link } from 'markdown-as-code';
 
 link('Link Text', '');
-
 ```
 
 #### List
@@ -101,7 +99,6 @@ taskList([
   { description: 'Task 2', complete: false },
   { description: 'Task 3', complete: true },
 ]);
-
 ```
 
 #### Mention
@@ -110,7 +107,6 @@ taskList([
 import { mentionPerson } from 'markdown-as-code';
 
 mentionPerson('AllyMurray');
-
 ```
 
 #### Quote
@@ -119,7 +115,6 @@ mentionPerson('AllyMurray');
 import { quote } from 'markdown-as-code';
 
 quote('This is a quote');
-
 ```
 
 #### Style
@@ -133,5 +128,4 @@ style('Strikethrough', 'Example Strikethrough Text');
 style('Superscript', 'Example Superscript Text');
 style('Subscript', 'Example Subscript Text');
 style('BoldItalic', 'Example BoldItalic Text');
-
 ```
