@@ -11,8 +11,8 @@ dependencies:
 
 devDependencies:
   '@ally-murray/projen-modules':
-    specifier: ^0.0.8
-    version: 0.0.8(projen@0.73.9)
+    specifier: ^0.0.9
+    version: 0.0.9(projen@0.73.9)
   '@types/jest':
     specifier: ^29.4.0
     version: 29.5.2
@@ -84,8 +84,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@ally-murray/projen-modules@0.0.8(projen@0.73.9):
-    resolution: {integrity: sha512-NE55ZDFIFNCHP9mG126GH8E8CTaOkskzbgBRRiH6nROQY/wC56p9MwDXCywqAXsTac4oCR1dlBEC6IvSVCXBdA==}
+  /@ally-murray/projen-modules@0.0.9(projen@0.73.9):
+    resolution: {integrity: sha512-5tlRh1KOS5pskodG2Qn81LpzplDbWaSeL11jL7NS2xN9TaU9MqqsRMHaqjPkAmeA5hKseuwKZ3kHUYCUlBejqA==}
     peerDependencies:
       projen: 0.73.9
     dependencies:
