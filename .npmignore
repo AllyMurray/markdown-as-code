@@ -23,4 +23,3 @@ tsconfig.tsbuildinfo
 /.eslintrc.json
 /tsconfig.build.esm.json
 /tsconfig.build.cjs.json
-/tsconfig.build.types.json
