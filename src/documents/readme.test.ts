@@ -1,8 +1,8 @@
 import fs from 'fs';
 import { createReadmeDocument } from './readme.js';
 
-jest.mock('fs');
-const mockedFs = jest.mocked(fs);
+vi.mock('fs');
+const mockedFs = vi.mocked(fs);
 
 describe('Readme', () => {
   it('should default to README.md', () => {

@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Readme should match snapshot 1`] = `
+exports[`Readme > should match snapshot 1`] = `
 "# Readme as Code
 
 ## Table of Contents
@@ -121,7 +121,7 @@ Test content
 Some content"
 `;
 
-exports[`Readme should write a document to disk 1`] = `
+exports[`Readme > should write a document to disk 1`] = `
 "# Test
 
 ## Table of Contents

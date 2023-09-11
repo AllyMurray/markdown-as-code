@@ -2,8 +2,8 @@ import fs from 'fs';
 import { createMarkdownDocument } from './markdown.js';
 import { Roadmap } from '../sections/roadmap.js';
 
-jest.mock('fs');
-const mockedFs = jest.mocked(fs);
+vi.mock('fs');
+const mockedFs = vi.mocked(fs);
 
 describe('Markdown Document', () => {
   it('should synthesize a basic document', () => {

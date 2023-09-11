@@ -30,10 +30,10 @@ jspm_packages/
 *.tgz
 .yarn-integrity
 .cache
+.DS_Store
+*yalc*
+test-reports
 !/.projenrc.js
-/test-reports/
-junit.xml
-/coverage/
 !/.github/workflows/build.yml
 /dist/changelog.md
 /dist/version.txt
@@ -54,3 +54,4 @@ junit.xml
 !/scripts/create-package-json.ts
 !/tsconfig.build.esm.json
 !/tsconfig.build.cjs.json
+!/vitest.config.js
