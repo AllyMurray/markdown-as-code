@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { ContentSection } from '../sections/content-section.js';
-import { DocumentSection } from '../sections/section.js';
+import { DocumentSection, tryFindSection } from '../sections/section.js';
 import { tableOfContentsSection } from '../sections/table-of-contents.js';
 import { heading } from '../syntax/heading.js';
 
@@ -24,6 +24,11 @@ export interface MarkdownOptions {
    * @default true
    */
   tableOfContents?: boolean;
+}
+
+export interface SectionContent<Section extends DocumentSection> {
+  updater: (section: Section) => void;
+  path: Array<string>;
 }
 
 export class MarkdownDocument {
@@ -50,8 +55,32 @@ export class MarkdownDocument {
     if (!content) {
       throw new Error('Content is required');
     }
-    this._sections.push(new ContentSection(sectionOrTitle, content));
+    this._sections.push(new ContentSection({ title: sectionOrTitle, content }));
     return this;
+  }
+
+  appendSection<Section extends DocumentSection>({
+    path,
+    updater,
+  }: SectionContent<Section>) {
+    const section = tryFindSection<Section>(this._sections, path);
+    if (!section) {
+      throw new Error(`Section not found: ${path.join(' > ')}`);
+    }
+    updater(section);
+    return this;
+  }
+
+  private synthesizeSections(sections: Array<DocumentSection>) {
+    const lines: Array<string> = [];
+    for (const section of sections) {
+      lines.push(section.synthesize());
+
+      if (section.subSections.length > 0) {
+        lines.push(...this.synthesizeSections(section.subSections));
+      }
+    }
+    return lines;
   }
 
   public synthContent() {
@@ -69,9 +98,7 @@ export class MarkdownDocument {
       '',
     ];
 
-    for (const component of this._sections) {
-      lines.push(component.synthesize());
-    }
+    lines.push(...this.synthesizeSections(this._sections));
 
     return lines.filter(Boolean).join('\n\n');
   }

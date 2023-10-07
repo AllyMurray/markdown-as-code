@@ -50,7 +50,7 @@ export class ApiReference extends DocumentSection {
   private _apiFunctions: Array<ApiFunction> = [];
 
   constructor(title?: string) {
-    super(title ?? 'API Reference');
+    super({ title: title ?? 'API Reference' });
   }
 
   public add(reference: ApiEndpoint | ApiFunction) {

@@ -1,28 +1,71 @@
-import { DocumentSection } from './section.js';
+import { DocumentSection, DocumentSectionOptions } from './section.js';
 import { tableOfContentsSection } from './table-of-contents.js';
 
-class TestDocumentSection extends DocumentSection {
-  protected synthesizeContent(): string[] {
-    return [this.title];
+const createTestSection = (options: DocumentSectionOptions) => {
+  class TestDocumentSection extends DocumentSection {
+    protected synthesizeContent(): string[] {
+      return [this.title];
+    }
   }
-}
+
+  return new TestDocumentSection(options);
+};
 
 describe('table of contents', () => {
   it('should create a section with the title Table of Contents', () => {
     expect(
       tableOfContentsSection({
-        sections: [new TestDocumentSection('Test Section')],
+        sections: [createTestSection({ title: 'Test Section' })],
       }).title
     ).toBe('Table of Contents');
   });
 
   it('should return the correct syntax for the title and table of contents', () => {
     const tableOfContents = tableOfContentsSection({
-      sections: [new TestDocumentSection('Test Section')],
+      sections: [createTestSection({ title: 'Test Section' })],
     });
 
     expect(tableOfContents.synthesize()).toBe(
       ['## Table of Contents', '', '- [Test Section](#test-section)'].join('\n')
+    );
+  });
+
+  it('should return the correct syntax for the title and table of contents with multiple sections', () => {
+    const tableOfContents = tableOfContentsSection({
+      sections: [
+        createTestSection({ title: 'Test Section' }),
+        createTestSection({ title: 'Test Section 2' }),
+      ],
+    });
+
+    expect(tableOfContents.synthesize()).toBe(
+      [
+        '## Table of Contents',
+        '',
+        '- [Test Section](#test-section)',
+        '- [Test Section 2](#test-section-2)',
+      ].join('\n')
+    );
+  });
+
+  it('should return the correct syntax for the title and table of contents with root and sub sections', () => {
+    const rootSection = createTestSection({ title: 'Root Section' });
+    createTestSection({
+      title: 'Sub Section',
+      parent: rootSection,
+    });
+
+    const tableOfContents = tableOfContentsSection({
+      sections: [rootSection],
+    });
+
+    expect(tableOfContents.synthesize()).toBe(
+      [
+        '## Table of Contents',
+        '',
+        '- [Root Section](#root-section)',
+        '  - [Sub Section](#sub-section)',
+      ].join('\n')
     );
   });
 });

@@ -1,8 +1,15 @@
-import { DocumentSection } from './section.js';
+import { DocumentSection, DocumentSectionOptions } from './section.js';
+
+interface ContentSectionOptions extends DocumentSectionOptions {
+  content?: string;
+}
 
 export class ContentSection extends DocumentSection {
-  constructor(public title: string, private content: string = '') {
-    super(title);
+  private content: string;
+
+  constructor(options: ContentSectionOptions) {
+    super({ ...options });
+    this.content = options.content ?? '';
   }
 
   public appendContent(content: string) {
@@ -17,6 +24,6 @@ export class ContentSection extends DocumentSection {
   }
 }
 
-export function contentSection(title: string, content: string = '') {
-  return new ContentSection(title, content);
+export function contentSection(options: ContentSectionOptions) {
+  return new ContentSection(options);
 }

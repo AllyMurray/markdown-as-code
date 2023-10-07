@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { createMarkdownDocument } from './markdown.js';
+import { ContentSection, contentSection } from '../sections/content-section.js';
 import { Roadmap } from '../sections/roadmap.js';
 
 vi.mock('fs');
@@ -29,6 +30,33 @@ describe('Markdown Document', () => {
       title: 'Test',
       fileName: 'test.md',
     }).addSection('Custom Section', 'Some markdown content');
+
+    expect(markdownDoc.synthContent()).toMatchSnapshot();
+  });
+
+  it('should synthesize a document after adding a custom section with a sub-section', () => {
+    const rootSection = contentSection({
+      title: 'Root Section',
+      content: 'Some markdown content',
+    });
+
+    contentSection({
+      title: 'Sub Section',
+      content: 'Some markdown sub content',
+      parent: rootSection,
+    });
+
+    const markdownDoc = createMarkdownDocument({
+      title: 'Test',
+      fileName: 'test.md',
+    })
+      .addSection(rootSection)
+      .appendSection({
+        path: ['Root Section', 'Sub Section'],
+        updater: (section: ContentSection) => {
+          section.appendContent('Some more markdown sub content');
+        },
+      });
 
     expect(markdownDoc.synthContent()).toMatchSnapshot();
   });

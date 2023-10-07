@@ -10,7 +10,7 @@ export class Contributing extends ContentSection {
       "Please adhere to this project's `code of conduct`.",
     ].join('\n');
 
-    super(title ?? 'Contributing', content);
+    super({ title: title ?? 'Contributing', content });
   }
 }
 

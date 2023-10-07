@@ -8,7 +8,7 @@ export abstract class ListSection<ListItem> extends DocumentSection {
   protected items: Array<ListItem> = [];
 
   constructor(title: string, private type: ListType) {
-    super(title);
+    super({ title });
   }
 
   public add(item: ListItem) {

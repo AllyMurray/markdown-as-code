@@ -61,7 +61,7 @@ export class Examples extends DocumentSection {
   protected items = new Map<string, Array<Example>>();
 
   constructor() {
-    super('Examples');
+    super({ title: 'Examples' });
   }
 
   public add(item: Example) {

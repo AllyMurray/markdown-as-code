@@ -7,20 +7,38 @@ export interface TableOfContents {
 
 export class TableOfContentsSection extends DocumentSection {
   constructor(private options: TableOfContents) {
-    super('Table of Contents');
+    super({ title: 'Table of Contents' });
+  }
+
+  private generateTableOfContents(
+    sections: Array<DocumentSection>,
+    indent: number = 0
+  ): Array<string> {
+    const tableOfContents: Array<string> = [];
+
+    const indentation = ' '.repeat(indent);
+
+    for (const section of sections) {
+      tableOfContents.push(
+        `${indentation}- [${section.title}](#${section.title
+          .toLowerCase()
+          .replace(/ /g, '-')
+          .replace(/\\/g, '')})`
+      );
+
+      tableOfContents.push(
+        ...this.generateTableOfContents(section.subSections, indent + 2)
+      );
+    }
+
+    return tableOfContents;
   }
 
   protected synthesizeContent(): Array<string> {
     return [
       `## ${this.title}`,
       '',
-      ...this.options.sections.map(
-        (section) =>
-          `- [${section.title}](#${section.title
-            .toLowerCase()
-            .replace(/ /g, '-')
-            .replace(/\\/g, '')})`
-      ),
+      ...this.generateTableOfContents(this.options.sections),
     ];
   }
 }
