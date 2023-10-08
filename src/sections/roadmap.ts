@@ -1,12 +1,18 @@
-import { ListSection } from './list-section.js';
+import { type ListOptions, ListSection } from './list-section.js';
 
 interface RoadmapItem {
   text: string;
 }
 
+export interface RoadmapOptions extends Partial<ListOptions> {}
+
 export class Roadmap extends ListSection<RoadmapItem> {
-  constructor(title?: string) {
-    super(title ?? 'Roadmap', 'Unordered');
+  constructor(options?: RoadmapOptions) {
+    super({
+      title: options?.title ?? 'Roadmap',
+      type: 'Unordered',
+      ...options,
+    });
   }
 
   protected itemMapper(item: RoadmapItem): string {
@@ -14,6 +20,6 @@ export class Roadmap extends ListSection<RoadmapItem> {
   }
 }
 
-export function roadmapSection(title?: string) {
-  return new Roadmap(title);
+export function roadmapSection(options?: RoadmapOptions) {
+  return new Roadmap(options);
 }

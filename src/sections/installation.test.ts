@@ -78,4 +78,22 @@ describe('Installation', () => {
       ].join('\n')
     );
   });
+
+  it('should allow custom title', () => {
+    const section = installationSection({ title: 'Install' }).add({
+      command: 'npm i markdown-as-code',
+      description: 'Install using npm',
+    });
+    expect(section.synthesize()).toBe(
+      [
+        '## Install',
+        '',
+        'Install using npm',
+        '',
+        '```bash',
+        'npm i markdown-as-code',
+        '```',
+      ].join('\n')
+    );
+  });
 });

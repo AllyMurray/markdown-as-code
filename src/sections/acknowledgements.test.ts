@@ -36,4 +36,9 @@ describe('Acknowledgements', () => {
       ].join('\n\n')
     );
   });
+
+  it('should allow for custom titles', () => {
+    const section = acknowledgementsSection({ title: 'Custom Title' });
+    expect(section.synthesize()).toBe('## Custom Title\n\n');
+  });
 });

@@ -1,4 +1,5 @@
 import { DocumentSection } from './section.js';
+import { heading } from '../syntax/heading.js';
 
 export interface TableOfContents {
   title?: string;
@@ -11,7 +12,7 @@ export class TableOfContentsSection extends DocumentSection {
   }
 
   private generateTableOfContents(
-    sections: Array<DocumentSection>,
+    sections: ReadonlyArray<DocumentSection>,
     indent: number = 0
   ): Array<string> {
     const tableOfContents: Array<string> = [];
@@ -36,7 +37,7 @@ export class TableOfContentsSection extends DocumentSection {
 
   protected synthesizeContent(): Array<string> {
     return [
-      `## ${this.title}`,
+      heading(2, this.title),
       '',
       ...this.generateTableOfContents(this.options.sections),
     ];

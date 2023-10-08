@@ -1,13 +1,19 @@
-import { ListSection } from './list-section.js';
+import { type ListOptions, ListSection } from './list-section.js';
 
 interface InstallationStep {
   description: string;
   command: string | Array<string>;
 }
 
+export interface InstallationOptions extends Partial<ListOptions> {}
+
 export class Installation extends ListSection<InstallationStep> {
-  constructor(title?: string) {
-    super(title ?? 'Installation', 'None');
+  constructor(options?: InstallationOptions) {
+    super({
+      title: options?.title ?? 'Installation',
+      type: 'None',
+      ...options,
+    });
   }
 
   protected itemMapper(step: InstallationStep): string {
@@ -19,6 +25,6 @@ export class Installation extends ListSection<InstallationStep> {
   }
 }
 
-export function installationSection(title?: string) {
-  return new Installation(title);
+export function installationSection(options?: InstallationOptions) {
+  return new Installation(options);
 }

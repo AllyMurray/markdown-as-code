@@ -13,7 +13,9 @@ describe('contributing', () => {
   });
 
   it('should return the correct markdown syntax using a custom default title', () => {
-    expect(contributingSection('Custom Contributing').synthesize()).toBe(
+    expect(
+      contributingSection({ title: 'Custom Contributing' }).synthesize()
+    ).toBe(
       [
         '## Custom Contributing',
         'Contributions are always welcome!',

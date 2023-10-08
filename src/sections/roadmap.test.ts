@@ -21,4 +21,9 @@ describe('Roadmap', () => {
       ['## Roadmap', '', '- Item 1', '', '- Item 2'].join('\n')
     );
   });
+
+  it('should allow for custom titles', () => {
+    const section = roadmapSection({ title: 'Custom Title' });
+    expect(section.synthesize()).toBe('## Custom Title\n\n');
+  });
 });

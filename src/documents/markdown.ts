@@ -27,8 +27,8 @@ export interface MarkdownOptions {
 }
 
 export interface SectionContent<Section extends DocumentSection> {
-  updater: (section: Section) => void;
   path: Array<string>;
+  update: (section: Section) => void;
 }
 
 export class MarkdownDocument {
@@ -61,17 +61,17 @@ export class MarkdownDocument {
 
   appendSection<Section extends DocumentSection>({
     path,
-    updater,
+    update,
   }: SectionContent<Section>) {
     const section = tryFindSection<Section>(this._sections, path);
     if (!section) {
       throw new Error(`Section not found: ${path.join(' > ')}`);
     }
-    updater(section);
+    update(section);
     return this;
   }
 
-  private synthesizeSections(sections: Array<DocumentSection>) {
+  private synthesizeSections(sections: ReadonlyArray<DocumentSection>) {
     const lines: Array<string> = [];
     for (const section of sections) {
       lines.push(section.synthesize());

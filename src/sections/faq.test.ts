@@ -1,3 +1,4 @@
+import { contentSection } from './content-section.js';
 import { faqSection } from './faq.js';
 
 describe('FAQ', () => {
@@ -39,5 +40,35 @@ describe('FAQ', () => {
         'Answer 2',
       ].join('\n')
     );
+  });
+
+  it('should not set heading level greater than 6', () => {
+    const testFaqSection = faqSection().add({
+      question: 'Question 1',
+      answer: 'Answer 1',
+    });
+
+    contentSection({ title: 'Level 1' }).addSubSection(
+      contentSection({ title: 'Level 2' }).addSubSection(
+        contentSection({ title: 'Level 3' }).addSubSection(
+          contentSection({ title: 'Level 4' }).addSubSection(
+            contentSection({ title: 'Level 5' }).addSubSection(testFaqSection)
+          )
+        )
+      )
+    );
+
+    expect(testFaqSection.synthesize()).toMatchInlineSnapshot(`
+      "###### FAQ
+
+      ###### Question 1
+
+      Answer 1"
+    `);
+  });
+
+  it('should allow for custom titles', () => {
+    const section = faqSection({ title: 'Custom Title' });
+    expect(section.synthesize()).toBe('## Custom Title\n\n');
   });
 });

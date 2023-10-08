@@ -1,5 +1,7 @@
-import { ListSection } from './list-section.js';
+import { ListOptions, ListSection } from './list-section.js';
 import { link } from '../syntax/link.js';
+
+export interface AcknowledgementOptions extends Partial<ListOptions> {}
 
 interface Link {
   text: string;
@@ -7,8 +9,12 @@ interface Link {
 }
 
 export class Acknowledgements extends ListSection<Link> {
-  constructor(title?: string) {
-    super(title ?? 'Acknowledgements', 'Unordered');
+  constructor(options?: AcknowledgementOptions) {
+    super({
+      title: options?.title ?? 'Acknowledgements',
+      type: 'Unordered',
+      ...options,
+    });
   }
 
   protected itemMapper({ text, url }: Link): string {
@@ -16,6 +22,6 @@ export class Acknowledgements extends ListSection<Link> {
   }
 }
 
-export function acknowledgementsSection(title?: string) {
-  return new Acknowledgements(title);
+export function acknowledgementsSection(options?: AcknowledgementOptions) {
+  return new Acknowledgements(options);
 }

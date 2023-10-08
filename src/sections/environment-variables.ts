@@ -1,13 +1,20 @@
-import { ListSection } from './list-section.js';
+import { type ListOptions, ListSection } from './list-section.js';
+import { heading } from '../syntax/heading.js';
 
 interface EnvironmentVariable {
   name: string;
   defaultValue?: string;
 }
 
+export interface EnvironmentVariablesOptions extends Partial<ListOptions> {}
+
 export class EnvironmentVariables extends ListSection<EnvironmentVariable> {
-  constructor(title?: string) {
-    super(title ?? 'Environment Variables', 'None');
+  constructor(options?: EnvironmentVariablesOptions) {
+    super({
+      title: options?.title ?? 'Environment Variables',
+      type: 'None',
+      ...options,
+    });
   }
 
   protected itemMapper(item: EnvironmentVariable): string {
@@ -16,7 +23,7 @@ export class EnvironmentVariables extends ListSection<EnvironmentVariable> {
 
   protected synthesizeContent(): string[] {
     return [
-      `## ${this.title}`,
+      heading(this.headingLevel, this.title),
       '',
       `To run this project, you will need to add the following environment variables to your .env file`,
       ...(this.items.length
@@ -26,6 +33,8 @@ export class EnvironmentVariables extends ListSection<EnvironmentVariable> {
   }
 }
 
-export function environmentVariablesSection(title?: string) {
-  return new EnvironmentVariables(title);
+export function environmentVariablesSection(
+  options?: EnvironmentVariablesOptions
+) {
+  return new EnvironmentVariables(options);
 }

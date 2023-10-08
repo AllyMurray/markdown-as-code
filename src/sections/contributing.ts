@@ -1,7 +1,10 @@
 import { ContentSection } from './content-section.js';
+import { DocumentSectionOptions } from './section.js';
+
+export interface ContributingOptions extends DocumentSectionOptions {}
 
 export class Contributing extends ContentSection {
-  constructor(title?: string) {
+  constructor(options?: ContributingOptions) {
     const content = [
       'Contributions are always welcome!',
       '',
@@ -10,10 +13,10 @@ export class Contributing extends ContentSection {
       "Please adhere to this project's `code of conduct`.",
     ].join('\n');
 
-    super({ title: title ?? 'Contributing', content });
+    super({ title: options?.title ?? 'Contributing', content, ...options });
   }
 }
 
-export function contributingSection(title?: string) {
-  return new Contributing(title);
+export function contributingSection(options?: ContributingOptions) {
+  return new Contributing(options);
 }

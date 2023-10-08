@@ -1,4 +1,4 @@
-import { ListSection } from './list-section.js';
+import { type ListOptions, ListSection } from './list-section.js';
 import { link } from '../syntax/link.js';
 import { mentionPerson } from '../syntax/mention.js';
 
@@ -6,9 +6,15 @@ interface Author {
   githubUsername: string;
 }
 
+export interface AuthorsOptions extends Partial<ListOptions> {}
+
 export class Authors extends ListSection<Author> {
-  constructor(title?: string) {
-    super(title ?? 'Authors', 'Unordered');
+  constructor(options?: AuthorsOptions) {
+    super({
+      title: options?.title ?? 'Authors',
+      type: 'Unordered',
+      ...options,
+    });
   }
 
   protected itemMapper(author: Author): string {
@@ -19,6 +25,6 @@ export class Authors extends ListSection<Author> {
   }
 }
 
-export function authorsSection(title?: string) {
-  return new Authors(title);
+export function authorsSection(options?: AuthorsOptions) {
+  return new Authors(options);
 }

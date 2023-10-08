@@ -1,4 +1,5 @@
 import { DocumentSection } from './section.js';
+import { heading } from '../syntax/heading.js';
 
 interface Parameter {
   name: string;
@@ -66,7 +67,7 @@ export class ApiReference extends DocumentSection {
 
   private mapEndpoint(apiEndpoint: ApiEndpoint): string {
     return [
-      `#### ${apiEndpoint.title}`,
+      heading(4, apiEndpoint.title),
       '',
       '```http',
       'GET /api/items',
@@ -80,14 +81,14 @@ export class ApiReference extends DocumentSection {
 
   private mapFunction(apiFunction: ApiFunction): string {
     return [
-      `#### ${apiFunction.name}(${apiFunction.parameters.join(', ')})`,
+      heading(4, `${apiFunction.name}(${apiFunction.parameters.join(', ')})`),
       '',
       apiFunction.description,
     ].join('\n');
   }
 
   protected synthesizeContent(): string[] {
-    const content = [`## ${this.title}`];
+    const content = [heading(2, this.title)];
 
     if (this._apiEndpoints.length) {
       content.push('', this._apiEndpoints.map(this.mapEndpoint).join('\n\n'));

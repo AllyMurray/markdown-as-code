@@ -1,5 +1,4 @@
 import { MarkdownDocument, MarkdownOptions } from './markdown.js';
-import { RunLocally } from '../index.js';
 import { Acknowledgements } from '../sections/acknowledgements.js';
 import { ApiReference } from '../sections/api-reference.js';
 import { Appendix } from '../sections/appendix.js';
@@ -10,6 +9,7 @@ import { Examples } from '../sections/examples.js';
 import { FAQ } from '../sections/faq.js';
 import { Installation } from '../sections/installation.js';
 import { Roadmap } from '../sections/roadmap.js';
+import { RunLocally } from '../sections/run-locally.js';
 import { DocumentSection } from '../sections/section.js';
 import { Support } from '../sections/support.js';
 

@@ -1,4 +1,5 @@
 import { DocumentSection, DocumentSectionOptions } from './section.js';
+import { heading } from '../syntax/heading.js';
 
 interface ContentSectionOptions extends DocumentSectionOptions {
   content?: string;
@@ -8,7 +9,7 @@ export class ContentSection extends DocumentSection {
   private content: string;
 
   constructor(options: ContentSectionOptions) {
-    super({ ...options });
+    super(options);
     this.content = options.content ?? '';
   }
 
@@ -20,7 +21,7 @@ export class ContentSection extends DocumentSection {
   }
 
   protected synthesizeContent(): Array<string> {
-    return [`## ${this.title}`, '', this.content];
+    return [heading(this.headingLevel, this.title), '', this.content];
   }
 }
 

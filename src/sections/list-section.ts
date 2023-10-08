@@ -1,14 +1,18 @@
-import { DocumentSection } from './section.js';
+import { DocumentSection, DocumentSectionOptions } from './section.js';
 import { heading } from '../syntax/heading.js';
 import { orderedList, unorderedList } from '../syntax/list.js';
 
-type ListType = 'None' | 'Ordered' | 'Unordered';
+export type ListType = 'None' | 'Ordered' | 'Unordered';
+
+export interface ListOptions extends DocumentSectionOptions {
+  type: ListType;
+}
 
 export abstract class ListSection<ListItem> extends DocumentSection {
   protected items: Array<ListItem> = [];
 
-  constructor(title: string, private type: ListType) {
-    super({ title });
+  constructor(private options: ListOptions) {
+    super(options);
   }
 
   public add(item: ListItem) {
@@ -21,7 +25,7 @@ export abstract class ListSection<ListItem> extends DocumentSection {
   protected synthesizeContent(): Array<string> {
     const items = this.items.map((item) => this.itemMapper(item));
     let listItems: string;
-    switch (this.type) {
+    switch (this.options.type) {
       case 'Ordered':
         listItems = orderedList(items);
         break;
@@ -33,6 +37,6 @@ export abstract class ListSection<ListItem> extends DocumentSection {
         break;
     }
 
-    return [heading(2, this.title), '', listItems];
+    return [heading(this.headingLevel, this.title), '', listItems];
   }
 }

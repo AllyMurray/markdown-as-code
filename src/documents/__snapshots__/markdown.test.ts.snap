@@ -31,11 +31,30 @@ exports[`Markdown Document > should synthesize a document after adding a custom 
 
 Some markdown content
 
-## Sub Section
+### Sub Section
 
 Some markdown sub content
 
 Some more markdown sub content"
+`;
+
+exports[`Markdown Document > should synthesize a document after adding a custom section with a sub-section 2 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Root Section](#root-section)
+  - [Authors](#authors)
+
+## Root Section
+
+Some markdown content
+
+### Authors
+
+- [@jane-doe](https://www.github.com/jane-doe)
+
+- [@john-smith](https://www.github.com/john-smith)"
 `;
 
 exports[`Markdown Document > should synthesize a document after adding a section 1`] = `

@@ -70,4 +70,11 @@ describe('EnvironmentVariables', () => {
       ].join('\n')
     );
   });
+
+  it('should allow for custom titles', () => {
+    const section = environmentVariablesSection({ title: 'Custom Title' });
+    expect(section.synthesize()).toBe(
+      '## Custom Title\n\nTo run this project, you will need to add the following environment variables to your .env file'
+    );
+  });
 });
