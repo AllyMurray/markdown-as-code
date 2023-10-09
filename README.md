@@ -385,9 +385,9 @@ const content = tableOfContentsSection({
 ```
 
 
-### Documents
+#### Documents
 
-#### Markdown
+##### Markdown
 
 ```typescript
 import { createMarkdownDocument, ContentSection } from 'markdown-as-code';
@@ -400,7 +400,7 @@ const content = createMarkdownDocument({
   .synthContent();
 ```
 
-#### Readme
+##### Readme
 
 ```typescript
 import { createReadmeDocument, ContentSection } from 'markdown-as-code';
@@ -414,9 +414,9 @@ const content = createReadmeDocument({
 ```
 
 
-### Syntax Functions
+##### Syntax Functions
 
-#### Code Block
+###### Code Block
 
 ```typescript
 import { codeBlock } from 'markdown-as-code';
@@ -424,7 +424,7 @@ import { codeBlock } from 'markdown-as-code';
 codeBlock({ language: 'typescript', code: 'const testNumber = 1' });
 ```
 
-#### Heading
+###### Heading
 
 ```typescript
 import { heading } from 'markdown-as-code';
@@ -437,7 +437,7 @@ heading(5, 'Heading Level 5');
 heading(6, 'Heading Level 6');
 ```
 
-#### Image
+###### Image
 
 ```typescript
 import { image } from 'markdown-as-code';
@@ -445,7 +445,7 @@ import { image } from 'markdown-as-code';
 image('https://via.placeholder.com/150', 'Placeholder Image');
 ```
 
-#### Link
+###### Link
 
 ```typescript
 import { link } from 'markdown-as-code';
@@ -453,7 +453,7 @@ import { link } from 'markdown-as-code';
 link('Link Text', '');
 ```
 
-#### List
+###### List
 
 ```typescript
 import { orderedList, unorderedList, taskList } from 'markdown-as-code';
@@ -469,7 +469,7 @@ taskList([
 ]);
 ```
 
-#### Mention
+###### Mention
 
 ```typescript
 import { mentionPerson } from 'markdown-as-code';
@@ -477,7 +477,7 @@ import { mentionPerson } from 'markdown-as-code';
 mentionPerson('AllyMurray');
 ```
 
-#### Quote
+###### Quote
 
 ```typescript
 import { quote } from 'markdown-as-code';
@@ -485,7 +485,7 @@ import { quote } from 'markdown-as-code';
 quote('This is a quote');
 ```
 
-#### Style
+###### Style
 
 ```typescript
 import { style } from 'markdown-as-code';
