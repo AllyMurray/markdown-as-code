@@ -10,6 +10,7 @@ const project = new TypeScriptNpmPackage({
   repository: 'https://github.com/AllyMurray/markdown-as-code',
   deps: ['change-case'],
   devDeps: ['@ally-murray/projen-modules'],
+  prerelease: 'beta',
 });
 
 project.synth();
