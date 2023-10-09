@@ -64,6 +64,7 @@ export class Examples extends DocumentSection {
 
   constructor(options?: ExamplesOptions) {
     super({ title: options?.title ?? 'Examples', ...options });
+    options?.items.forEach((item) => this.add(item));
   }
 
   public add(item: Example) {
