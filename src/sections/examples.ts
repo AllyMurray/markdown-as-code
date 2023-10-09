@@ -1,6 +1,5 @@
-// import { ListSection } from './list-section.js';
-import { DocumentSection } from './section.js';
-import { heading } from '../syntax/heading.js';
+import { DocumentSection, DocumentSectionOptions } from './section.js';
+import { HeadingLevel, heading } from '../syntax/heading.js';
 
 interface CodeBlock {
   language:
@@ -57,11 +56,14 @@ interface Example {
   group?: string;
 }
 
+export interface ExamplesOptions extends DocumentSectionOptions {
+  items: Array<Example>;
+}
 export class Examples extends DocumentSection {
   protected items = new Map<string, Array<Example>>();
 
-  constructor() {
-    super({ title: 'Examples' });
+  constructor(options?: ExamplesOptions) {
+    super({ title: options?.title ?? 'Examples', ...options });
   }
 
   public add(item: Example) {
@@ -76,9 +78,9 @@ export class Examples extends DocumentSection {
     return this;
   }
 
-  protected itemMapper(item: Example): string {
+  protected itemMapper(item: Example, headingLevel: HeadingLevel): string {
     return [
-      heading(4, item.title),
+      heading(headingLevel, item.title),
       ...(item.description ? ['', item.description, ''] : ['']),
       `\`\`\`${item.codeblock.language}`,
       item.codeblock.code.replace(/\n$/, ''),
@@ -88,14 +90,20 @@ export class Examples extends DocumentSection {
   }
 
   protected synthesizeContent(): Array<string> {
-    const content = [heading(2, this.title)];
+    const content = [heading(this.headingLevel, this.title)];
 
+    let headingLevel = this.headingLevel + 1;
     for (const [group, examples] of this.items) {
       content.push('');
       if (group !== 'ungrouped') {
-        content.push(heading(3, group), '');
+        content.push(heading(headingLevel as HeadingLevel, group), '');
+        headingLevel++;
       }
-      content.push(...examples.map(this.itemMapper));
+      content.push(
+        ...examples.map((item) =>
+          this.itemMapper(item, headingLevel as HeadingLevel)
+        )
+      );
     }
 
     return content;

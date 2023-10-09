@@ -20,7 +20,7 @@ describe('Examples', () => {
       [
         '## Examples',
         '',
-        '#### Create an example section',
+        '### Create an example section',
         '',
         'The title is defaulted to Examples but can be overridden in the constructor',
         '',
@@ -56,7 +56,7 @@ describe('Examples', () => {
       [
         '## Examples',
         '',
-        '#### Create an example section',
+        '### Create an example section',
         '',
         'The title is defaulted to Examples but can be overridden in the constructor',
         '',
@@ -64,7 +64,7 @@ describe('Examples', () => {
         'const section = examplesSection();',
         '```',
         '',
-        '#### Create an example section',
+        '### Create an example section',
         '',
         'The title is defaulted to Examples but can be overridden in the constructor',
         '',
@@ -88,7 +88,7 @@ describe('Examples', () => {
       [
         '## Examples',
         '',
-        '#### Create an example section',
+        '### Create an example section',
         '',
         '```typescript',
         'const section = examplesSection();',
@@ -115,26 +115,24 @@ describe('Examples', () => {
           code: 'const section = examplesSection();',
         },
       });
-    expect(section.synthesize()).toBe(
-      [
-        '## Examples',
-        '',
-        '#### Ungrouped Example',
-        '',
-        '```typescript',
-        'const section = examplesSection();',
-        '```',
-        '',
-        '',
-        '### Group 1',
-        '',
-        '#### Grouped Example',
-        '',
-        '```typescript',
-        'const section = examplesSection();',
-        '```',
-        '',
-      ].join('\n')
-    );
+    expect(section.synthesize()).toMatchInlineSnapshot(`
+      "## Examples
+
+      ### Ungrouped Example
+
+      \`\`\`typescript
+      const section = examplesSection();
+      \`\`\`
+
+
+      ### Group 1
+
+      #### Grouped Example
+
+      \`\`\`typescript
+      const section = examplesSection();
+      \`\`\`
+      "
+    `);
   });
 });
