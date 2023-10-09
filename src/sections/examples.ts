@@ -110,6 +110,6 @@ export class Examples extends DocumentSection {
   }
 }
 
-export function examplesSection() {
-  return new Examples();
+export function examplesSection(options?: ExamplesOptions) {
+  return new Examples(options);
 }
