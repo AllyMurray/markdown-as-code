@@ -497,3 +497,22 @@ style('Superscript', 'Example Superscript Text');
 style('Subscript', 'Example Subscript Text');
 style('BoldItalic', 'Example BoldItalic Text');
 ```
+
+###### Table Block
+
+```typescript
+import { tableBlock } from 'markdown-as-code';
+
+tableBlock<'email' | 'description'>({
+  rows: [
+    {
+      email: 'hr@example.com',
+      description: 'Human Resources email',
+    },
+    {
+      email: 'support@example.com',
+      description: 'Customer Support email',
+    },
+  ],
+});
+```
