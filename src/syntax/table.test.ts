@@ -1,4 +1,4 @@
-import { table } from './table-block.js';
+import { table } from './table.js';
 
 describe('tableBlock', () => {
   it('returns table', () => {
