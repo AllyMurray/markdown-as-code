@@ -1,9 +1,9 @@
-import { tableBlock } from './table-block.js';
+import { table } from './table-block.js';
 
 describe('tableBlock', () => {
   it('returns table', () => {
     expect(
-      tableBlock<'item' | 'comments'>({
+      table<'item' | 'comments'>({
         rows: [{ item: 'email', comments: 'test *email* used in service' }],
       })
     ).toMatchInlineSnapshot(`

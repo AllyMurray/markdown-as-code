@@ -501,9 +501,9 @@ style('BoldItalic', 'Example BoldItalic Text');
 ###### Table Block
 
 ```typescript
-import { tableBlock } from 'markdown-as-code';
+import { table } from 'markdown-as-code';
 
-tableBlock<'email' | 'description'>({
+table<'email' | 'description'>({
   rows: [
     {
       email: 'hr@example.com',

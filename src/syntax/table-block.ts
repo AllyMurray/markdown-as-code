@@ -1,4 +1,4 @@
-type TableBlock<Columns extends string> = {
+type Table<Columns extends string> = {
   rows: Array<Record<Columns, string>>;
 };
 
@@ -8,7 +8,7 @@ type TableBlock<Columns extends string> = {
  * @returns A markdown table string.
  * @example
  * ```typescript
- * tableBlock<'email' | 'description'>({
+ * table<'email' | 'description'>({
  *  rows: [
  *    {
  *      email: 'test@example.com',
@@ -18,9 +18,7 @@ type TableBlock<Columns extends string> = {
  * });
  * ```
  */
-export const tableBlock = <Columns extends string>({
-  rows,
-}: TableBlock<Columns>) => {
+export const table = <Columns extends string>({ rows }: Table<Columns>) => {
   const columns = Object.keys(rows[0]) as Columns[];
   return [
     `| ${columns.map((header) => header.toUpperCase()).join(' | ')} |`,
