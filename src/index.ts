@@ -18,6 +18,7 @@ export * from './sections/section.js';
 export * from './sections/support.js';
 export * from './sections/table-of-contents.js';
 
+export * from './syntax/table.js';
 export * from './syntax/code-block.js';
 export * from './syntax/heading.js';
 export * from './syntax/image.js';
