@@ -498,7 +498,7 @@ style('Subscript', 'Example Subscript Text');
 style('BoldItalic', 'Example BoldItalic Text');
 ```
 
-###### Table Block
+###### Table
 
 ```typescript
 import { table } from 'markdown-as-code';
