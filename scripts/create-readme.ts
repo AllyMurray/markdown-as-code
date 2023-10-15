@@ -84,7 +84,9 @@ export async function createReadme(options: ReadmeOptions) {
       });
     })
     .authors((author) => {
-      author.add({ githubUsername: 'AllyMurray' });
+      author
+        .add({ githubUsername: 'AllyMurray' })
+        .add({ githubUsername: 'Andrchiamus' });
     })
     .acknowledgements((acknowledgement) => {
       acknowledgement.add({ text: 'Readme.so', url: 'https://readme.so' });

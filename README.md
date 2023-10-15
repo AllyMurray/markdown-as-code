@@ -50,6 +50,8 @@ pnpm t
 
 - [@AllyMurray](https://www.github.com/AllyMurray)
 
+- [@Andrchiamus](https://www.github.com/Andrchiamus)
+
 ## Acknowledgements
 
 - [Readme.so](https://readme.so)
