@@ -53,7 +53,7 @@ export abstract class DocumentSection {
 
 export function tryFindSection<Section extends DocumentSection>(
   sections: ReadonlyArray<DocumentSection>,
-  path: Array<string>
+  path: Array<string>,
 ): Section | undefined {
   for (const section of sections) {
     if (section.title === path[0] && path.length === 1) {

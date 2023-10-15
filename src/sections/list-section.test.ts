@@ -24,7 +24,7 @@ describe('List Section', () => {
     const section = createListSection({ title: 'Test List', type: 'None' });
     section.add({ text: 'Item 1' }).add({ text: 'Item 2' });
     expect(section.synthesize()).toBe(
-      ['## Test List', '', 'Item 1', '', 'Item 2'].join('\n')
+      ['## Test List', '', 'Item 1', '', 'Item 2'].join('\n'),
     );
   });
 
@@ -32,7 +32,7 @@ describe('List Section', () => {
     const section = createListSection({ title: 'Test List', type: 'Ordered' });
     section.add({ text: 'Item 1' }).add({ text: 'Item 2' });
     expect(section.synthesize()).toBe(
-      ['## Test List', '', '1. Item 1', '', '2. Item 2'].join('\n')
+      ['## Test List', '', '1. Item 1', '', '2. Item 2'].join('\n'),
     );
   });
 
@@ -43,7 +43,7 @@ describe('List Section', () => {
     });
     section.add({ text: 'Item 1' }).add({ text: 'Item 2' });
     expect(section.synthesize()).toBe(
-      ['## Test List', '', '- Item 1', '', '- Item 2'].join('\n')
+      ['## Test List', '', '- Item 1', '', '- Item 2'].join('\n'),
     );
   });
 

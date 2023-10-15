@@ -16,7 +16,7 @@ describe('table of contents', () => {
     expect(
       tableOfContentsSection({
         sections: [createTestSection({ title: 'Test Section' })],
-      }).title
+      }).title,
     ).toBe('Table of Contents');
   });
 
@@ -26,7 +26,9 @@ describe('table of contents', () => {
     });
 
     expect(tableOfContents.synthesize()).toBe(
-      ['## Table of Contents', '', '- [Test Section](#test-section)'].join('\n')
+      ['## Table of Contents', '', '- [Test Section](#test-section)'].join(
+        '\n',
+      ),
     );
   });
 
@@ -44,7 +46,7 @@ describe('table of contents', () => {
         '',
         '- [Test Section](#test-section)',
         '- [Test Section 2](#test-section-2)',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -65,7 +67,7 @@ describe('table of contents', () => {
         '',
         '- [Root Section](#root-section)',
         '  - [Sub Section](#sub-section)',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 });

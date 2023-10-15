@@ -34,7 +34,7 @@ export class EnvironmentVariables extends ListSection<EnvironmentVariable> {
 }
 
 export function environmentVariablesSection(
-  options?: EnvironmentVariablesOptions
+  options?: EnvironmentVariablesOptions,
 ) {
   return new EnvironmentVariables(options);
 }

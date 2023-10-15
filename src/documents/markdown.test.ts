@@ -70,7 +70,7 @@ describe('Markdown Document', () => {
       contentSection({
         title: 'Root Section',
         content: 'Some markdown content',
-      }).addSubSection(authorsSection().add({ githubUsername: 'jane-doe' }))
+      }).addSubSection(authorsSection().add({ githubUsername: 'jane-doe' })),
     );
 
     markdownDoc.appendSection({
@@ -91,7 +91,7 @@ describe('Markdown Document', () => {
       contentSection({
         title: 'Root Section',
         content: 'Some markdown content',
-      }).addSubSection(authorsSection().add({ githubUsername: 'jane-doe' }))
+      }).addSubSection(authorsSection().add({ githubUsername: 'jane-doe' })),
     );
 
     expect(() =>
@@ -100,7 +100,7 @@ describe('Markdown Document', () => {
         update: (section: Authors) => {
           section.add({ githubUsername: 'john-smith' });
         },
-      })
+      }),
     ).toThrowError();
   });
 
@@ -113,7 +113,7 @@ describe('Markdown Document', () => {
     markdownDoc.synth();
 
     expect(mockedFs.writeFileSync.mock.calls[0][0]).toContain(
-      'markdown-as-code/test.md'
+      'markdown-as-code/test.md',
     );
     expect(mockedFs.writeFileSync.mock.calls[0][1]).toMatchSnapshot();
   });
@@ -128,7 +128,7 @@ describe('Markdown Document', () => {
     const undefinedContent = undefined as unknown as string;
 
     expect(() =>
-      markdownDoc.addSection('Custom Section', undefinedContent)
+      markdownDoc.addSection('Custom Section', undefinedContent),
     ).toThrowError();
   });
 });

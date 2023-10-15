@@ -121,7 +121,7 @@ describe('Readme', () => {
     markdownDoc.synth();
 
     expect(mockedFs.writeFileSync.mock.calls[0][0]).toContain(
-      'markdown-as-code/test.md'
+      'markdown-as-code/test.md',
     );
     expect(mockedFs.writeFileSync.mock.calls[0][1]).toMatchSnapshot();
   });

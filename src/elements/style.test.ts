@@ -14,12 +14,12 @@ describe('style', () => {
     'should return $emphasis text',
     ({ emphasis, expected }) => {
       expect(style(emphasis, 'Test')).toBe(expected);
-    }
+    },
   );
 
   it('should throw when an invalid emphasis is provided', () => {
     expect(() => style('Unknown' as Emphasis, 'Test')).toThrowError(
-      'Invalid emphasis: Unknown'
+      'Invalid emphasis: Unknown',
     );
   });
 });

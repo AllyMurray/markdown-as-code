@@ -8,7 +8,7 @@ describe('EnvironmentVariables', () => {
         '## Environment Variables',
         '',
         'To run this project, you will need to add the following environment variables to your .env file',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -26,7 +26,7 @@ describe('EnvironmentVariables', () => {
         '```bash',
         'API_KEY=YOUR-API-KEY-HERE',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -50,7 +50,7 @@ describe('EnvironmentVariables', () => {
         'LOG_LEVEL=INFO',
         'API_KEY=YOUR-API-KEY-HERE',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -67,14 +67,14 @@ describe('EnvironmentVariables', () => {
         '```bash',
         'API_KEY=',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
   it('should allow for custom titles', () => {
     const section = environmentVariablesSection({ title: 'Custom Title' });
     expect(section.synthesize()).toBe(
-      '## Custom Title\n\nTo run this project, you will need to add the following environment variables to your .env file'
+      '## Custom Title\n\nTo run this project, you will need to add the following environment variables to your .env file',
     );
   });
 });

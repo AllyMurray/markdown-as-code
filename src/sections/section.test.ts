@@ -17,7 +17,7 @@ function createTestSection(options: DocumentSectionOptions) {
 describe('Test Section', () => {
   it('should return the title', () => {
     expect(createTestSection({ title: 'Test Section' }).synthesize()).toBe(
-      'Test Section'
+      'Test Section',
     );
   });
 
@@ -45,11 +45,13 @@ describe('Test Section', () => {
         createTestSection({ title: 'Level 3' }).addSubSection(
           createTestSection({ title: 'Level 4' }).addSubSection(
             createTestSection({ title: 'Level 5' }).addSubSection(
-              createTestSection({ title: 'Level 5' }).addSubSection(testSection)
-            )
-          )
-        )
-      )
+              createTestSection({ title: 'Level 5' }).addSubSection(
+                testSection,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
 
     expect(testSection.headingLevel).toBe(6);
@@ -65,15 +67,15 @@ describe('tryFindSection', () => {
     expect(
       tryFindSection(
         [createTestSection({ title: 'Test Section' })],
-        ['Other Section']
-      )
+        ['Other Section'],
+      ),
     ).toBeUndefined();
   });
 
   it('should return the section when it matches', () => {
     const testSection = createTestSection({ title: 'Test Section' });
     expect(tryFindSection([testSection], ['Test Section'])).toStrictEqual(
-      testSection
+      testSection,
     );
   });
 
@@ -82,7 +84,7 @@ describe('tryFindSection', () => {
     const subSection = createTestSection({ title: 'Sub Section' });
     testSection.addSubSection(subSection);
     expect(
-      tryFindSection([testSection], ['Test Section', 'Sub Section'])
+      tryFindSection([testSection], ['Test Section', 'Sub Section']),
     ).toStrictEqual(subSection);
   });
 });

@@ -20,7 +20,7 @@ describe('Installation', () => {
         '```bash',
         'npm i markdown-as-code',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -46,7 +46,7 @@ describe('Installation', () => {
         '# Install a specific version',
         'npm i markdown-as-code@1.0.0',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -75,7 +75,7 @@ describe('Installation', () => {
         '```bash',
         'yarn add markdown-as-code',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -93,7 +93,7 @@ describe('Installation', () => {
         '```bash',
         'npm i markdown-as-code',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 });

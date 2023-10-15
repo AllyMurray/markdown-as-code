@@ -42,7 +42,7 @@ export class Readme extends MarkdownDocument {
   private executeBuilder<NewSection extends DocumentSection>(
     section: NewSection | undefined,
     SectionClass: new () => NewSection,
-    builder: (section: NewSection) => void
+    builder: (section: NewSection) => void,
   ) {
     if (!section) {
       section = new SectionClass();
@@ -56,7 +56,7 @@ export class Readme extends MarkdownDocument {
     return this.executeBuilder(
       this._acknowledgements,
       Acknowledgements,
-      builder
+      builder,
     );
   }
 
@@ -80,7 +80,7 @@ export class Readme extends MarkdownDocument {
     return this.executeBuilder(
       this._environmentVariables,
       EnvironmentVariables,
-      builder
+      builder,
     );
   }
 

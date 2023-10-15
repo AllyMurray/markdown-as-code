@@ -28,7 +28,7 @@ describe('Examples', () => {
         'const section = examplesSection();',
         '```',
         '',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -72,7 +72,7 @@ describe('Examples', () => {
         'const section = examplesSection();',
         '```',
         '',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -94,7 +94,7 @@ describe('Examples', () => {
         'const section = examplesSection();',
         '```',
         '',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 

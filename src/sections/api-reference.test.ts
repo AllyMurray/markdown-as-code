@@ -7,7 +7,7 @@ describe('API Reference', () => {
 
   it('should return the correct markdown syntax using a custom title', () => {
     expect(
-      apiReferenceSection('Markdown as Code API Reference').synthesize()
+      apiReferenceSection('Markdown as Code API Reference').synthesize(),
     ).toBe('## Markdown as Code API Reference');
   });
 
@@ -38,7 +38,7 @@ describe('API Reference', () => {
         '| Parameter | Type     | Description                |',
         '| :-------- | :------- | :------------------------- |',
         '|api_key | string | **Required**. Your API key|',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -58,13 +58,13 @@ describe('API Reference', () => {
         '#### add(num1, num2)',
         '',
         'Takes two numbers and returns the sum.',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
   it('should throw when an unknown reference type is added', () => {
     expect(() => apiReferenceSection().add({} as ApiEndpoint)).toThrowError(
-      'Unknown Reference Type'
+      'Unknown Reference Type',
     );
   });
 });

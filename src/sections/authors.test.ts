@@ -10,8 +10,8 @@ describe('Authors', () => {
     const section = authorsSection().add({ githubUsername: 'JaneDoe' });
     expect(section.synthesize()).toBe(
       ['## Authors', '', '- [@JaneDoe](https://www.github.com/JaneDoe)'].join(
-        '\n'
-      )
+        '\n',
+      ),
     );
   });
 
@@ -26,7 +26,7 @@ describe('Authors', () => {
         '- [@JaneDoe](https://www.github.com/JaneDoe)',
         '',
         '- [@JohnSmith](https://www.github.com/JohnSmith)',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 

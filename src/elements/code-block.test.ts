@@ -11,7 +11,7 @@ describe('codeBlock', () => {
     const exampleCode = 'const testNumber = 1';
     const expected = ['```typescript', exampleCode, '```'].join('\n');
     expect(codeBlock({ code: exampleCode, language: 'typescript' })).toBe(
-      expected
+      expected,
     );
   });
 });

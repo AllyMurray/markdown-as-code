@@ -5,10 +5,10 @@ describe('image', () => {
     expect(
       image(
         'https://myoctocat.com/assets/images/base-octocat.svg',
-        'GitHub Octocat'
-      )
+        'GitHub Octocat',
+      ),
     ).toBe(
-      '![GitHub Octocat](https://myoctocat.com/assets/images/base-octocat.svg)'
+      '![GitHub Octocat](https://myoctocat.com/assets/images/base-octocat.svg)',
     );
   });
 });

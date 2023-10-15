@@ -20,7 +20,7 @@ export class Authors extends ListSection<Author> {
   protected itemMapper(author: Author): string {
     return link(
       mentionPerson(author.githubUsername),
-      new URL(author.githubUsername, 'https://www.github.com').toString()
+      new URL(author.githubUsername, 'https://www.github.com').toString(),
     );
   }
 }

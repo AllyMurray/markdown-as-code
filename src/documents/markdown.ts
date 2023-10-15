@@ -46,7 +46,7 @@ export class MarkdownDocument {
   public addSection(title: string, content: string): this;
   public addSection(
     sectionOrTitle: DocumentSection | string,
-    content?: string
+    content?: string,
   ): this {
     if (sectionOrTitle instanceof DocumentSection) {
       this._sections.push(sectionOrTitle);
@@ -106,7 +106,7 @@ export class MarkdownDocument {
   public synth() {
     writeFileSync(
       join(this._outDir, this.options.fileName),
-      this.synthContent()
+      this.synthContent(),
     );
   }
 }

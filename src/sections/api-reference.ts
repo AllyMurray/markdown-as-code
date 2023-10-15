@@ -32,7 +32,7 @@ const isApiEndpoint = (reference: unknown): reference is ApiEndpoint => {
   return (
     isObject(reference) &&
     ['title', 'httpMethod', 'path', 'parameter'].every(
-      (property) => property in reference
+      (property) => property in reference,
     )
   );
 };
@@ -41,7 +41,7 @@ const isApiFunction = (reference: unknown): reference is ApiFunction => {
   return (
     isObject(reference) &&
     ['name', 'parameters', 'description'].every(
-      (property) => property in reference
+      (property) => property in reference,
     )
   );
 };

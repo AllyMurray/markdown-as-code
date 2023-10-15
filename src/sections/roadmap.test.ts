@@ -9,7 +9,7 @@ describe('Roadmap', () => {
   it('should return correct syntax when one item is added', () => {
     const section = roadmapSection().add({ text: 'Item 1' });
     expect(section.synthesize()).toBe(
-      ['## Roadmap', '', '- Item 1'].join('\n')
+      ['## Roadmap', '', '- Item 1'].join('\n'),
     );
   });
 
@@ -18,7 +18,7 @@ describe('Roadmap', () => {
       .add({ text: 'Item 1' })
       .add({ text: 'Item 2' });
     expect(section.synthesize()).toBe(
-      ['## Roadmap', '', '- Item 1', '', '- Item 2'].join('\n')
+      ['## Roadmap', '', '- Item 1', '', '- Item 2'].join('\n'),
     );
   });
 

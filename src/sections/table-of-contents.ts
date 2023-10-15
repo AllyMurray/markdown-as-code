@@ -13,7 +13,7 @@ export class TableOfContentsSection extends DocumentSection {
 
   private generateTableOfContents(
     sections: ReadonlyArray<DocumentSection>,
-    indent: number = 0
+    indent: number = 0,
   ): Array<string> {
     const tableOfContents: Array<string> = [];
 
@@ -24,11 +24,11 @@ export class TableOfContentsSection extends DocumentSection {
         `${indentation}- [${section.title}](#${section.title
           .toLowerCase()
           .replace(/ /g, '-')
-          .replace(/\\/g, '')})`
+          .replace(/\\/g, '')})`,
       );
 
       tableOfContents.push(
-        ...this.generateTableOfContents(section.subSections, indent + 2)
+        ...this.generateTableOfContents(section.subSections, indent + 2),
       );
     }
 

@@ -102,8 +102,8 @@ export class Examples extends DocumentSection {
       }
       content.push(
         ...examples.map((item) =>
-          this.itemMapper(item, headingLevel as HeadingLevel)
-        )
+          this.itemMapper(item, headingLevel as HeadingLevel),
+        ),
       );
     }
 

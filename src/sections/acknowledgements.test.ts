@@ -13,8 +13,8 @@ describe('Acknowledgements', () => {
     });
     expect(section.synthesize()).toBe(
       ['## Acknowledgements', '- [Acknowledgement](https://github.com)'].join(
-        '\n\n'
-      )
+        '\n\n',
+      ),
     );
   });
 
@@ -33,7 +33,7 @@ describe('Acknowledgements', () => {
         '## Acknowledgements',
         '- [Acknowledgement 1](https://github.com)',
         '- [Acknowledgement 2](https://github.com)',
-      ].join('\n\n')
+      ].join('\n\n'),
     );
   });
 

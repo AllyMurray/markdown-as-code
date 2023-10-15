@@ -20,7 +20,7 @@ describe('Run Locally', () => {
         '```bash',
         'npm t',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -49,7 +49,7 @@ describe('Run Locally', () => {
         '```bash',
         'npm start',
         '```',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 

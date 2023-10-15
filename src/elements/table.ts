@@ -24,7 +24,7 @@ export const table = <Columns extends string>({ rows }: Table<Columns>) => {
     `| ${columns.map((header) => header.toUpperCase()).join(' | ')} |`,
     `| ${columns.map(() => '---').join(' | ')} |`,
     ...rows.map(
-      (row) => `| ${columns.map((header) => row[header]).join(' | ')} |`
+      (row) => `| ${columns.map((header) => row[header]).join(' | ')} |`,
     ),
   ].join('\n');
 };

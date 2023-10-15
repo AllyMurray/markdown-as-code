@@ -13,7 +13,7 @@ describe('FAQ', () => {
       answer: 'Answer 1',
     });
     expect(section.synthesize()).toBe(
-      ['## FAQ', '', '#### Question 1', '', 'Answer 1'].join('\n')
+      ['## FAQ', '', '#### Question 1', '', 'Answer 1'].join('\n'),
     );
   });
 
@@ -38,7 +38,7 @@ describe('FAQ', () => {
         '#### Question 2',
         '',
         'Answer 2',
-      ].join('\n')
+      ].join('\n'),
     );
   });
 
@@ -52,10 +52,10 @@ describe('FAQ', () => {
       contentSection({ title: 'Level 2' }).addSubSection(
         contentSection({ title: 'Level 3' }).addSubSection(
           contentSection({ title: 'Level 4' }).addSubSection(
-            contentSection({ title: 'Level 5' }).addSubSection(testFaqSection)
-          )
-        )
-      )
+            contentSection({ title: 'Level 5' }).addSubSection(testFaqSection),
+          ),
+        ),
+      ),
     );
 
     expect(testFaqSection.synthesize()).toMatchInlineSnapshot(`

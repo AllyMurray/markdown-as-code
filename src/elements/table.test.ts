@@ -5,7 +5,7 @@ describe('tableBlock', () => {
     expect(
       table<'item' | 'comments'>({
         rows: [{ item: 'email', comments: 'test *email* used in service' }],
-      })
+      }),
     ).toMatchInlineSnapshot(`
       "| ITEM | COMMENTS |
       | --- | --- |
