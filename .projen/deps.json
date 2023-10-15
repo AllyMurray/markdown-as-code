@@ -6,7 +6,7 @@
     },
     {
       "name": "@types/node",
-      "version": "^16",
+      "version": "^18",
       "type": "build"
     },
     {
@@ -76,6 +76,7 @@
     },
     {
       "name": "typescript",
+      "version": "5.x",
       "type": "build"
     },
     {

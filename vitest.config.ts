@@ -25,6 +25,7 @@ export default defineConfig(
       "exclude": [
 "node_modules",
 "dist",
+"lib",
 ".idea",
 ".git",
 ".cache"
