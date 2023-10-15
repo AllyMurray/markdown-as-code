@@ -1,6 +1,6 @@
 import { type ListOptions, ListSection } from './list-section.js';
-import { link } from '../syntax/link.js';
-import { mentionPerson } from '../syntax/mention.js';
+import { link } from '../elements/link.js';
+import { mentionPerson } from '../elements/mention.js';
 
 interface Author {
   githubUsername: string;

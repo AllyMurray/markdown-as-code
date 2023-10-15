@@ -1,5 +1,5 @@
 import { DocumentSection, DocumentSectionOptions } from './section.js';
-import { HeadingLevel, heading } from '../syntax/heading.js';
+import { HeadingLevel, heading } from '../elements/heading.js';
 
 interface CodeBlock {
   language:

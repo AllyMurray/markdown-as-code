@@ -1,6 +1,6 @@
 import { DocumentSection, DocumentSectionOptions } from './section.js';
-import { heading } from '../syntax/heading.js';
-import { orderedList, unorderedList } from '../syntax/list.js';
+import { heading } from '../elements/heading.js';
+import { orderedList, unorderedList } from '../elements/list.js';
 
 export type ListType = 'None' | 'Ordered' | 'Unordered';
 

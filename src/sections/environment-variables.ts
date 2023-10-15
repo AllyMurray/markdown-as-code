@@ -1,5 +1,5 @@
 import { type ListOptions, ListSection } from './list-section.js';
-import { heading } from '../syntax/heading.js';
+import { heading } from '../elements/heading.js';
 
 interface EnvironmentVariable {
   name: string;

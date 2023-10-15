@@ -1,4 +1,4 @@
-import { HeadingLevel } from '../syntax/heading.js';
+import { HeadingLevel } from '../elements/heading.js';
 
 export interface DocumentSectionOptions {
   title: string;

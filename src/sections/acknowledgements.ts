@@ -1,5 +1,5 @@
 import { ListOptions, ListSection } from './list-section.js';
-import { link } from '../syntax/link.js';
+import { link } from '../elements/link.js';
 
 export interface AcknowledgementOptions extends Partial<ListOptions> {}
 

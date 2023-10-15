@@ -3,7 +3,7 @@ import { join } from 'path';
 import { ContentSection } from '../sections/content-section.js';
 import { DocumentSection, tryFindSection } from '../sections/section.js';
 import { tableOfContentsSection } from '../sections/table-of-contents.js';
-import { heading } from '../syntax/heading.js';
+import { heading } from '../elements/heading.js';
 
 export interface MarkdownOptions {
   fileName: string;

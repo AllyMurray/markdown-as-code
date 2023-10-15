@@ -1,5 +1,5 @@
 import { DocumentSection } from './section.js';
-import { heading } from '../syntax/heading.js';
+import { heading } from '../elements/heading.js';
 
 export interface TableOfContents {
   title?: string;

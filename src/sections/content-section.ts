@@ -1,5 +1,5 @@
 import { DocumentSection, DocumentSectionOptions } from './section.js';
-import { heading } from '../syntax/heading.js';
+import { heading } from '../elements/heading.js';
 
 interface ContentSectionOptions extends DocumentSectionOptions {
   content?: string;
