@@ -20,9 +20,7 @@
 /LICENSE linguist-generated
 /package.json linguist-generated
 /pnpm-lock.yaml linguist-generated
-/scripts/create-package-json.ts linguist-generated
-/tsconfig.build.cjs.json linguist-generated
-/tsconfig.build.esm.json linguist-generated
 /tsconfig.dev.json linguist-generated
 /tsconfig.json linguist-generated
-/vitest.config.js linguist-generated
+/tsup.config.ts linguist-generated
+/vitest.config.ts linguist-generated

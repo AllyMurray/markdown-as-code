@@ -42,7 +42,6 @@
     "node_modules/",
     "*.generated.ts",
     "coverage",
-    "scripts/create-package-json.ts",
     "!.projenrc.ts",
     "!projenrc/**/*.ts"
   ],

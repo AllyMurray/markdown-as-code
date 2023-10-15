@@ -20,7 +20,7 @@
       "type": "build"
     },
     {
-      "name": "commander",
+      "name": "@vitest/coverage-v8",
       "type": "build"
     },
     {
@@ -68,6 +68,10 @@
     },
     {
       "name": "ts-node",
+      "type": "build"
+    },
+    {
+      "name": "tsup",
       "type": "build"
     },
     {

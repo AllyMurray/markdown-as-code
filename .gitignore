@@ -51,7 +51,5 @@ test-reports
 /lib
 /dist/
 !/.eslintrc.json
-!/scripts/create-package-json.ts
-!/tsconfig.build.esm.json
-!/tsconfig.build.cjs.json
-!/vitest.config.js
+!/tsup.config.ts
+!/vitest.config.ts

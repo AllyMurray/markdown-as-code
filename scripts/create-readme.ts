@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
-import { capitalCase, headerCase } from 'change-case';
+import { capitalCase, trainCase } from 'change-case';
 import { createReadmeDocument } from '../src/documents/readme.js';
 
 type ReadmeOptions = {
@@ -100,7 +100,7 @@ export async function createReadme(options: ReadmeOptions) {
         example.add({
           title: codeExample.title,
           codeblock: { code: codeExample.content, language: 'typescript' },
-          group: headerCase(groupedCodeExample.group).replace(/-/g, ' '),
+          group: trainCase(groupedCodeExample.group).replace(/-/g, ' '),
         });
       }
     }

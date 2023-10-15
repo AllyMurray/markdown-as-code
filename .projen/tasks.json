@@ -78,16 +78,7 @@
       "description": "Only compile",
       "steps": [
         {
-          "exec": "tsc --project tsconfig.build.esm.json"
-        },
-        {
-          "exec": "ts-node ./scripts/create-package-json.ts --moduleType=\"esm\" --packageJsonType=module"
-        },
-        {
-          "exec": "tsc --project tsconfig.build.cjs.json"
-        },
-        {
-          "exec": "ts-node ./scripts/create-package-json.ts --moduleType=\"cjs\" --packageJsonType=commonjs"
+          "exec": "npx tsup"
         }
       ]
     },
@@ -193,11 +184,19 @@
       "description": "Run tests",
       "steps": [
         {
-          "exec": "vitest --dir=src",
+          "exec": "vitest --dir=src --coverage",
           "receiveArgs": true
         },
         {
           "spawn": "eslint"
+        }
+      ]
+    },
+    "test:watch": {
+      "name": "test:watch",
+      "steps": [
+        {
+          "exec": "vitest --dir=src --coverage --watch"
         }
       ]
     },
@@ -228,13 +227,13 @@
           "exec": "pnpm update npm-check-updates"
         },
         {
-          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@ally-murray/projen-modules,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,commander,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,npm-check-updates,prettier,projen,standard-version,ts-node,typescript,vitest,change-case"
+          "exec": "npm-check-updates --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@ally-murray/projen-modules,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,@vitest/coverage-v8,eslint-config-prettier,eslint-import-resolver-node,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,npm-check-updates,prettier,projen,standard-version,ts-node,tsup,typescript,vitest,change-case"
         },
         {
           "exec": "pnpm i --no-frozen-lockfile"
         },
         {
-          "exec": "pnpm update @ally-murray/projen-modules @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser commander eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint npm-check-updates prettier projen standard-version ts-node typescript vitest change-case"
+          "exec": "pnpm update @ally-murray/projen-modules @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser @vitest/coverage-v8 eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint npm-check-updates prettier projen standard-version ts-node tsup typescript vitest change-case"
         },
         {
           "exec": "npx projen"
