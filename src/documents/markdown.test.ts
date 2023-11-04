@@ -142,4 +142,40 @@ describe('Markdown Document', () => {
 
     expect(markdownDoc.synthContent()).toMatchSnapshot();
   });
+
+  it('should increment the sort order when adding a section', () => {
+    const markdownDoc = createMarkdownDocument({
+      title: 'Test',
+      fileName: 'test.md',
+    });
+
+    markdownDoc.createSection({
+      type: 'acknowledgements',
+      sortOrder: 1,
+      onCreate: (section) => {
+        section.add({
+          text: 'Some more markdown sub content',
+          url: 'http://example.com',
+        });
+      },
+    });
+
+    markdownDoc.createSection({
+      type: 'authors',
+      sortOrder: 1,
+      onCreate: (section) => {
+        section.add({
+          githubUsername: 'john-smith',
+        });
+      },
+    });
+
+    const authorsSectionContent = markdownDoc.synthContent();
+    const indexOfAuthors = authorsSectionContent.indexOf('## Authors');
+    const indexOfAcknowledgements = authorsSectionContent.indexOf(
+      '## Acknowledgements',
+    );
+
+    expect(indexOfAuthors).toBeLessThan(indexOfAcknowledgements);
+  });
 });

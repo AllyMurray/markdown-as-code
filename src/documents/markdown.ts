@@ -80,7 +80,25 @@ export class MarkdownDocument {
       .map((sortedSection) => sortedSection.section);
   }
 
+  private bumpSortOrder(startingSortOrder: number) {
+    const hasSortOrder = this._sortedSections.find(
+      (s) => s.sortOrder === startingSortOrder,
+    );
+    if (hasSortOrder) {
+      let sortOrder = startingSortOrder;
+      for (const section of this._sortedSections.filter(
+        (s) => s.sortOrder >= startingSortOrder,
+      )) {
+        if (section.sortOrder === sortOrder) {
+          section.sortOrder += startingSortOrder;
+        }
+        sortOrder++;
+      }
+    }
+  }
+
   public addSection({ section, sortOrder = 0 }: AddSection) {
+    this.bumpSortOrder(sortOrder);
     this._sortedSections.push({ section, sortOrder });
     return this;
   }
@@ -97,13 +115,13 @@ export class MarkdownDocument {
   }: CreateSectionContent<Section>) {
     const section = getSection(type);
     onCreate(section);
-    this._sortedSections.push({ section, sortOrder });
+    this.addSection({ section, sortOrder });
     return this;
   }
 
   appendSection<Section extends SectionKey>({
-    path,
     onAppend,
+    path,
   }: UpdateSectionContent<Section>) {
     const section = tryFindSection<Section>(this.sections, path);
     if (!section) {
