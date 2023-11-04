@@ -5,22 +5,46 @@ exports[`Readme > should match snapshot 1`] = `
 
 ## Table of Contents
 
-- [Acknowledgements](#acknowledgements)
-- [API Reference](#api-reference)
-- [Authors](#authors)
-- [Contributing](#contributing)
-- [Environment Variables](#environment-variables)
-- [Examples](#examples)
-- [FAQ](#faq)
 - [Installation](#installation)
+- [Environment Variables](#environment-variables)
 - [Run Locally](#run-locally)
 - [Roadmap](#roadmap)
+- [API Reference](#api-reference)
+- [Examples](#examples)
+- [FAQ](#faq)
 - [Support](#support)
 - [Appendix](#appendix)
+- [Authors](#authors)
+- [Acknowledgements](#acknowledgements)
+- [Contributing](#contributing)
 
-## Acknowledgements
+## Installation
 
-- [GitHub](https://github.com)
+Install using npm
+
+\`\`\`bash
+npm i readme-as-code
+\`\`\`
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+\`\`\`bash
+API_KEY=YOUR-API-KEY-HERE
+\`\`\`
+
+## Run Locally
+
+- Run the tests
+
+\`\`\`bash
+npm t
+\`\`\`
+
+## Roadmap
+
+- Item 1
 
 ## API Reference
 
@@ -33,28 +57,6 @@ GET /api/items
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
 |api_key | string | **Required**. Your API key|
-
-## Authors
-
-- [@AllyMurray](https://www.github.com/AllyMurray)
-
-## Contributing
-
-Contributions are always welcome!
-
-See \`contributing.md\` for ways to get started.
-
-Please adhere to this project's \`code of conduct\`.
-
-Some additional markdown content
-
-## Environment Variables
-
-To run this project, you will need to add the following environment variables to your .env file
-
-\`\`\`bash
-API_KEY=YOUR-API-KEY-HERE
-\`\`\`
 
 ## Examples
 
@@ -92,33 +94,31 @@ readme.installation((step) => {
 
 Answer 1
 
-## Installation
-
-Install using npm
-
-\`\`\`bash
-npm i readme-as-code
-\`\`\`
-
-## Run Locally
-
-- Run the tests
-
-\`\`\`bash
-npm t
-\`\`\`
-
-## Roadmap
-
-- Item 1
-
 ## Support
 
 Test content
 
 ## Appendix
 
-Some content"
+Some content
+
+## Authors
+
+- [@AllyMurray](https://www.github.com/AllyMurray)
+
+## Acknowledgements
+
+- [GitHub](https://github.com)
+
+## Contributing
+
+Contributions are always welcome!
+
+See \`contributing.md\` for ways to get started.
+
+Please adhere to this project's \`code of conduct\`.
+
+Some additional markdown content"
 `;
 
 exports[`Readme > should write a document to disk 1`] = `

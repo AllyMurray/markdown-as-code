@@ -1,14 +1,15 @@
+import { Section } from './factory.js';
 import { DocumentSection, DocumentSectionOptions } from './section.js';
 import { tableOfContentsSection } from './table-of-contents.js';
 
-const createTestSection = (options: DocumentSectionOptions) => {
+const createTestSection = (options: DocumentSectionOptions): Section => {
   class TestDocumentSection extends DocumentSection {
     protected synthesizeContent(): string[] {
       return [this.title];
     }
   }
 
-  return new TestDocumentSection(options);
+  return new TestDocumentSection(options) as unknown as Section;
 };
 
 describe('table of contents', () => {

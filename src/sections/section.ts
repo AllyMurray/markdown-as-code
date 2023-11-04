@@ -1,3 +1,4 @@
+import { InferSection, SectionKey } from './factory.js';
 import { HeadingLevel } from '../elements/heading.js';
 
 export interface DocumentSectionOptions {
@@ -51,16 +52,19 @@ export abstract class DocumentSection {
   }
 }
 
-export function tryFindSection<Section extends DocumentSection>(
+export function tryFindSection<S extends SectionKey>(
   sections: ReadonlyArray<DocumentSection>,
   path: Array<string>,
-): Section | undefined {
+): InferSection<S> | undefined {
   for (const section of sections) {
     if (section.title === path[0] && path.length === 1) {
-      return section as Section;
+      return section as InferSection<S>;
     }
 
-    return tryFindSection(section.subSections, path.slice(1)) as Section;
+    return tryFindSection(
+      section.subSections,
+      path.slice(1),
+    ) as InferSection<S>;
   }
 
   return undefined;

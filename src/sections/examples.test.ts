@@ -6,6 +6,36 @@ describe('Examples', () => {
     expect(section.synthesize()).toBe('## Examples');
   });
 
+  it('should return custom title', () => {
+    const section = examplesSection({ title: 'Custom Examples' });
+    expect(section.synthesize()).toMatchInlineSnapshot('"## Custom Examples"');
+  });
+
+  it('should return custom title and items', () => {
+    const section = examplesSection({
+      title: 'Custom Examples',
+      items: [
+        {
+          title: 'Test Code',
+          codeblock: {
+            code: `console.log('Hello World!')`,
+            language: 'typescript',
+          },
+        },
+      ],
+    });
+    expect(section.synthesize()).toMatchInlineSnapshot(`
+      "## Custom Examples
+
+      ### Test Code
+
+      \`\`\`typescript
+      console.log('Hello World!')
+      \`\`\`
+      "
+    `);
+  });
+
   it('should return correct syntax when one item is added', () => {
     const section = examplesSection().add({
       title: 'Create an example section',

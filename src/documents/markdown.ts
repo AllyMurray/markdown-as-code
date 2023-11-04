@@ -1,7 +1,12 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { heading } from '../elements/heading.js';
-import { ContentSection } from '../sections/content-section.js';
+import {
+  getSection,
+  Section,
+  type InferSection,
+  type SectionKey,
+} from '../sections/factory.js';
 import { DocumentSection, tryFindSection } from '../sections/section.js';
 import { tableOfContentsSection } from '../sections/table-of-contents.js';
 
@@ -26,15 +31,42 @@ export interface MarkdownOptions {
   tableOfContents?: boolean;
 }
 
-export interface SectionContent<Section extends DocumentSection> {
-  path: Array<string>;
-  update: (section: Section) => void;
+type SectionPath = Array<string>;
+type SectionEventHandler<Section extends SectionKey> = (
+  section: InferSection<Section>,
+) => void;
+
+export interface SectionContent<Section extends SectionKey> {
+  type: Section;
+  sortOrder?: number;
+}
+
+export interface AddSection {
+  section: Section;
+  sortOrder?: number;
+}
+
+export interface CreateSectionContent<Section extends SectionKey>
+  extends SectionContent<Section> {
+  path?: SectionPath;
+  onCreate: SectionEventHandler<Section>;
+}
+
+interface UpdateSectionContent<Section extends SectionKey>
+  extends SectionContent<Section> {
+  path: SectionPath;
+  onAppend: SectionEventHandler<Section>;
+}
+
+interface SortedSection {
+  section: InferSection<SectionKey>;
+  sortOrder: number;
 }
 
 export class MarkdownDocument {
   private _outDir: string;
   private _tableOfContents: boolean;
-  private _sections: Array<DocumentSection> = [];
+  private _sortedSections: Array<SortedSection> = [];
 
   constructor(private options: MarkdownOptions) {
     this._outDir = options.outDir ?? process.cwd();
@@ -42,32 +74,42 @@ export class MarkdownDocument {
     return this;
   }
 
-  public addSection(section: DocumentSection): this;
-  public addSection(title: string, content: string): this;
-  public addSection(
-    sectionOrTitle: DocumentSection | string,
-    content?: string,
-  ): this {
-    if (sectionOrTitle instanceof DocumentSection) {
-      this._sections.push(sectionOrTitle);
-      return this;
-    }
-    if (!content) {
-      throw new Error('Content is required');
-    }
-    this._sections.push(new ContentSection({ title: sectionOrTitle, content }));
+  private get sections() {
+    return this._sortedSections
+      .sort((sectionA, sectionB) => sectionA.sortOrder - sectionB.sortOrder)
+      .map((sortedSection) => sortedSection.section);
+  }
+
+  public addSection({ section, sortOrder = 0 }: AddSection) {
+    this._sortedSections.push({ section, sortOrder });
     return this;
   }
 
-  appendSection<Section extends DocumentSection>({
+  /**
+   *
+   * @param param0
+   * @returns
+   */
+  public createSection<Section extends SectionKey>({
+    onCreate,
+    type,
+    sortOrder = 0,
+  }: CreateSectionContent<Section>) {
+    const section = getSection(type);
+    onCreate(section);
+    this._sortedSections.push({ section, sortOrder });
+    return this;
+  }
+
+  appendSection<Section extends SectionKey>({
     path,
-    update,
-  }: SectionContent<Section>) {
-    const section = tryFindSection<Section>(this._sections, path);
+    onAppend,
+  }: UpdateSectionContent<Section>) {
+    const section = tryFindSection<Section>(this.sections, path);
     if (!section) {
       throw new Error(`Section not found: ${path.join(' > ')}`);
     }
-    update(section);
+    onAppend(section);
     return this;
   }
 
@@ -87,7 +129,7 @@ export class MarkdownDocument {
     let tableOfContents;
     if (this._tableOfContents) {
       tableOfContents = tableOfContentsSection({
-        sections: this._sections,
+        sections: this.sections,
       }).synthesize();
     }
 
@@ -98,7 +140,7 @@ export class MarkdownDocument {
       '',
     ];
 
-    lines.push(...this.synthesizeSections(this._sections));
+    lines.push(...this.synthesizeSections(this.sections));
 
     return lines.filter(Boolean).join('\n\n');
   }
