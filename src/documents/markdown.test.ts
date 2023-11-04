@@ -178,4 +178,54 @@ describe('Markdown Document', () => {
 
     expect(indexOfAuthors).toBeLessThan(indexOfAcknowledgements);
   });
+
+  it('should not increment the sort order when there is a gap in the sort order', () => {
+    const markdownDoc = createMarkdownDocument({
+      title: 'Test',
+      fileName: 'test.md',
+    });
+
+    markdownDoc.createSection({
+      type: 'authors',
+      sortOrder: 3,
+      onCreate: (section) => {
+        section.add({
+          githubUsername: 'john-smith',
+        });
+      },
+    });
+
+    markdownDoc.createSection({
+      type: 'acknowledgements',
+      sortOrder: 1,
+      onCreate: (section) => {
+        section.add({
+          text: 'Some more markdown sub content',
+          url: 'http://example.com',
+        });
+      },
+    });
+
+    markdownDoc.createSection({
+      type: 'roadmap',
+      sortOrder: 4,
+      onCreate: (section) => {
+        section.add({
+          text: 'Some more markdown sub content',
+        });
+      },
+    });
+
+    const authorsSectionContent = markdownDoc.synthContent();
+    const indexOfAuthors = authorsSectionContent.indexOf('## Authors');
+    const indexOfAcknowledgements = authorsSectionContent.indexOf(
+      '## Acknowledgements',
+    );
+    const indexOfRoadmap = authorsSectionContent.indexOf('## Roadmap');
+    const isCorrectSortOrder =
+      indexOfAcknowledgements < indexOfAuthors &&
+      indexOfAuthors < indexOfRoadmap;
+
+    expect(isCorrectSortOrder).toBe(true);
+  });
 });

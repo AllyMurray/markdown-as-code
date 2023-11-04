@@ -81,18 +81,29 @@ export class MarkdownDocument {
   }
 
   private bumpSortOrder(startingSortOrder: number) {
-    const hasSortOrder = this._sortedSections.find(
-      (s) => s.sortOrder === startingSortOrder,
+    const maxSortOrder = Math.max(
+      ...this._sortedSections.map((s) => s.sortOrder),
     );
-    if (hasSortOrder) {
-      let sortOrder = startingSortOrder;
-      for (const section of this._sortedSections.filter(
-        (s) => s.sortOrder >= startingSortOrder,
-      )) {
-        if (section.sortOrder === sortOrder) {
-          section.sortOrder += startingSortOrder;
+    if (startingSortOrder <= maxSortOrder) {
+      // Create a sorted array of all existing sort orders
+      const existingSortOrders = this._sortedSections
+        .map((s) => s.sortOrder)
+        .sort((a, b) => a - b);
+      for (
+        let sortOrder = startingSortOrder;
+        sortOrder <= maxSortOrder;
+        sortOrder++
+      ) {
+        // If the current sort order does not exist in the array, there is a gap
+        if (!existingSortOrders.includes(sortOrder)) {
+          break;
         }
-        sortOrder++;
+        // If there is no gap, increment the sort order of the section at this position
+        for (let section of this._sortedSections) {
+          if (section.sortOrder === sortOrder) {
+            section.sortOrder++;
+          }
+        }
       }
     }
   }
