@@ -6,9 +6,9 @@ This project allows managing Markdown files through JavaScript/TypeScript
 
 - [Installation](#installation)
 - [Run Locally](#run-locally)
+- [Examples](#examples)
 - [Authors](#authors)
 - [Acknowledgements](#acknowledgements)
-- [Examples](#examples)
 
 ## Installation
 
@@ -45,16 +45,6 @@ npm run test
 ```bash
 pnpm t
 ```
-
-## Authors
-
-- [@AllyMurray](https://www.github.com/AllyMurray)
-
-- [@Andrchiamus](https://www.github.com/Andrchiamus)
-
-## Acknowledgements
-
-- [Readme.so](https://readme.so)
 
 ## Examples
 
@@ -355,3 +345,14 @@ table<'email' | 'description'>({
   ],
 });
 ```
+
+
+## Authors
+
+- [@AllyMurray](https://www.github.com/AllyMurray)
+
+- [@Andrchiamus](https://www.github.com/Andrchiamus)
+
+## Acknowledgements
+
+- [Readme.so](https://readme.so)

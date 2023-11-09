@@ -57,14 +57,14 @@ interface Example {
 }
 
 export interface ExamplesOptions extends DocumentSectionOptions {
-  items: Array<Example>;
+  items?: Array<Example>;
 }
 export class Examples extends DocumentSection {
   protected items = new Map<string, Array<Example>>();
 
   constructor(options?: ExamplesOptions) {
     super({ title: options?.title ?? 'Examples', ...options });
-    options?.items.forEach((item) => this.add(item));
+    options?.items?.forEach((item) => this.add(item));
   }
 
   public add(item: Example) {
