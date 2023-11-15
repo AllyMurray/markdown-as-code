@@ -1,12 +1,6 @@
 import { writeFileSync } from 'fs';
 import { join } from 'path';
 import { heading } from '../elements/heading.js';
-import {
-  getSection,
-  Section,
-  type InferSection,
-  type SectionKey,
-} from '../sections/factory.js';
 import { DocumentSection, tryFindSection } from '../sections/section.js';
 import { tableOfContentsSection } from '../sections/table-of-contents.js';
 
@@ -31,35 +25,13 @@ export interface MarkdownOptions {
   tableOfContents?: boolean;
 }
 
-type SectionPath = Array<string>;
-type SectionEventHandler<Section extends SectionKey> = (
-  section: InferSection<Section>,
-) => void;
-
-export interface SectionContent<Section extends SectionKey> {
-  type: Section;
-  sortOrder?: number;
-}
-
 export interface AddSection {
-  section: Section;
+  section: DocumentSection;
   sortOrder?: number;
-}
-
-export interface CreateSectionContent<Section extends SectionKey>
-  extends SectionContent<Section> {
-  path?: SectionPath;
-  onCreate: SectionEventHandler<Section>;
-}
-
-interface UpdateSectionContent<Section extends SectionKey>
-  extends SectionContent<Section> {
-  path: SectionPath;
-  onAppend: SectionEventHandler<Section>;
 }
 
 interface SortedSection {
-  section: InferSection<SectionKey>;
+  section: DocumentSection;
   sortOrder: number;
 }
 
@@ -114,32 +86,8 @@ export class MarkdownDocument {
     return this;
   }
 
-  /**
-   *
-   * @param param0
-   * @returns
-   */
-  public createSection<Section extends SectionKey>({
-    onCreate,
-    type,
-    sortOrder = 0,
-  }: CreateSectionContent<Section>) {
-    const section = getSection(type);
-    onCreate(section);
-    this.addSection({ section, sortOrder });
-    return this;
-  }
-
-  appendSection<Section extends SectionKey>({
-    onAppend,
-    path,
-  }: UpdateSectionContent<Section>) {
-    const section = tryFindSection<Section>(this.sections, path);
-    if (!section) {
-      throw new Error(`Section not found: ${path.join(' > ')}`);
-    }
-    onAppend(section);
-    return this;
+  public tryFindSection<S extends DocumentSection>(path: Array<string>): S {
+    return tryFindSection(this.sections, path) as S;
   }
 
   private synthesizeSections(sections: ReadonlyArray<DocumentSection>) {

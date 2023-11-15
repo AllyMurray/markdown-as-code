@@ -17,11 +17,11 @@ async function getExamples() {
     examples: Array<{ title: string; content: string }>;
   }> = [];
   for (const examplesSubDirectoryPath of examplesSubDirectoryPaths.filter(
-    (p) => p !== 'node_modules'
+    (p) => p !== 'node_modules',
   )) {
     const absoluteExamplesSubDirectoryPath = path.join(
       examplesDirectoryPath,
-      examplesSubDirectoryPath
+      examplesSubDirectoryPath,
     );
 
     if (!(await stat(absoluteExamplesSubDirectoryPath)).isDirectory()) {
@@ -33,11 +33,11 @@ async function getExamples() {
       exampleFilePaths.map(async (file: string) => {
         const content = await readFile(
           path.join(absoluteExamplesSubDirectoryPath, file),
-          'utf8'
+          'utf8',
         );
 
         return { title: capitalCase(path.parse(file).name), content };
-      })
+      }),
     );
 
     codeExamples.push({ group: examplesSubDirectoryPath, examples });
@@ -48,7 +48,7 @@ async function getExamples() {
 
 export async function createReadme(options: ReadmeOptions) {
   const packageJson = JSON.parse(
-    readFileSync('./package.json', { encoding: 'utf-8' })
+    readFileSync('./package.json', { encoding: 'utf-8' }),
   );
 
   const readme = createReadmeDocument({
