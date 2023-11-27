@@ -1,19 +1,63 @@
 import { MarkdownDocument, MarkdownOptions } from './markdown.js';
+import type { Optional } from '../@types/optional.js';
 import { DocumentSection } from '../index.js';
-import { Acknowledgements } from '../sections/acknowledgements.js';
-import { ApiReference } from '../sections/api-reference.js';
-import { Appendix } from '../sections/appendix.js';
-import { Authors } from '../sections/authors.js';
-import { Contributing } from '../sections/contributing.js';
-import { EnvironmentVariables } from '../sections/environment-variables.js';
-import { Examples } from '../sections/examples.js';
-import { FAQ } from '../sections/faq.js';
-import { Installation } from '../sections/installation.js';
-import { Roadmap } from '../sections/roadmap.js';
-import { RunLocally } from '../sections/run-locally.js';
-import { Support } from '../sections/support.js';
+import {
+  AcknowledgementOptions,
+  Acknowledgements,
+  acknowledgementsSection,
+} from '../sections/acknowledgements.js';
+import {
+  ApiReference,
+  ApiReferenceOptions,
+  apiReferenceSection,
+} from '../sections/api-reference.js';
+import {
+  Appendix,
+  AppendixOptions,
+  appendixSection,
+} from '../sections/appendix.js';
+import {
+  Authors,
+  AuthorsOptions,
+  authorsSection,
+} from '../sections/authors.js';
+import {
+  Contributing,
+  ContributingOptions,
+  contributingSection,
+} from '../sections/contributing.js';
+import {
+  EnvironmentVariables,
+  EnvironmentVariablesOptions,
+  environmentVariablesSection,
+} from '../sections/environment-variables.js';
+import {
+  Examples,
+  ExamplesOptions,
+  examplesSection,
+} from '../sections/examples.js';
+import { FAQ, FAQOptions, faqSection } from '../sections/faq.js';
+import {
+  Installation,
+  InstallationOptions,
+  installationSection,
+} from '../sections/installation.js';
+import {
+  Roadmap,
+  RoadmapOptions,
+  roadmapSection,
+} from '../sections/roadmap.js';
+import {
+  RunLocalOptions,
+  RunLocally,
+  runLocallySection,
+} from '../sections/run-locally.js';
+import {
+  Support,
+  SupportOptions,
+  supportSection,
+} from '../sections/support.js';
 
-type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 type ReadmeOptions = Optional<MarkdownOptions, 'title'>;
 
 const sectionOrderMap = new Map<object, number>([
@@ -51,52 +95,52 @@ export class Readme extends MarkdownDocument {
     return this.addSection({ section, sortOrder: this.getSortOrder(section) });
   }
 
-  public addInstallation(section: Installation) {
-    return this.addSortedSection(section);
+  public addInstallationSection(options: InstallationOptions) {
+    return this.addSortedSection(installationSection(options));
   }
 
-  public addEnvironmentVariables(section: EnvironmentVariables) {
-    return this.addSortedSection(section);
+  public addEnvironmentVariablesSection(options: EnvironmentVariablesOptions) {
+    return this.addSortedSection(environmentVariablesSection(options));
   }
 
-  public addRunLocally(section: RunLocally) {
-    return this.addSortedSection(section);
+  public addRunLocallySection(options: RunLocalOptions) {
+    return this.addSortedSection(runLocallySection(options));
   }
 
-  public addRoadmap(section: Roadmap) {
-    return this.addSortedSection(section);
+  public addRoadmapSection(options: RoadmapOptions) {
+    return this.addSortedSection(roadmapSection(options));
   }
 
-  public addApiReference(section: ApiReference) {
-    return this.addSortedSection(section);
+  public addApiReferenceSection(options: ApiReferenceOptions) {
+    return this.addSortedSection(apiReferenceSection(options));
   }
 
-  public addExamples(section: Examples) {
-    return this.addSortedSection(section);
+  public addExamplesSection(options: ExamplesOptions) {
+    return this.addSortedSection(examplesSection(options));
   }
 
-  public addFaq(section: FAQ) {
-    return this.addSortedSection(section);
+  public addFaqSection(options: FAQOptions) {
+    return this.addSortedSection(faqSection(options));
   }
 
-  public addSupport(section: Support) {
-    return this.addSortedSection(section);
+  public addSupportSection(options: SupportOptions) {
+    return this.addSortedSection(supportSection(options));
   }
 
-  public addAppendix(section: Appendix) {
-    return this.addSortedSection(section);
+  public addAppendixSection(options: AppendixOptions) {
+    return this.addSortedSection(appendixSection(options));
   }
 
-  public addAuthors(section: Authors) {
-    return this.addSortedSection(section);
+  public addAuthorsSection(options: AuthorsOptions) {
+    return this.addSortedSection(authorsSection(options));
   }
 
-  public addAcknowledgements(section: Acknowledgements) {
-    return this.addSortedSection(section);
+  public addAcknowledgementsSection(options: AcknowledgementOptions) {
+    return this.addSortedSection(acknowledgementsSection(options));
   }
 
-  public addContributing(section: Contributing) {
-    return this.addSortedSection(section);
+  public addContributingSection(options: ContributingOptions) {
+    return this.addSortedSection(contributingSection(options));
   }
 }
 

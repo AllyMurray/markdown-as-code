@@ -1,11 +1,15 @@
 import { ContentSection } from './content-section.js';
 
+export interface AppendixOptions {
+  content?: string;
+}
+
 export class Appendix extends ContentSection {
-  constructor() {
-    super({ title: 'Appendix' });
+  constructor(options: AppendixOptions) {
+    super({ title: 'Appendix', ...options });
   }
 }
 
-export function appendixSection() {
-  return new Appendix();
+export function appendixSection(options: AppendixOptions) {
+  return new Appendix(options);
 }
