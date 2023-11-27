@@ -1,6 +1,12 @@
 import { ContentSection, contentSection } from './content-section.js';
 
 describe('Content Section', () => {
+  it('should return an instance of ContentSection', () => {
+    expect(contentSection({ title: 'Test Section' })).toBeInstanceOf(
+      ContentSection,
+    );
+  });
+
   it('should return the correct markdown syntax with no content', () => {
     expect(contentSection({ title: 'Test Section' }).synthesize()).toBe(
       '## Test Section\n\n',
@@ -16,6 +22,17 @@ describe('Content Section', () => {
     ).toBe(['## Test Section', '', 'Custom Content!'].join('\n'));
   });
 
+  it('should return the correct markdown syntax an array of content', () => {
+    expect(
+      contentSection({
+        title: 'Test Section',
+        content: ['Custom Content!', 'More Content!'],
+      }).synthesize(),
+    ).toBe(
+      ['## Test Section', 'Custom Content!', 'More Content!'].join('\n\n'),
+    );
+  });
+
   it('should allow adding additional content', () => {
     expect(
       contentSection({ title: 'Test Section', content: 'Custom Content!' })
@@ -23,14 +40,6 @@ describe('Content Section', () => {
         .synthesize(),
     ).toBe(
       ['## Test Section', '', 'Custom Content!', '', 'More Content'].join('\n'),
-    );
-  });
-});
-
-describe('createContentSection', () => {
-  it('should return an instance of ContentSection', () => {
-    expect(contentSection({ title: 'Test Section' })).toBeInstanceOf(
-      ContentSection,
     );
   });
 });

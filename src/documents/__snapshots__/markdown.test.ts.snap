@@ -7,7 +7,7 @@ exports[`Markdown Document > should synthesize a basic document 1`] = `
 "
 `;
 
-exports[`Markdown Document > should synthesize a document after adding a custom section with a sub-section 1`] = `
+exports[`Markdown Document > should synthesize a document after adding a custom section with a sub-section by setting rootSection 1`] = `
 "# Test
 
 ## Table of Contents
@@ -21,26 +21,10 @@ Some markdown content
 
 ### Sub Section
 
-Some markdown sub content
-
-Some more markdown sub content"
+Some markdown sub content"
 `;
 
-exports[`Markdown Document > should synthesize a document after adding a custom section with a sub-section 2`] = `
-"# Test
-
-## Table of Contents
-
-- [Acknowledgements](#acknowledgements)
-
-## Acknowledgements
-
-- [Some more markdown sub content](http://example.com)
-
-- [Some more markdown sub content](http://example.com)"
-`;
-
-exports[`Markdown Document > should synthesize a document after adding a custom section with a sub-section 2 1`] = `
+exports[`Markdown Document > should synthesize a document after adding a custom section with a sub-section by using addSubSection 1`] = `
 "# Test
 
 ## Table of Contents
@@ -54,9 +38,7 @@ Some markdown content
 
 ### Authors
 
-- [@jane-doe](https://www.github.com/jane-doe)
-
-- [@john-smith](https://www.github.com/john-smith)"
+- [@jane-doe](https://www.github.com/jane-doe)"
 `;
 
 exports[`Markdown Document > should synthesize a document after adding a section 1`] = `

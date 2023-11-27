@@ -7,7 +7,9 @@ describe('API Reference', () => {
 
   it('should return the correct markdown syntax using a custom title', () => {
     expect(
-      apiReferenceSection('Markdown as Code API Reference').synthesize(),
+      apiReferenceSection({
+        title: 'Markdown as Code API Reference',
+      }).synthesize(),
     ).toBe('## Markdown as Code API Reference');
   });
 

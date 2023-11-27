@@ -1,12 +1,12 @@
 import { ListOptions, ListSection } from './list-section.js';
 import { link } from '../elements/link.js';
 
-export interface AcknowledgementOptions extends Partial<ListOptions> {}
-
 interface Link {
   text: string;
   url: string;
 }
+
+export interface AcknowledgementOptions extends Partial<ListOptions<Link>> {}
 
 export class Acknowledgements extends ListSection<Link> {
   constructor(options?: AcknowledgementOptions) {

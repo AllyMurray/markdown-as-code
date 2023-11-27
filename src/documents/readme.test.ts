@@ -1,5 +1,20 @@
 import fs from 'fs';
 import { createReadmeDocument } from './readme.js';
+import {
+  acknowledgementsSection,
+  apiReferenceSection,
+  appendixSection,
+  authorsSection,
+  contentSection,
+  contributingSection,
+  environmentVariablesSection,
+  examplesSection,
+  faqSection,
+  installationSection,
+  roadmapSection,
+  runLocallySection,
+  supportSection,
+} from '../index.js';
 
 vi.mock('fs');
 const mockedFs = vi.mocked(fs);
@@ -18,96 +33,96 @@ describe('Readme', () => {
       title: 'Readme as Code',
       fileName: 'Readme.md',
     })
-      .acknowledgements((section) => {
-        section.add({ text: 'GitHub', url: 'https://github.com' });
-      })
-      .apiReference((section) => {
-        section.add({
-          title: 'Get all items',
-          httpMethod: 'GET',
-          path: '/api/items',
-          parameter: {
-            name: 'api_key',
-            type: 'string',
-            description: '**Required**. Your API key',
-          },
-        });
-      })
-      .authors((section) => {
-        section.add({ githubUsername: 'AllyMurray' });
-      })
-      .contributing((section) => {
-        section.appendContent('Some additional markdown content');
-      })
-      .environmentVariables((section) => {
-        section.add({
-          name: 'API_KEY',
-          defaultValue: 'YOUR-API-KEY-HERE',
-        });
-      })
-      .examples((section) => {
-        section
-          .add({
-            title: 'Initialize the library',
-            description:
-              'When creating the Readme instance the project name and description must be supplied',
-            codeblock: {
-              language: 'typescript',
-              code: [
-                'const readme = new Readme({',
-                `  name: 'Example Project',`,
-                `  description: 'Define and maintain your README.md through code.',`,
-                '});',
-              ].join('\n'),
+      .addAcknowledgements(
+        acknowledgementsSection({
+          items: [{ text: 'GitHub', url: 'https://github.com' }],
+        }),
+      )
+      .addApiReference(
+        apiReferenceSection({
+          items: [
+            {
+              title: 'Get all items',
+              httpMethod: 'GET',
+              path: '/api/items',
+              parameter: {
+                name: 'api_key',
+                type: 'string',
+                description: '**Required**. Your API key',
+              },
             },
-          })
-          .add({
-            title: 'Add installation instructions',
-            codeblock: {
-              language: 'typescript',
-              code: [
-                'const readme = new Readme({',
-                `  name: 'Example Project',`,
-                `  description: 'Define and maintain your README.md through code.',`,
-                '});',
-                '',
-                'readme.installation((step) => {',
-                '  step.add({',
-                `    description: 'Install using npm',`,
-                `    command: 'npm i readme-as-code',`,
-                '  });',
-                '})',
-              ].join('\n'),
+          ],
+        }),
+      )
+      .addAuthors(authorsSection({ items: [{ githubUsername: 'AllyMurray' }] }))
+      .addContributing(
+        contributingSection().appendContent('Some additional markdown content'),
+      )
+      .addEnvironmentVariables(
+        environmentVariablesSection({
+          items: [{ name: 'API_KEY', defaultValue: 'YOUR-API-KEY-HERE' }],
+        }),
+      )
+      .addExamples(
+        examplesSection({
+          items: [
+            {
+              title: 'Initialize the library',
+              description:
+                'When creating the Readme instance the project name and description must be supplied',
+              codeblock: {
+                language: 'typescript',
+                code: [
+                  'const readme = new Readme({',
+                  `  name: 'Example Project',`,
+                  `  description: 'Define and maintain your README.md through code.',`,
+                  '});',
+                ].join('\n'),
+              },
             },
-          });
-      })
-      .faq((section) => {
-        section.add({
-          question: 'Question 1',
-          answer: 'Answer 1',
-        });
-      })
-      .installation((step) => {
-        step.add({
-          description: 'Install using npm',
-          command: 'npm i readme-as-code',
-        });
-      })
-      .runLocally((step) => {
-        step.add({
-          description: 'Run the tests',
-          command: 'npm t',
-        });
-      })
-      .roadmap((section) => {
-        section.add({ text: 'Item 1' });
-      })
-      .support((section) => {
-        section.appendContent('Test content');
-      })
-      .appendix((section) => {
-        section.appendContent('Some content');
-      });
+            {
+              title: 'Add installation instructions',
+              codeblock: {
+                language: 'typescript',
+                code: [
+                  'const readme = new Readme({',
+                  `  name: 'Example Project',`,
+                  `  description: 'Define and maintain your README.md through code.',`,
+                  '});',
+                  '',
+                  'readme.installation((step) => {',
+                  '  step.add({',
+                  `    description: 'Install using npm',`,
+                  `    command: 'npm i readme-as-code',`,
+                  '  });',
+                  '})',
+                ].join('\n'),
+              },
+            },
+          ],
+        }),
+      )
+      .addFaq(
+        faqSection({ items: [{ question: 'Question 1', answer: 'Answer 1' }] }),
+      )
+      .addInstallation(
+        installationSection({
+          items: [
+            {
+              description: 'Install using npm',
+              command: 'npm i readme-as-code',
+            },
+          ],
+        }),
+      )
+      .addRunLocally(
+        runLocallySection({
+          items: [{ description: 'Run the tests', command: 'npm t' }],
+        }),
+      )
+      .addRoadmap(roadmapSection({ items: [{ text: 'Item 1' }] }))
+      .addSupport(supportSection().appendContent('Test content'))
+      .addAppendix(appendixSection().appendContent('Some content'));
 
     expect(readme.synthContent()).toMatchSnapshot();
   });
@@ -124,5 +139,18 @@ describe('Readme', () => {
       'markdown-as-code/test.md',
     );
     expect(mockedFs.writeFileSync.mock.calls[0][1]).toMatchSnapshot();
+  });
+
+  it('should throw an error if the section sort order is not defined', () => {
+    const readme = createReadmeDocument({
+      title: 'Readme as Code',
+      fileName: 'Readme.md',
+    });
+
+    const sectionWithoutSortOrder = contentSection({ title: 'test' });
+
+    expect(() => {
+      readme['getSortOrder'](sectionWithoutSortOrder);
+    }).toThrowError('Unknown section type');
   });
 });

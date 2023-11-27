@@ -59,43 +59,43 @@ export class Readme extends MarkdownDocument {
     return this.addSortedSection(section);
   }
 
-  public runLocally(section: RunLocally) {
+  public addRunLocally(section: RunLocally) {
     return this.addSortedSection(section);
   }
 
-  public roadmap(section: Roadmap) {
+  public addRoadmap(section: Roadmap) {
     return this.addSortedSection(section);
   }
 
-  public apiReference(section: ApiReference) {
+  public addApiReference(section: ApiReference) {
     return this.addSortedSection(section);
   }
 
-  public examples(section: Examples) {
+  public addExamples(section: Examples) {
     return this.addSortedSection(section);
   }
 
-  public faq(section: FAQ) {
+  public addFaq(section: FAQ) {
     return this.addSortedSection(section);
   }
 
-  public support(section: Support) {
+  public addSupport(section: Support) {
     return this.addSortedSection(section);
   }
 
-  public appendix(section: Appendix) {
+  public addAppendix(section: Appendix) {
     return this.addSortedSection(section);
   }
 
-  public authors(section: Authors) {
+  public addAuthors(section: Authors) {
     return this.addSortedSection(section);
   }
 
-  public acknowledgements(section: Acknowledgements) {
+  public addAcknowledgements(section: Acknowledgements) {
     return this.addSortedSection(section);
   }
 
-  public contributing(section: Contributing) {
+  public addContributing(section: Contributing) {
     return this.addSortedSection(section);
   }
 }

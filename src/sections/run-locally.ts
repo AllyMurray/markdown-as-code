@@ -5,7 +5,7 @@ interface RunLocalStep {
   command: string;
 }
 
-export interface RunLocalOptions extends Partial<ListOptions> {}
+export interface RunLocalOptions extends Partial<ListOptions<RunLocalStep>> {}
 
 export class RunLocally extends ListSection<RunLocalStep> {
   constructor(options?: RunLocalOptions) {

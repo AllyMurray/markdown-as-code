@@ -4,15 +4,17 @@ import { orderedList, unorderedList } from '../elements/list.js';
 
 export type ListType = 'None' | 'Ordered' | 'Unordered';
 
-export interface ListOptions extends DocumentSectionOptions {
+export interface ListOptions<ListItem> extends DocumentSectionOptions {
   type: ListType;
+  items?: Array<ListItem>;
 }
 
 export abstract class ListSection<ListItem> extends DocumentSection {
-  protected items: Array<ListItem> = [];
+  protected items: Array<ListItem>;
 
-  constructor(private options: ListOptions) {
+  constructor(private options: ListOptions<ListItem>) {
     super(options);
+    this.items = options.items ?? [];
   }
 
   public add(item: ListItem) {

@@ -46,12 +46,19 @@ const isApiFunction = (reference: unknown): reference is ApiFunction => {
   );
 };
 
+export interface ApiReferenceOptions {
+  title?: string;
+  items?: Array<ApiEndpoint | ApiFunction>;
+}
+
 export class ApiReference extends DocumentSection {
   private _apiEndpoints: Array<ApiEndpoint> = [];
   private _apiFunctions: Array<ApiFunction> = [];
 
-  constructor(title?: string) {
+  constructor({ title, items }: ApiReferenceOptions = {}) {
     super({ title: title ?? 'API Reference' });
+    this._apiEndpoints = items?.filter(isApiEndpoint) ?? [];
+    this._apiFunctions = items?.filter(isApiFunction) ?? [];
   }
 
   public add(reference: ApiEndpoint | ApiFunction) {
@@ -102,6 +109,6 @@ export class ApiReference extends DocumentSection {
   }
 }
 
-export function apiReferenceSection(title?: string) {
-  return new ApiReference(title);
+export function apiReferenceSection(options?: ApiReferenceOptions) {
+  return new ApiReference(options);
 }
