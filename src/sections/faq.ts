@@ -6,7 +6,8 @@ interface FrequentlyAskedQuestion {
   answer: string;
 }
 
-export interface FAQOptions extends Partial<ListOptions> {}
+export interface FAQOptions
+  extends Partial<ListOptions<FrequentlyAskedQuestion>> {}
 
 export class FAQ extends ListSection<FrequentlyAskedQuestion> {
   constructor(options?: FAQOptions) {

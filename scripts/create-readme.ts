@@ -3,6 +3,13 @@ import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { capitalCase, trainCase } from 'change-case';
 import { createReadmeDocument } from '../src/documents/readme.js';
+import {
+  acknowledgementsSection,
+  authorsSection,
+  examplesSection,
+  installationSection,
+  runLocallySection,
+} from '../src/index.js';
 
 type ReadmeOptions = {
   ourDir: string;
@@ -58,53 +65,65 @@ export async function createReadme(options: ReadmeOptions) {
       'This project allows managing Markdown files through JavaScript/TypeScript',
     outDir: options.ourDir,
   })
-    .installation((step) => {
-      step
-        .add({
-          description: 'Install using npm',
-          command: 'npm i markdown-as-code',
-        })
-        .add({
-          description: 'Install using pnpm',
-          command: 'pnpm i markdown-as-code',
-        })
-        .add({
-          description: 'Install using yarn',
-          command: 'yarn add markdown-as-code',
-        })
-        .add({
-          description: 'Run tests',
-          command: ['npm t', '# or', 'npm run test'],
-        });
-    })
-    .runLocally((step) => {
-      step.add({
-        description: 'Run the tests',
-        command: 'pnpm t',
-      });
-    })
-    .authors((author) => {
-      author
-        .add({ githubUsername: 'AllyMurray' })
-        .add({ githubUsername: 'Andrchiamus' });
-    })
-    .acknowledgements((acknowledgement) => {
-      acknowledgement.add({ text: 'Readme.so', url: 'https://readme.so' });
-    });
+    .addInstallation(
+      installationSection({
+        items: [
+          {
+            description: 'Install using npm',
+            command: 'npm i markdown-as-code',
+          },
+          {
+            description: 'Install using pnpm',
+            command: 'pnpm i markdown-as-code',
+          },
+          {
+            description: 'Install using yarn',
+            command: 'yarn add markdown-as-code',
+          },
+          {
+            description: 'Run tests',
+            command: ['npm t', '# or', 'npm run test'],
+          },
+        ],
+      }),
+    )
+    .addRunLocally(
+      runLocallySection({
+        items: [
+          {
+            description: 'Run the tests',
+            command: 'pnpm t',
+          },
+        ],
+      }),
+    )
+    .addAuthors(
+      authorsSection({
+        items: [
+          { githubUsername: 'AllyMurray' },
+          { githubUsername: 'Andrchiamus' },
+        ],
+      }),
+    )
+    .addAcknowledgements(
+      acknowledgementsSection({
+        items: [{ text: 'Readme.so', url: 'https://readme.so' }],
+      }),
+    );
 
+  const examples = examplesSection();
   const groupedCodeExamples = await getExamples();
-
-  readme.examples((example) => {
-    for (const groupedCodeExample of groupedCodeExamples) {
-      for (const codeExample of groupedCodeExample.examples) {
-        example.add({
-          title: codeExample.title,
-          codeblock: { code: codeExample.content, language: 'typescript' },
-          group: trainCase(groupedCodeExample.group).replace(/-/g, ' '),
-        });
-      }
+  for (const groupedCodeExample of groupedCodeExamples) {
+    for (const codeExample of groupedCodeExample.examples) {
+      examples.add({
+        title: codeExample.title,
+        codeblock: { code: codeExample.content, language: 'typescript' },
+        group: trainCase(groupedCodeExample.group).replace(/-/g, ' '),
+      });
     }
-  });
+  }
+
+  readme.addExamples(examples);
 
   readme.synth();
 }

@@ -4,7 +4,7 @@ interface ListItem {
   text: string;
 }
 
-function createListSection(options: ListOptions) {
+function createListSection(options: ListOptions<ListItem>) {
   class TestList extends ListSection<ListItem> {
     protected itemMapper(item: ListItem): string {
       return item.text;

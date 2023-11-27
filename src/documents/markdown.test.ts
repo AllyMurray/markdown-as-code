@@ -132,7 +132,9 @@ describe('Markdown Document', () => {
 
     markdownDoc.addSection({
       sortOrder: 4,
-      section: roadmapSection({ items: ['Some more markdown sub content'] }),
+      section: roadmapSection({
+        items: [{ text: 'Some more markdown sub content' }],
+      }),
     });
 
     const authorsSectionContent = markdownDoc.synthContent();

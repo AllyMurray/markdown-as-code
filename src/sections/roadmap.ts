@@ -4,7 +4,7 @@ interface RoadmapItem {
   text: string;
 }
 
-export interface RoadmapOptions extends Partial<ListOptions> {}
+export interface RoadmapOptions extends Partial<ListOptions<RoadmapItem>> {}
 
 export class Roadmap extends ListSection<RoadmapItem> {
   constructor(options?: RoadmapOptions) {
