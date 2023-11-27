@@ -5,7 +5,8 @@ interface InstallationStep {
   command: string | Array<string>;
 }
 
-export interface InstallationOptions extends Partial<ListOptions> {}
+export interface InstallationOptions
+  extends Partial<ListOptions<InstallationStep>> {}
 
 export class Installation extends ListSection<InstallationStep> {
   constructor(options?: InstallationOptions) {

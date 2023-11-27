@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { createMarkdownDocument } from './markdown.js';
+import { acknowledgementsSection } from '../sections/acknowledgements.js';
 import { Authors, authorsSection } from '../sections/authors.js';
 import { contentSection } from '../sections/content-section.js';
 import { roadmapSection } from '../sections/roadmap.js';
@@ -26,7 +27,7 @@ describe('Markdown Document', () => {
     expect(markdownDoc.synthContent()).toMatchSnapshot();
   });
 
-  it('should synthesize a document after adding a custom section with a sub-section', () => {
+  it('should synthesize a document after adding a custom section with a sub-section by setting rootSection', () => {
     const rootSection = contentSection({
       title: 'Root Section',
       content: 'Some markdown content',
@@ -43,18 +44,10 @@ describe('Markdown Document', () => {
       fileName: 'test.md',
     }).addSection({ section: rootSection });
 
-    markdownDoc.appendSection({
-      path: ['Root Section', 'Sub Section'],
-      type: 'content',
-      onAppend: (section) => {
-        section.appendContent('Some more markdown sub content');
-      },
-    });
-
     expect(markdownDoc.synthContent()).toMatchSnapshot();
   });
 
-  it('should synthesize a document after adding a custom section with a sub-section 2', () => {
+  it('should synthesize a document after adding a custom section with a sub-section by using addSubSection', () => {
     const markdownDoc = createMarkdownDocument({
       title: 'Test',
       fileName: 'test.md',
@@ -65,37 +58,7 @@ describe('Markdown Document', () => {
       }).addSubSection(authorsSection().add({ githubUsername: 'jane-doe' })),
     });
 
-    markdownDoc.appendSection({
-      path: ['Root Section', 'Authors'],
-      type: 'authors',
-      onAppend: (section: Authors) => {
-        section.add({ githubUsername: 'john-smith' });
-      },
-    });
-
     expect(markdownDoc.synthContent()).toMatchSnapshot();
-  });
-
-  it('should throw an error if a section is not found', () => {
-    const markdownDoc = createMarkdownDocument({
-      title: 'Test',
-      fileName: 'test.md',
-    }).addSection({
-      section: contentSection({
-        title: 'Root Section',
-        content: 'Some markdown content',
-      }).addSubSection(authorsSection().add({ githubUsername: 'jane-doe' })),
-    });
-
-    expect(() =>
-      markdownDoc.appendSection({
-        path: ['Root Section', 'Authors', 'John Smith'],
-        type: 'authors',
-        onAppend: (section) => {
-          section.add({ githubUsername: 'john-smith' });
-        },
-      }),
-    ).toThrowError();
   });
 
   it('should write a document to disk', () => {
@@ -112,62 +75,27 @@ describe('Markdown Document', () => {
     expect(mockedFs.writeFileSync.mock.calls[0][1]).toMatchSnapshot();
   });
 
-  it('should synthesize a document after adding a custom section with a sub-section', () => {
-    const markdownDoc = createMarkdownDocument({
-      title: 'Test',
-      fileName: 'test.md',
-    });
-
-    markdownDoc.createSection({
-      type: 'acknowledgements',
-      sortOrder: 1,
-      onCreate: (section) => {
-        section.add({
-          text: 'Some more markdown sub content',
-          url: 'http://example.com',
-        });
-      },
-    });
-
-    markdownDoc.appendSection({
-      path: ['Acknowledgements'],
-      type: 'acknowledgements',
-      onAppend: (section) => {
-        section.add({
-          text: 'Some more markdown sub content',
-          url: 'http://example.com',
-        });
-      },
-    });
-
-    expect(markdownDoc.synthContent()).toMatchSnapshot();
-  });
-
   it('should increment the sort order when adding a section', () => {
     const markdownDoc = createMarkdownDocument({
       title: 'Test',
       fileName: 'test.md',
     });
 
-    markdownDoc.createSection({
-      type: 'acknowledgements',
+    markdownDoc.addSection({
       sortOrder: 1,
-      onCreate: (section) => {
-        section.add({
-          text: 'Some more markdown sub content',
-          url: 'http://example.com',
-        });
-      },
+      section: acknowledgementsSection({
+        items: [
+          {
+            text: 'Some more markdown sub content',
+            url: 'http://example.com',
+          },
+        ],
+      }),
     });
 
-    markdownDoc.createSection({
-      type: 'authors',
+    markdownDoc.addSection({
       sortOrder: 1,
-      onCreate: (section) => {
-        section.add({
-          githubUsername: 'john-smith',
-        });
-      },
+      section: authorsSection({ items: [{ githubUsername: 'john-smith' }] }),
     });
 
     const authorsSectionContent = markdownDoc.synthContent();
@@ -185,35 +113,28 @@ describe('Markdown Document', () => {
       fileName: 'test.md',
     });
 
-    markdownDoc.createSection({
-      type: 'authors',
+    markdownDoc.addSection({
       sortOrder: 3,
-      onCreate: (section) => {
-        section.add({
-          githubUsername: 'john-smith',
-        });
-      },
+      section: authorsSection({ items: [{ githubUsername: 'john-smith' }] }),
     });
 
-    markdownDoc.createSection({
-      type: 'acknowledgements',
+    markdownDoc.addSection({
       sortOrder: 1,
-      onCreate: (section) => {
-        section.add({
-          text: 'Some more markdown sub content',
-          url: 'http://example.com',
-        });
-      },
+      section: acknowledgementsSection({
+        items: [
+          {
+            text: 'Some more markdown sub content',
+            url: 'http://example.com',
+          },
+        ],
+      }),
     });
 
-    markdownDoc.createSection({
-      type: 'roadmap',
+    markdownDoc.addSection({
       sortOrder: 4,
-      onCreate: (section) => {
-        section.add({
-          text: 'Some more markdown sub content',
-        });
-      },
+      section: roadmapSection({
+        items: [{ text: 'Some more markdown sub content' }],
+      }),
     });
 
     const authorsSectionContent = markdownDoc.synthContent();
@@ -227,5 +148,35 @@ describe('Markdown Document', () => {
       indexOfAuthors < indexOfRoadmap;
 
     expect(isCorrectSortOrder).toBe(true);
+  });
+
+  it('should find a section by path', () => {
+    const markdownDoc = createMarkdownDocument({
+      title: 'Test',
+      fileName: 'test.md',
+    });
+
+    markdownDoc.addSection({
+      section: authorsSection({ items: [{ githubUsername: 'john-smith' }] }),
+    });
+
+    const authorsSectionFromPath = markdownDoc.tryFindSection(['Authors']);
+
+    expect(authorsSectionFromPath).toBeInstanceOf(Authors);
+  });
+
+  it('should return undefined when section is not found by path', () => {
+    const markdownDoc = createMarkdownDocument({
+      title: 'Test',
+      fileName: 'test.md',
+    });
+
+    markdownDoc.addSection({
+      section: authorsSection({ items: [{ githubUsername: 'john-smith' }] }),
+    });
+
+    const authorsSectionFromPath = markdownDoc.tryFindSection(['Unknown']);
+
+    expect(authorsSectionFromPath).toBeUndefined();
   });
 });

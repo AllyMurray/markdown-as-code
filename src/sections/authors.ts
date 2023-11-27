@@ -6,7 +6,7 @@ interface Author {
   githubUsername: string;
 }
 
-export interface AuthorsOptions extends Partial<ListOptions> {}
+export interface AuthorsOptions extends Partial<ListOptions<Author>> {}
 
 export class Authors extends ListSection<Author> {
   constructor(options?: AuthorsOptions) {

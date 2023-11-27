@@ -6,7 +6,8 @@ interface EnvironmentVariable {
   defaultValue?: string;
 }
 
-export interface EnvironmentVariablesOptions extends Partial<ListOptions> {}
+export interface EnvironmentVariablesOptions
+  extends Partial<ListOptions<EnvironmentVariable>> {}
 
 export class EnvironmentVariables extends ListSection<EnvironmentVariable> {
   constructor(options?: EnvironmentVariablesOptions) {

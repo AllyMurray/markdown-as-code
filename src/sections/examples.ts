@@ -56,7 +56,10 @@ interface Example {
   group?: string;
 }
 
-export interface ExamplesOptions extends DocumentSectionOptions {
+type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
+
+export interface ExamplesOptions
+  extends Optional<DocumentSectionOptions, 'title'> {
   items?: Array<Example>;
 }
 export class Examples extends DocumentSection {

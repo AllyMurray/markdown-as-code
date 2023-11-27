@@ -104,9 +104,16 @@ const content = authorsSection()
 #### Content
 
 ```typescript
-import { contentSection } from 'markdown-as-code';
+import { contentSection, orderedList } from 'markdown-as-code';
 
-const content = contentSection('Test Section').synthesize();
+// Create a content section with a title
+const section = contentSection('Test Section');
+
+// Add content to the section using the appendContent method
+section.appendContent('Some markdown content');
+
+// Use one of the element builders to add content
+section.appendContent(orderedList(['item 1', 'item 2']));
 ```
 
 #### Contributing
@@ -320,10 +327,15 @@ quote('This is a quote');
 import { style } from 'markdown-as-code';
 
 style('Bold', 'Example Bold Text');
+
 style('Italic', 'Example Italic Text');
+
 style('Strikethrough', 'Example Strikethrough Text');
+
 style('Superscript', 'Example Superscript Text');
+
 style('Subscript', 'Example Subscript Text');
+
 style('BoldItalic', 'Example BoldItalic Text');
 ```
 
