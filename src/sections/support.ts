@@ -1,11 +1,15 @@
 import { ContentSection } from './content-section.js';
 
+export interface SupportOptions {
+  content?: string;
+}
+
 export class Support extends ContentSection {
-  constructor() {
-    super({ title: 'Support' });
+  constructor(options: SupportOptions) {
+    super({ title: 'Support', ...options });
   }
 }
 
-export function supportSection() {
-  return new Support();
+export function supportSection(options: SupportOptions) {
+  return new Support(options);
 }

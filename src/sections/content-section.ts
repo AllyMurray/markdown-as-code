@@ -3,30 +3,30 @@ import { heading } from '../elements/heading.js';
 
 type Content = string | Array<string>;
 
-interface ContentSectionOptions extends DocumentSectionOptions {
+export interface ContentSectionOptions extends DocumentSectionOptions {
   content?: Content;
 }
 
 export class ContentSection extends DocumentSection {
-  private content: Content;
+  private content: Array<string> = [];
 
   constructor(options: ContentSectionOptions) {
     super(options);
-    this.content = options.content ?? '';
+    this.appendContent(options.content ?? '');
   }
 
   public appendContent(content: Content) {
-    this.content = this.content
-      ? [this.content, '', content].join('\n')
-      : content;
+    if (Array.isArray(content)) {
+      this.content.push(...content);
+    } else {
+      this.content.push(content);
+    }
+
     return this;
   }
 
   protected synthesizeContent(): Array<string> {
-    const content = Array.isArray(this.content)
-      ? this.content.join('\n\n')
-      : this.content;
-
+    const content = this.content.join('\n\n');
     return [heading(this.headingLevel, this.title), '', content];
   }
 }

@@ -1,4 +1,5 @@
 import { DocumentSection, DocumentSectionOptions } from './section.js';
+import type { Optional } from '../@types/optional.js';
 import { HeadingLevel, heading } from '../elements/heading.js';
 
 interface CodeBlock {
@@ -49,14 +50,12 @@ interface CodeBlock {
   code: string;
 }
 
-interface Example {
+export interface Example {
   title: string;
   description?: string;
   codeblock: CodeBlock;
   group?: string;
 }
-
-type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
 export interface ExamplesOptions
   extends Optional<DocumentSectionOptions, 'title'> {
