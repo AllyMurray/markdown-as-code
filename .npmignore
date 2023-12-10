@@ -19,5 +19,6 @@ dist
 tsconfig.tsbuildinfo
 /.eslintrc.json
 tsup.config.ts
+.nvmrc
 vitest.config.ts
 .projenrc.ts

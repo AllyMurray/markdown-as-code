@@ -51,5 +51,6 @@ test-reports
 /lib
 /dist/
 !/.eslintrc.json
+!/.nvmrc
 !/tsup.config.ts
 !/vitest.config.ts
