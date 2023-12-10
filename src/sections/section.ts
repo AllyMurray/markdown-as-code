@@ -3,6 +3,7 @@ import { HeadingLevel } from '../elements/heading.js';
 export interface DocumentSectionOptions {
   title: string;
   parent?: DocumentSection;
+  subSections?: Array<DocumentSection>;
 }
 
 /**
@@ -19,6 +20,7 @@ export abstract class DocumentSection {
     this.title = options.title;
     this.parent = options.parent;
     this.parent?._subSections.push(this);
+    options.subSections?.forEach((section) => this.addSubSection(section));
   }
 
   get subSections(): ReadonlyArray<DocumentSection> {

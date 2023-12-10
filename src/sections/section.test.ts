@@ -7,7 +7,7 @@ import {
 function createTestSection(options: DocumentSectionOptions) {
   class TestSection extends DocumentSection {
     protected synthesizeContent(): Array<string> {
-      return ['Test Section'];
+      return [options.title, ...this.subSections.map((s) => s.synthesize())];
     }
   }
 
@@ -86,5 +86,33 @@ describe('tryFindSection', () => {
     expect(
       tryFindSection([testSection], ['Test Section', 'Sub Section']),
     ).toStrictEqual(subSection);
+  });
+
+  it('should add single sub section passed in options', () => {
+    const testSection = createTestSection({
+      title: 'Test Section',
+      subSections: [createTestSection({ title: 'Sub Section' })],
+    });
+
+    expect(testSection.synthesize()).toMatchInlineSnapshot(`
+      "Test Section
+      Sub Section"
+    `);
+  });
+
+  it('should add multiple sub sections passed in options', () => {
+    const testSection = createTestSection({
+      title: 'Test Section',
+      subSections: [
+        createTestSection({ title: 'Sub Section 1' }),
+        createTestSection({ title: 'Sub Section 2' }),
+      ],
+    });
+
+    expect(testSection.synthesize()).toMatchInlineSnapshot(`
+      "Test Section
+      Sub Section 1
+      Sub Section 2"
+    `);
   });
 });
