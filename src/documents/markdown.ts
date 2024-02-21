@@ -15,7 +15,10 @@ export interface MarkdownOptions {
   outDir?: string;
 
   title: string;
+
   description?: string;
+
+  content?: Array<DocumentSection>;
 
   /**
    * Include a table of contents in the output
@@ -43,6 +46,11 @@ export class MarkdownDocument {
   constructor(private options: MarkdownOptions) {
     this._outDir = options.outDir ?? process.cwd();
     this._tableOfContents = options.tableOfContents ?? true;
+
+    let i = 0;
+    options.content?.forEach((section) =>
+      this.addSection({ section, sortOrder: i++ }),
+    );
     return this;
   }
 
@@ -100,6 +108,18 @@ export class MarkdownDocument {
       }
     }
     return lines;
+  }
+
+  public get fileName() {
+    return this.options.fileName;
+  }
+
+  public get outDir() {
+    return this._outDir;
+  }
+
+  public get fullFilePath() {
+    return join(this._outDir, this.options.fileName);
   }
 
   public synthContent() {
