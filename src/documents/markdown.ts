@@ -111,5 +111,5 @@ export class MarkdownDocument {
   }
 }
 
-export const createMarkdownDocument = (options: MarkdownOptions) =>
+export const markdownDocument = (options: MarkdownOptions) =>
   new MarkdownDocument(options);

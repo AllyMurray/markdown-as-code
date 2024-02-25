@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { createMarkdownDocument } from './markdown.js';
+import { markdownDocument } from './markdown.js';
 import { Authors, authorsSection } from '../sections/authors.js';
 import { contentSection } from '../sections/content-section.js';
 import { roadmapSection } from '../sections/roadmap.js';
@@ -9,7 +9,7 @@ const mockedFs = vi.mocked(fs);
 
 describe('Markdown Document', () => {
   it('should synthesize a basic document', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
     });
@@ -18,7 +18,7 @@ describe('Markdown Document', () => {
   });
 
   it('should synthesize a document after adding a section', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
     }).addSection(roadmapSection({ items: [{ text: 'Item 1' }] }));
@@ -38,7 +38,7 @@ describe('Markdown Document', () => {
       parent: rootSection,
     });
 
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
       content: [rootSection],
@@ -48,7 +48,7 @@ describe('Markdown Document', () => {
   });
 
   it('should synthesize a document after adding a custom section with a sub-section by using addSubSection', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
     }).addSection(
@@ -62,7 +62,7 @@ describe('Markdown Document', () => {
   });
 
   it('should write a document to disk', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
     });
@@ -76,7 +76,7 @@ describe('Markdown Document', () => {
   });
 
   it('should find a section by path', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
     });
@@ -91,7 +91,7 @@ describe('Markdown Document', () => {
   });
 
   it('should return undefined when section is not found by path', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
     });
@@ -106,7 +106,7 @@ describe('Markdown Document', () => {
   });
 
   it('should return the file name', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
     });
@@ -115,7 +115,7 @@ describe('Markdown Document', () => {
   });
 
   it('should return the out dir', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
       outDir: 'lib',
@@ -125,7 +125,7 @@ describe('Markdown Document', () => {
   });
 
   it('should return the full file path', () => {
-    const markdownDoc = createMarkdownDocument({
+    const markdownDoc = markdownDocument({
       title: 'Test',
       fileName: 'test.md',
       outDir: 'lib',
