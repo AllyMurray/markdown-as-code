@@ -3,7 +3,7 @@ import { heading } from '../elements/heading.js';
 
 export interface TableOfContents {
   title?: string;
-  sections: Array<DocumentSection>;
+  sections: ReadonlyArray<DocumentSection>;
 }
 
 export class TableOfContentsSection extends DocumentSection {

@@ -33,64 +33,25 @@ export interface AddSection {
   sortOrder?: number;
 }
 
-interface SortedSection {
-  section: DocumentSection;
-  sortOrder: number;
-}
-
 export class MarkdownDocument {
   private _outDir: string;
   private _tableOfContents: boolean;
-  private _sortedSections: Array<SortedSection> = [];
+  private _sortedSections: Array<DocumentSection> = [];
 
   constructor(private options: MarkdownOptions) {
     this._outDir = options.outDir ?? process.cwd();
     this._tableOfContents = options.tableOfContents ?? true;
 
-    let i = 0;
-    options.content?.forEach((section) =>
-      this.addSection({ section, sortOrder: i++ }),
-    );
+    options.content?.forEach((section) => this.addSection(section));
     return this;
   }
 
-  private get sections() {
-    return this._sortedSections
-      .sort((sectionA, sectionB) => sectionA.sortOrder - sectionB.sortOrder)
-      .map((sortedSection) => sortedSection.section);
+  private get sections(): ReadonlyArray<DocumentSection> {
+    return this._sortedSections;
   }
 
-  private bumpSortOrder(startingSortOrder: number) {
-    const maxSortOrder = Math.max(
-      ...this._sortedSections.map((s) => s.sortOrder),
-    );
-    if (startingSortOrder <= maxSortOrder) {
-      // Create a sorted array of all existing sort orders
-      const existingSortOrders = this._sortedSections
-        .map((s) => s.sortOrder)
-        .sort((a, b) => a - b);
-      for (
-        let sortOrder = startingSortOrder;
-        sortOrder <= maxSortOrder;
-        sortOrder++
-      ) {
-        // If the current sort order does not exist in the array, there is a gap
-        if (!existingSortOrders.includes(sortOrder)) {
-          break;
-        }
-        // If there is no gap, increment the sort order of the section at this position
-        for (let section of this._sortedSections) {
-          if (section.sortOrder === sortOrder) {
-            section.sortOrder++;
-          }
-        }
-      }
-    }
-  }
-
-  public addSection({ section, sortOrder = 0 }: AddSection) {
-    this.bumpSortOrder(sortOrder);
-    this._sortedSections.push({ section, sortOrder });
+  public addSection(section: DocumentSection) {
+    this._sortedSections.push(section);
     return this;
   }
 
