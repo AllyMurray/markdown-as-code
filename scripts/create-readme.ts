@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { capitalCase, trainCase } from 'change-case';
-import { markdownDocument } from '../src/documents/markdown.js';
+import { markdownFile } from '../src/markdown-file.js';
 import { acknowledgementsSection } from '../src/sections/acknowledgements.js';
 import { authorsSection } from '../src/sections/authors.js';
 import { examplesSection, type Example } from '../src/sections/examples.js';
@@ -111,12 +111,12 @@ export async function createReadme(options: ReadmeOptions) {
 
   const examples = examplesSection({ items: exampleItems });
 
-  markdownDocument({
+  markdownFile({
     title: packageJson.name,
     fileName: 'README.md',
     description:
       'This project allows managing Markdown files through JavaScript/TypeScript',
     outDir: options.ourDir,
     content: [installation, runLocally, examples, authors, acknowledgements],
-  }).synth();
+  }).toFile();
 }
