@@ -4,7 +4,6 @@ import {
   MarkdownDocument,
   MarkdownDocumentOptions,
 } from './markdown-document.js';
-import { DocumentSection } from './sections/section.js';
 
 export type MarkdownFileOptions = MarkdownDocumentOptions & {
   fileName: string;
@@ -16,11 +15,6 @@ export type MarkdownFileOptions = MarkdownDocumentOptions & {
    */
   outDir?: string;
 };
-
-export interface AddSection {
-  section: DocumentSection;
-  sortOrder?: number;
-}
 
 export class MarkdownFile extends MarkdownDocument {
   private _outDir: string;

@@ -1,4 +1,5 @@
 export * from './markdown-document.js';
+export * from './markdown-file.js';
 
 export * from './sections/acknowledgements.js';
 export * from './sections/api-reference.js';
