@@ -13,7 +13,40 @@ describe('API Reference', () => {
     ).toBe('## Markdown as Code API Reference');
   });
 
-  it('should return the correct markdown after adding an API Endpoint', () => {
+  it('should return the correct markdown adding an API Endpoint in the constructor', () => {
+    const apiReference = apiReferenceSection({
+      items: [
+        {
+          title: 'Get all items',
+          httpMethod: 'GET',
+          path: '/api/items',
+          parameter: {
+            name: 'api_key',
+            type: 'string',
+            description: '**Required**. Your API key',
+          },
+        },
+      ],
+    });
+
+    expect(apiReference.synthesize()).toBe(
+      [
+        '## API Reference',
+        '',
+        '#### Get all items',
+        '',
+        '```http',
+        'GET /api/items',
+        '```',
+        '',
+        '| Parameter | Type     | Description                |',
+        '| :-------- | :------- | :------------------------- |',
+        '|api_key | string | **Required**. Your API key|',
+      ].join('\n'),
+    );
+  });
+
+  it('should return the correct markdown adding an API Endpoint through the add method', () => {
     const apiReference = apiReferenceSection();
 
     apiReference.add({
@@ -44,7 +77,29 @@ describe('API Reference', () => {
     );
   });
 
-  it('should return the correct markdown after adding an API Function', () => {
+  it('should return the correct markdown adding an API Function in the constructor', () => {
+    const apiReference = apiReferenceSection({
+      items: [
+        {
+          name: 'add',
+          parameters: ['num1', 'num2'],
+          description: 'Takes two numbers and returns the sum.',
+        },
+      ],
+    });
+
+    expect(apiReference.synthesize()).toBe(
+      [
+        '## API Reference',
+        '',
+        '#### add(num1, num2)',
+        '',
+        'Takes two numbers and returns the sum.',
+      ].join('\n'),
+    );
+  });
+
+  it('should return the correct markdown adding an API Function through the add method', () => {
     const apiReference = apiReferenceSection();
 
     apiReference.add({

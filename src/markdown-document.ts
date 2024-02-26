@@ -1,19 +1,8 @@
-import { writeFileSync } from 'fs';
-import { join } from 'path';
-import { heading } from '../elements/heading.js';
-import { DocumentSection, tryFindSection } from '../sections/section.js';
-import { tableOfContentsSection } from '../sections/table-of-contents.js';
+import { heading } from './elements/heading.js';
+import { DocumentSection, tryFindSection } from './sections/section.js';
+import { tableOfContentsSection } from './sections/table-of-contents.js';
 
-export interface MarkdownOptions {
-  fileName: string;
-
-  /**
-   * The directory the markdown file will be written to
-   *
-   * @default project root directory
-   */
-  outDir?: string;
-
+export interface MarkdownDocumentOptions {
   title: string;
 
   description?: string;
@@ -34,12 +23,10 @@ export interface AddSection {
 }
 
 export class MarkdownDocument {
-  private _outDir: string;
   private _tableOfContents: boolean;
   private _sortedSections: Array<DocumentSection> = [];
 
-  constructor(private options: MarkdownOptions) {
-    this._outDir = options.outDir ?? process.cwd();
+  constructor(private options: MarkdownDocumentOptions) {
     this._tableOfContents = options.tableOfContents ?? true;
 
     options.content?.forEach((section) => this.addSection(section));
@@ -71,19 +58,7 @@ export class MarkdownDocument {
     return lines;
   }
 
-  public get fileName() {
-    return this.options.fileName;
-  }
-
-  public get outDir() {
-    return this._outDir;
-  }
-
-  public get fullFilePath() {
-    return join(this._outDir, this.options.fileName);
-  }
-
-  public synthContent() {
+  public toString() {
     let tableOfContents;
     if (this._tableOfContents) {
       tableOfContents = tableOfContentsSection({
@@ -102,14 +77,7 @@ export class MarkdownDocument {
 
     return lines.filter(Boolean).join('\n\n');
   }
-
-  public synth() {
-    writeFileSync(
-      join(this._outDir, this.options.fileName),
-      this.synthContent(),
-    );
-  }
 }
 
-export const markdownDocument = (options: MarkdownOptions) =>
+export const markdownDocument = (options: MarkdownDocumentOptions) =>
   new MarkdownDocument(options);

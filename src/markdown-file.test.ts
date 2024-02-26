@@ -1,29 +1,29 @@
 import fs from 'fs';
-import { markdownDocument } from './markdown.js';
-import { Authors, authorsSection } from '../sections/authors.js';
-import { contentSection } from '../sections/content-section.js';
-import { roadmapSection } from '../sections/roadmap.js';
+import { markdownFile } from './markdown-file.js';
+import { Authors, authorsSection } from './sections/authors.js';
+import { contentSection } from './sections/content-section.js';
+import { roadmapSection } from './sections/roadmap.js';
 
 vi.mock('fs');
 const mockedFs = vi.mocked(fs);
 
-describe('Markdown Document', () => {
+describe('Markdown File', () => {
   it('should synthesize a basic document', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
     });
 
-    expect(markdownDoc.synthContent()).toMatchSnapshot();
+    expect(markdownDoc.toString()).toMatchSnapshot();
   });
 
   it('should synthesize a document after adding a section', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
     }).addSection(roadmapSection({ items: [{ text: 'Item 1' }] }));
 
-    expect(markdownDoc.synthContent()).toMatchSnapshot();
+    expect(markdownDoc.toString()).toMatchSnapshot();
   });
 
   it('should synthesize a document after adding a custom section with a sub-section by setting rootSection', () => {
@@ -38,17 +38,17 @@ describe('Markdown Document', () => {
       parent: rootSection,
     });
 
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
       content: [rootSection],
     });
 
-    expect(markdownDoc.synthContent()).toMatchSnapshot();
+    expect(markdownDoc.toString()).toMatchSnapshot();
   });
 
   it('should synthesize a document after adding a custom section with a sub-section by using addSubSection', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
     }).addSection(
@@ -58,16 +58,16 @@ describe('Markdown Document', () => {
       }).addSubSection(authorsSection().add({ githubUsername: 'jane-doe' })),
     );
 
-    expect(markdownDoc.synthContent()).toMatchSnapshot();
+    expect(markdownDoc.toString()).toMatchSnapshot();
   });
 
   it('should write a document to disk', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
     });
 
-    markdownDoc.synth();
+    markdownDoc.toFile();
 
     expect(mockedFs.writeFileSync.mock.calls[0][0]).toContain(
       'markdown-as-code/test.md',
@@ -76,7 +76,7 @@ describe('Markdown Document', () => {
   });
 
   it('should find a section by path', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
     });
@@ -91,7 +91,7 @@ describe('Markdown Document', () => {
   });
 
   it('should return undefined when section is not found by path', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
     });
@@ -106,7 +106,7 @@ describe('Markdown Document', () => {
   });
 
   it('should return the file name', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
     });
@@ -115,7 +115,7 @@ describe('Markdown Document', () => {
   });
 
   it('should return the out dir', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
       outDir: 'lib',
@@ -125,7 +125,7 @@ describe('Markdown Document', () => {
   });
 
   it('should return the full file path', () => {
-    const markdownDoc = markdownDocument({
+    const markdownDoc = markdownFile({
       title: 'Test',
       fileName: 'test.md',
       outDir: 'lib',

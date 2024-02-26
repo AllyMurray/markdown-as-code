@@ -52,8 +52,8 @@ export interface ApiReferenceOptions {
 }
 
 export class ApiReference extends DocumentSection {
-  private _apiEndpoints: Array<ApiEndpoint> = [];
-  private _apiFunctions: Array<ApiFunction> = [];
+  private _apiEndpoints: Array<ApiEndpoint>;
+  private _apiFunctions: Array<ApiFunction>;
 
   constructor({ title, items }: ApiReferenceOptions = {}) {
     super({ title: title ?? 'API Reference' });

@@ -1,0 +1,121 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Markdown Document > should synthesize a basic document 1`] = `
+"# Test
+
+## Table of Contents
+"
+`;
+
+exports[`Markdown Document > should synthesize a document after adding a custom section with a sub-section by setting rootSection 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Root Section](#root-section)
+  - [Sub Section](#sub-section)
+
+## Root Section
+
+Some markdown content
+
+### Sub Section
+
+Some markdown sub content"
+`;
+
+exports[`Markdown Document > should synthesize a document after adding a custom section with a sub-section by using addSubSection 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Root Section](#root-section)
+  - [Authors](#authors)
+
+## Root Section
+
+Some markdown content
+
+### Authors
+
+- [@jane-doe](https://www.github.com/jane-doe)"
+`;
+
+exports[`Markdown Document > should synthesize a document after adding a section 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Roadmap](#roadmap)
+
+## Roadmap
+
+- Item 1"
+`;
+
+exports[`Markdown Document > should write a document to disk 1`] = `
+"# Test
+
+## Table of Contents
+"
+`;
+
+exports[`Markdown File > should synthesize a basic document 1`] = `
+"# Test
+
+## Table of Contents
+"
+`;
+
+exports[`Markdown File > should synthesize a document after adding a custom section with a sub-section by setting rootSection 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Root Section](#root-section)
+  - [Sub Section](#sub-section)
+
+## Root Section
+
+Some markdown content
+
+### Sub Section
+
+Some markdown sub content"
+`;
+
+exports[`Markdown File > should synthesize a document after adding a custom section with a sub-section by using addSubSection 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Root Section](#root-section)
+  - [Authors](#authors)
+
+## Root Section
+
+Some markdown content
+
+### Authors
+
+- [@jane-doe](https://www.github.com/jane-doe)"
+`;
+
+exports[`Markdown File > should synthesize a document after adding a section 1`] = `
+"# Test
+
+## Table of Contents
+
+- [Roadmap](#roadmap)
+
+## Roadmap
+
+- Item 1"
+`;
+
+exports[`Markdown File > should write a document to disk 1`] = `
+"# Test
+
+## Table of Contents
+"
+`;
