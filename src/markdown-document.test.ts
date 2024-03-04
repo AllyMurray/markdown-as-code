@@ -80,4 +80,12 @@ describe('Markdown Document', () => {
 
     expect(authorsSectionFromPath).toBeUndefined();
   });
+
+  it('should return the title', () => {
+    const markdownDoc = markdownDocument({
+      title: 'Test',
+    });
+
+    expect(markdownDoc.title).toBe('Test');
+  });
 });

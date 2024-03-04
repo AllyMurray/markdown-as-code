@@ -26,15 +26,21 @@ export class MarkdownDocument {
   private _tableOfContents: boolean;
   private _sortedSections: Array<DocumentSection> = [];
 
+  private _title: string;
+
   constructor(private options: MarkdownDocumentOptions) {
     this._tableOfContents = options.tableOfContents ?? true;
-
+    this._title = options.title;
     options.content?.forEach((section) => this.addSection(section));
     return this;
   }
 
   private get sections(): ReadonlyArray<DocumentSection> {
     return this._sortedSections;
+  }
+
+  public get title() {
+    return this._title;
   }
 
   public addSection(section: DocumentSection) {
