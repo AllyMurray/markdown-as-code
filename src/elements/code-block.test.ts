@@ -14,4 +14,20 @@ describe('codeBlock', () => {
       expected,
     );
   });
+
+  it('should normalize the indentation of the code block', () => {
+    const exampleCode = `
+      function foo() {
+        return 'bar';
+      }
+    `;
+    expect(codeBlock({ language: 'typescript', code: exampleCode }))
+      .toMatchInlineSnapshot(`
+        "\`\`\`typescript
+        function foo() {
+          return 'bar';
+        }
+        \`\`\`"
+      `);
+  });
 });

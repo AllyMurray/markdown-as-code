@@ -47,5 +47,18 @@ interface CodeBlock {
 }
 
 export const codeBlock = ({ language, code }: CodeBlock) => {
-  return [`\`\`\`${language ?? ''}`, code, '```'].join('\n');
+  // Remove the new line at the start of the code block
+  const newCode = code.replace(/^\n/, '');
+
+  // Get the whitespace from the first line
+  const match = newCode.match(/^(\s+)/);
+  const whitespace = match ? match[1] : '';
+
+  // Decrease code indentation by the length of the whitespace from the first line
+  const lines = newCode
+    .trim()
+    .split('\n')
+    .map((line) => line.replace(whitespace, ''));
+
+  return [`\`\`\`${language ?? ''}`, lines.join('\n'), '```'].join('\n');
 };
