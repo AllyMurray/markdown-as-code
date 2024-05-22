@@ -8,9 +8,9 @@ const project = new TypeScriptNpmPackage({
   authorEmail: 'allymurray88@gmail.com',
   defaultReleaseBranch: 'main',
   repository: 'https://github.com/AllyMurray/markdown-as-code',
+  majorVersion: 1,
   deps: ['change-case'],
   devDeps: ['@ally-murray/projen-modules'],
-  prerelease: 'beta',
 });
 
 project.synth();
