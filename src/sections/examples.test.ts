@@ -165,4 +165,31 @@ describe('Examples', () => {
       "
     `);
   });
+
+  it('should return correct syntax when using a template literal', () => {
+    const section = examplesSection().add({
+      title: 'Ungrouped Example',
+      codeblock: {
+        language: 'typescript',
+        code: `
+          import { examplesSection } from 'path/to/examples';
+
+          const section = examplesSection();
+        `,
+      },
+    });
+
+    expect(section.synthesize()).toMatchInlineSnapshot(`
+      "## Examples
+
+      ### Ungrouped Example
+
+      \`\`\`typescript
+      import { examplesSection } from 'path/to/examples';
+
+      const section = examplesSection();
+      \`\`\`
+      "
+    `);
+  });
 });

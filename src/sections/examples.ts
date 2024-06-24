@@ -1,5 +1,6 @@
 import { DocumentSection, DocumentSectionOptions } from './section.js';
 import type { Optional } from '../@types/optional.js';
+import { codeBlock } from '../elements/code-block.js';
 import { HeadingLevel, heading } from '../elements/heading.js';
 
 interface CodeBlock {
@@ -82,12 +83,16 @@ export class Examples extends DocumentSection {
   }
 
   protected itemMapper(item: Example, headingLevel: HeadingLevel): string {
+    const { code, language } = item.codeblock;
+
     return [
       heading(headingLevel, item.title),
       ...(item.description ? ['', item.description, ''] : ['']),
-      `\`\`\`${item.codeblock.language}`,
-      item.codeblock.code.replace(/\n$/, ''),
-      '```',
+      // `\`\`\`${item.codeblock.language}`,
+      // item.codeblock.code.replace(/\n$/, ''),
+      codeBlock({ code, language }),
+      // item.codeblock.code.replace(/\n$/, ''),
+      // '```',
       '',
     ].join('\n');
   }
