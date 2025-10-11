@@ -51,7 +51,7 @@
     "vitest": "^1.0.4"
   },
   "dependencies": {
-    "change-case": "^5.0.2"
+    "change-case": "^5.4.4"
   },
   "pnpm": {},
   "engines": {
